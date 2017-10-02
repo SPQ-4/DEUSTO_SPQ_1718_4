@@ -1,2 +1,6 @@
 Nuevo Archivo
+<<<<<<< HEAD
 Asier Rodriguez
+=======
+PAULA
+>>>>>>> 1d675066cca4dbff7cc912807dcc78b163536274
