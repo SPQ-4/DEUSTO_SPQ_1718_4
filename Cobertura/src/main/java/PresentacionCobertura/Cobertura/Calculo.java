@@ -6,12 +6,12 @@ public class Calculo {
 	String usuario="Paco";
 	String contrasenya="password";
 	public Calculo() {
-		System.out.println("Hellow");
+		/*System.out.println("Hellow");
 		Scanner leer=new Scanner(System.in);
 		System.out.println("Introduce usuario");
 		String entradaUsuario=leer.next();
 		System.out.println("Introduce contraseña");
-		String entradaUsuario2=leer.next();
+		String entradaUsuario2=leer.next();*/
 		
 	}
 	public String comprobar(String entradaUsuario,String entradaUsuario2) {
