@@ -27,12 +27,29 @@
 		<plugin>
 			<groupId>org.codehaus.mojo</groupId>
 			<artifactId>cobertura-maven-plugin</artifactId>
+			<version>2.6</version>
+			<configuration>
+			    <check>
+			        <haltOnFailure>true</haltOnFailure>
+			        <branchRate>75</branchRate>
+			        <lineRate>85</lineRate>
+			        <totalBranchRate>75</totalBranchRate>
+			        <totalLineRate>85</totalLineRate>
+			        <packageLineRate>75</packageLineRate>
+			        <packageBranchRate>85</packageBranchRate>
+			    </check>
+			</configuration>
 		</plugin>
 	</plugins>
   </reporting>
 <!--  FIN:Para usar el GOAL de reporting de cobertura  -->
  <build>
   	<plugins>
+  		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>cobertura-maven-plugin</artifactId>
+			<version>2.6</version>
+		</plugin>
   		<plugin>
   			<groupId>org.apache.maven.plugins</groupId>
   			<artifactId>maven-compiler-plugin</artifactId>
@@ -61,11 +78,6 @@
 	          <mainClass>Calculo</mainClass>
 	        </configuration>
       	</plugin>
-      	<plugin>
-			<groupId>org.codehaus.mojo</groupId>
-			<artifactId>cobertura-maven-plugin</artifactId>
-			<configuration></configuration>
-		</plugin>
    </plugins>
 </build>
 </project>
