@@ -7,7 +7,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		BasicConfigurator.configure();
+		//BasicConfigurator.configure();
 		Logger log=Logger.getLogger(Main.class);
 		log.debug("Funciona");
 	}
