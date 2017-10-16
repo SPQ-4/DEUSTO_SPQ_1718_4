@@ -41,12 +41,12 @@
 			<configuration>
 			    <check>
 			        <haltOnFailure>true</haltOnFailure>
-			        <branchRate>100</branchRate>
-			        <lineRate>100</lineRate>
-			        <totalBranchRate>100</totalBranchRate>
-			        <totalLineRate>100</totalLineRate>
-			        <packageLineRate>100</packageLineRate>
-			        <packageBranchRate>100</packageBranchRate>
+			        <branchRate>50</branchRate>
+			        <lineRate>50</lineRate>
+			        <totalBranchRate>50</totalBranchRate>
+			        <totalLineRate>50</totalLineRate>
+			        <packageLineRate>50</packageLineRate>
+			        <packageBranchRate>50</packageBranchRate>
 			    </check>
 			</configuration>
 			<executions>
