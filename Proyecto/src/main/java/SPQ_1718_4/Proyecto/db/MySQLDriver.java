@@ -1,4 +1,4 @@
-package main.java.SPQ_1718_4.Proyecto.db;
+package SPQ_1718_4.Proyecto.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
