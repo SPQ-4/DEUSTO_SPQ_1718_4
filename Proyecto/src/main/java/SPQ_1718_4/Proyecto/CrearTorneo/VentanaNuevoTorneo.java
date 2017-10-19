@@ -136,10 +136,11 @@ public class VentanaNuevoTorneo implements ActionListener{
 	public void desdibujarventana(){
 		ventana.setVisible(false);
 	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		VentanaNuevoTorneo ventana= new VentanaNuevoTorneo("paula");
-		ventana.dibujarventana();
+	public void clearTodo(){
+		nombre.setText(null);
+		fechaTorneo.setText(null);
+		numeroParticipantesMin.setText(null);
+		numeroParticipantesMax.setText(null);
 	}
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==Crear){
@@ -150,7 +151,9 @@ public class VentanaNuevoTorneo implements ActionListener{
 				comprobarMaxMin(min, max);
 				comprobarFecha();
 				String insert=crearQuery(min,max);
-				driverDB.runQuery(insert);
+				driverDB.runUpdate(insert);
+				clearTodo();
+				desdibujarventana();
 			} catch (NumberFormatException e1) {
 				numeroParticipantesMin.setText(null);
 				numeroParticipantesMax.setText(null);
@@ -197,9 +200,14 @@ public class VentanaNuevoTorneo implements ActionListener{
 	}
 	
 	public String crearQuery(int min, int max){
-		String query="insert into panenka.contests(id_contest,open_date,minimum_participants,maximum_participans, "
-				+ "id_matchweek, id_contest_type, id_entry_fee, id_prize_structure,id_user) values ('"+nombre+"','"
-				+fechaTorneo+"','"+min+"','"+max+"','"+jornada+"','"+tipo+"','"+coste+"','"+premio+"','"+user+");";
+		//hay elementos que no se piden por consola porque en esta versión no se van a utilizar
+		String query="insert into panenka.contests(id_contest,is_created_by_admin,open_date,minimum_participants,"
+			    	+ "maximum_participants,close_date, stat_date,end_date,id_matchweek, id_contest_type, "
+			    	+ "id_entry_fee, id_prize_structure,id_user) values ('"+nombre.getText()+"',0,"+
+			    	"STR_TO_DATE('"+fechaTorneo.getText()+"','%d-%m-%Y'),"+min+","+max+",'2018-12-12',"
+			    		+ "'2018-12-10','2018-12-12','"+
+			    	jornada.getSelectedItem()+"','"+ tipo.getSelectedItem()+"','"+coste.getSelectedItem()+
+			    	"','"+premio.getSelectedItem()+"','"+user+"');";
 		return query;
 	}
 	public void rellenarArray(){

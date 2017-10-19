@@ -100,41 +100,4 @@ public class VentanaLogin {
         VentanaLogin ventana= new VentanaLogin();
         ventana.dibujarventana();
     }
-
-    public void loginListener(ActionEvent e) {
-//        if(e.getSource()==Continuar){
-//            try {
-//                int min= Integer.parseInt(numeroParticipantesMin.getText());
-//                int max= Integer.parseInt(numeroParticipantesMax.getText());
-//                comprobarMaxMin(min, max);
-//                comprobarFecha(fechaTorneo.getText());
-//            } catch (NumberFormatException e1) {
-//                numeroParticipantesMin.setText(null);
-//                numeroParticipantesMax.setText(null);
-//                JOptionPane.showMessageDialog(ventana,"El numero de participantes es un numero","MAL",JOptionPane.NO_OPTION);
-//            } catch (validarMinMax e1) {
-//                // TODO Auto-generated catch block
-//                JOptionPane.showMessageDialog(ventana,e1.getMessage(),"Imposible",JOptionPane.NO_OPTION);
-//                numeroParticipantesMin.setText(null);
-//                numeroParticipantesMax.setText(null);
-//            } catch (validarFecha e2) {
-//                JOptionPane.showMessageDialog(ventana,e2.getMessage(),"Imposible",JOptionPane.NO_OPTION);
-//                fechaTorneo.setBackground(Color.RED);
-//            }
-//        }
-    }
-
-//    public void comprobarMaxMin(int minimo, int maximo)throws validarMinMax {
-//        if (minimo>maximo){
-//            throw new validarMinMax();
-//        }
-//    }
-
-//    public void comprobarFecha(String fecha)throws validarFecha {
-//        if (!fecha.matches("^([0-2][0-9]||3[0-1])-(0[0-9]||1[0-2])-[0-9][0-9][0-9][0-9]$")){
-//            throw new validarFecha();
-//        }else{
-//            fechaTorneo.setBackground(Color.WHITE);
-//        }
-//    }
 }

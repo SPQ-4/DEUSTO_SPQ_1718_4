@@ -32,6 +32,18 @@ public class MySQLDriver {
         }
         return null;
     }
+    
+    public int runUpdate(String query) {
+        try {
+            this.statement = this.connection.createStatement();
+            int result = this.statement.executeUpdate(query);
+            return result;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
     public void close() {
         try {
