@@ -1,4 +1,4 @@
-package main.java.SPQ_1718_4.Proyecto.db;
+package SPQ_1718_4.Proyecto.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,6 +31,15 @@ public class MySQLDriver {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void close() {
+        try {
+            this.connection.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
