@@ -27,7 +27,7 @@ public class Ventana_DashBoard extends JFrame {
 		modelo=new ModeloTabla();
 		tablaPrincipal=new JTable(modelo);
 		panelCentral=new JScrollPane(tablaPrincipal);
-		
+		//Creando botones
 		crearTorneo=new JButton("Crear Torneo");
 		administrarTorneo=new JButton("Administrar Torneo");
 		
