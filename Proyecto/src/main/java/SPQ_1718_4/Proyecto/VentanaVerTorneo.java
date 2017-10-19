@@ -72,7 +72,7 @@ public class VentanaVerTorneo {
 	
 	public Object[] crearLineaTorneo(Torneo torneo) {
 		JButton boton = new JButton("Ver Alineación");
-		Object[] linea = new Object[] {torneo.getIdTorneo(),torneo.getNombre(),torneo.getFecha().toString(),torneo.getPais(),boton};
+		Object[] linea = new Object[] {torneo.getIdTorneo(),torneo.getNombre(),torneo.getFecha().toString(),boton};
 		return linea;
 	}
 	

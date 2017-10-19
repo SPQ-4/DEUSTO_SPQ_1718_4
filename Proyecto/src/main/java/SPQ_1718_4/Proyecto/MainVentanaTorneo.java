@@ -14,11 +14,11 @@ public class MainVentanaTorneo {
 		Jugador jugador2 = new Jugador("Asier", "asier", "asier@hotmail.com");
 		Jugador jugador3 = new Jugador("Paula", "paulaue", "paula@hotmail.com");
 		
-		Torneo torneo = new Torneo(2, "Torneo Prueba", "España", fecha);
+		/*Torneo torneo = new Torneo(2, "Torneo Prueba", "España", fecha);
 		torneo.addJugador(jugador1);
 		torneo.addJugador(jugador2);
 		torneo.addJugador(jugador3);
-		VentanaVerTorneo ventanaTorneo = new VentanaVerTorneo(torneo);
+		VentanaVerTorneo ventanaTorneo = new VentanaVerTorneo(torneo);*/
 		
 	}
 

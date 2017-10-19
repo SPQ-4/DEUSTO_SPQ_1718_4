@@ -6,22 +6,19 @@ import java.util.ArrayList;
 public class Torneo {
 
 	private int idTorneo;
-	private String nombre, pais;
+	private String nombre;
+	private int precio;
+	private int premio;
 	private Date fecha;
 	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-	
-	public Torneo() {
-		
-	}
-	
-	
-
-	public Torneo(int idTorneo, String nombre, String pais, Date fecha) {
+	private String[]columnas= {"ID","NOMBRE","DATE"};
+	public Torneo(int idTorneo, String nombre, Date fecha,int precio,int premio) {
 		super();
 		this.idTorneo = idTorneo;
 		this.nombre = nombre;
-		this.pais = pais;
 		this.fecha = fecha;
+		this.precio=precio;
+		this.premio=premio;
 	}
 
 	public void addJugador(Jugador jugador) {
@@ -43,14 +40,6 @@ public class Torneo {
 		this.nombre = nombre;
 	}
 
-	public String getPais() {
-		return pais;
-	}
-
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
-
 	public Date getFecha() {
 		return fecha;
 	}
@@ -66,5 +55,14 @@ public class Torneo {
 	public void setJugadores(ArrayList<Jugador> jugadores) {
 		this.jugadores = jugadores;
 	}
-	
+	public String getNombreColumna(int i) {
+		return columnas[i];
+	}
+	public int getNumeroColumnas() {
+		return columnas.length;
+	}
+	public Object getAtributo(int i) {
+		Object [] atributos= {this.idTorneo,this.nombre,this.fecha,this.precio,this.premio};
+		return atributos[i];
+	}
 }

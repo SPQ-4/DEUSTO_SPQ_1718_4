@@ -2,6 +2,7 @@ package Logica_DashBoard;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
+import SPQ_1718_4.Proyecto.Torneo;
 
 public class ModeloTabla extends AbstractTableModel {
 	private ArrayList<Torneo>listaTorneos;
@@ -9,7 +10,7 @@ public class ModeloTabla extends AbstractTableModel {
 	
 	public ModeloTabla() {
 		 datos=new ObtenerDatos();
-		 //this.listaTorneos=this.datos.obtenerTorneos();
+		// this.listaTorneos=this.datos.obtenerTorneos();
 		 this.listaTorneos=this.datos.pruebaObtenerTorneos();
 		 //System.out.println(listaTorneos.get(0).getName());
 	}

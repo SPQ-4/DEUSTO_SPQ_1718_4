@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import Logica_DashBoard.ModeloTabla;
+import SPQ_1718_4.Proyecto.VentanaVerTorneo;
 
 public class Ventana_DashBoard extends JFrame {
 	public JTable tablaPrincipal;
@@ -57,7 +58,7 @@ public class Ventana_DashBoard extends JFrame {
 				
 				if(e.getSource()==crearTorneo) {
 					cerrarVentana();
-					VentanaNuevoTorneo a=new VentanaNuevoTorneo();
+					//VentanaNuevoTorneo a=new VentanaNuevoTorneo();
 				}
 				
 			}
