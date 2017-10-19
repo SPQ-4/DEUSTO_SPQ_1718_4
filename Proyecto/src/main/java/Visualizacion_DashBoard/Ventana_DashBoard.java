@@ -26,7 +26,7 @@ public class Ventana_DashBoard extends JFrame {
 	public JPanel panelArriba=new JPanel(new GridLayout());
 	public Ventana_DashBoard(String idUser) {
 		super();
-		this.idUser=idUser;
+		this.idUserVen=idUser;
 		modelo=new ModeloTabla();
 		tablaPrincipal=new JTable(modelo);
 		panelCentral=new JScrollPane(tablaPrincipal);
