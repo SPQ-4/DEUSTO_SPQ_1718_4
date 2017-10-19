@@ -1,4 +1,4 @@
-package SPQ_1718_4.Proyecto_Excepciones;
+package SPQ_1718_4.Proyecto.Exceptions;
 
 public class validarFecha extends Exception {
 	/**

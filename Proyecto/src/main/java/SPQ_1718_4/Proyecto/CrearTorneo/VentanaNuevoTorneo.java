@@ -1,9 +1,12 @@
-package SPQ_1718_4.Proyecto_CrearTorneo;
+package SPQ_1718_4.Proyecto.CrearTorneo;
 
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,8 +15,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import SPQ_1718_4.Proyecto_Excepciones.validarFecha;
-import SPQ_1718_4.Proyecto_Excepciones.validarMinMax;
+import SPQ_1718_4.Proyecto.Exceptions.validarFecha;
+import SPQ_1718_4.Proyecto.Exceptions.validarMinMax;
+import SPQ_1718_4.Proyecto.Exceptions.validarNombreTorneo;
+import SPQ_1718_4.Proyecto.db.MySQLDriver;
 
 public class VentanaNuevoTorneo implements ActionListener{
 	//ventana en la que se va a colocar el formulario
@@ -39,11 +44,20 @@ public class VentanaNuevoTorneo implements ActionListener{
 	private JComboBox coste;
 	private JLabel label4;// para que la ventana se ajuste bien
 	private JLabel label;// para que la ventana se ajuste bien
-	private JButton Continuar;
-	public VentanaNuevoTorneo() {
+	private JButton Crear;
+	private String user;
+	private MySQLDriver driverDB;
+	private ArrayList <String> tipoTorneo;
+	private ArrayList <String> queJornada;
+	private ArrayList <String> tipoPremio;
+	private ArrayList <String> tipoPrecio;	
+	
+	public VentanaNuevoTorneo(String usuario) {
 		initialize();
+		user=usuario;
 	}
 	private void initialize() {
+		driverDB= new MySQLDriver();
 		//inicializamos la ventana, le metemos un panel y que se pueda cerrar
 		ventana = new JFrame();
 		ventana.setSize(ventana.getToolkit().getScreenSize());
@@ -61,9 +75,10 @@ public class VentanaNuevoTorneo implements ActionListener{
 		lblTipo = new JLabel("  Selecciona el tipo de torneo");
 		ventana.getContentPane().add(lblTipo);
 		
-		tipo = new JComboBox();
-		ventana.getContentPane().add(tipo);
+		rellenarArray();
 		
+		tipo = new JComboBox(tipoTorneo.toArray());
+		ventana.getContentPane().add(tipo);
 		
 		lblmeteFecha = new JLabel("  Mete la Fecha del torneo");
 		ventana.getContentPane().add(lblmeteFecha);
@@ -75,7 +90,7 @@ public class VentanaNuevoTorneo implements ActionListener{
 		lblJornada= new JLabel("  Mete la Jornada de la que entran partidos");
 		ventana.getContentPane().add(lblJornada);
 		
-		jornada = new JComboBox();
+		jornada = new JComboBox(queJornada.toArray());
 		ventana.getContentPane().add(jornada);
 		
 		lblNumeroParticipantesMin = new JLabel("  Numero de participantes Minimo");
@@ -95,18 +110,18 @@ public class VentanaNuevoTorneo implements ActionListener{
 		lblPremio= new JLabel("  Selecciona el premio a repartir");
 		ventana.getContentPane().add(lblPremio);
 		
-		premio = new JComboBox();
+		premio = new JComboBox(tipoPremio.toArray());
 		ventana.getContentPane().add(premio);
 		
 		lblCoste= new JLabel("  Selecciona el precio de entrada al torneo");
 		ventana.getContentPane().add(lblCoste);
 		
-		coste = new JComboBox();
+		coste = new JComboBox(tipoPrecio.toArray());
 		ventana.getContentPane().add(coste);		
 		
-		Continuar = new JButton("Continuar");
-		ventana.getContentPane().add(Continuar);
-		Continuar.addActionListener(this);
+		Crear = new JButton("Crear");
+		ventana.getContentPane().add(Crear);
+		Crear.addActionListener(this);
 		
 		label4 = new JLabel("");
 		ventana.getContentPane().add(label4);
@@ -121,24 +136,21 @@ public class VentanaNuevoTorneo implements ActionListener{
 	public void desdibujarventana(){
 		ventana.setVisible(false);
 	}
-	public void BorrarCosas(){
-		nombre.setText(null);
-		fechaTorneo.setText(null);
-		numeroParticipantesMin.setText(null);
-		numeroParticipantesMax.setText(null);
-	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		VentanaNuevoTorneo ventana= new VentanaNuevoTorneo();
+		VentanaNuevoTorneo ventana= new VentanaNuevoTorneo("paula");
 		ventana.dibujarventana();
 	}
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==Continuar){
+		if(e.getSource()==Crear){
 			try {
+				comprobarNombre();
 				int min= Integer.parseInt(numeroParticipantesMin.getText());
 				int max= Integer.parseInt(numeroParticipantesMax.getText());
 				comprobarMaxMin(min, max);
-				comprobarFecha(fechaTorneo.getText());
+				comprobarFecha();
+				String insert=crearQuery(min,max);
+				driverDB.runQuery(insert);
 			} catch (NumberFormatException e1) {
 				numeroParticipantesMin.setText(null);
 				numeroParticipantesMax.setText(null);
@@ -151,6 +163,9 @@ public class VentanaNuevoTorneo implements ActionListener{
 			} catch (validarFecha e2) {
 				JOptionPane.showMessageDialog(ventana,e2.getMessage(),"Imposible",JOptionPane.NO_OPTION);
 				fechaTorneo.setBackground(Color.RED);
+			} catch (validarNombreTorneo e3) {
+				JOptionPane.showMessageDialog(ventana,e3.getMessage(),"Imposible",JOptionPane.NO_OPTION);
+				nombre.setBackground(Color.RED);
 			} 	
 		}
 	}
@@ -159,11 +174,68 @@ public class VentanaNuevoTorneo implements ActionListener{
 			throw new validarMinMax();
 		}
 	}
-	public void comprobarFecha(String fecha)throws validarFecha{
-		if (!fecha.matches("^([0-2][0-9]||3[0-1])-(0[0-9]||1[0-2])-[0-9][0-9][0-9][0-9]$")){
+	public void comprobarFecha()throws validarFecha{
+		if (!fechaTorneo.getText().matches("^([0-2][0-9]||3[0-1])-(0[0-9]||1[0-2])-[0-9][0-9][0-9][0-9]$")){
 			throw new validarFecha();
 		}else{
 			fechaTorneo.setBackground(Color.WHITE);
 		}
+	}	
+	
+	public void comprobarNombre()throws validarNombreTorneo{
+		String query="Select id_contest from panenka.contests where id_contest LIKE '"+nombre.getText()+"';";
+		ResultSet result= driverDB.runQuery(query);
+		try {
+			if (result.next()){
+				throw new validarNombreTorneo();
+			}else{
+				nombre.setBackground(Color.WHITE);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String crearQuery(int min, int max){
+		String query="insert into panenka.contests(id_contest,open_date,minimum_participants,maximum_participans, "
+				+ "id_matchweek, id_contest_type, id_entry_fee, id_prize_structure,id_user) values ('"+nombre+"','"
+				+fechaTorneo+"','"+min+"','"+max+"','"+jornada+"','"+tipo+"','"+coste+"','"+premio+"','"+user+");";
+		return query;
+	}
+	public void rellenarArray(){
+		//rellenamos el array del tipo de torneo, por ahora con el id, mañana que enseñe el nombre
+		String query1="Select id_contest_type from panenka.contest_types;";
+		try{
+		ResultSet tipos= driverDB.runQuery(query1);
+		tipoTorneo=new ArrayList<String>();
+		while(tipos.next()){
+			tipoTorneo.add(tipos.getString("id_contest_type"));
+		}
+		
+		String query2="Select id_matchweek from panenka.matchweek;";
+		ResultSet jornadas= driverDB.runQuery(query2);
+		queJornada=new ArrayList<String>();
+		while(jornadas.next()){
+			queJornada.add(jornadas.getString("id_matchweek"));
+		}
+		
+		String query3="Select id_prize_structure from panenka.prize_structures;";
+		ResultSet premios= driverDB.runQuery(query3);
+		tipoPremio=new ArrayList<String>();
+		while(premios.next()){
+			tipoPremio.add(premios.getString("id_prize_structure"));
+		}
+		
+		String query4="Select id_entry_fee from panenka.entry_fees;";
+		ResultSet precios= driverDB.runQuery(query4);
+		tipoPrecio=new ArrayList<String>();
+		while(precios.next()){
+			tipoPrecio.add(precios.getString("id_entry_fee"));
+		}
+		}catch(Exception e1) {
+            e1.printStackTrace();
+        }
 	}
 }
+
+
