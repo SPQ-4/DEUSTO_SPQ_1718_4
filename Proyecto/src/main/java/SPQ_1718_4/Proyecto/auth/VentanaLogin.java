@@ -1,13 +1,12 @@
 package SPQ_1718_4.Proyecto.auth;
 
+import SPQ_1718_4.Proyecto.db.MySQLDriver;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 
 import javax.swing.*;
-
-import SPQ_1718_4.Proyecto.db.MySQLDriver;
 
 public class VentanaLogin {
     //ventana en la que se va a colocar el formulario
@@ -86,55 +85,16 @@ public class VentanaLogin {
         ventana.getContentPane().add(linkSignUp);
     }
 
-    public void dibujarventana() {
+    public void dibujarVentana() {
         ventana.setVisible(true);
-
     }
 
-    public void desdibujarventana() {
+    public void desdibujarVentana() {
         ventana.setVisible(false);
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         VentanaLogin ventana= new VentanaLogin();
-        ventana.dibujarventana();
+        ventana.dibujarVentana();
     }
-
-    public void loginListener(ActionEvent e) {
-//        if(e.getSource()==Continuar){
-//            try {
-//                int min= Integer.parseInt(numeroParticipantesMin.getText());
-//                int max= Integer.parseInt(numeroParticipantesMax.getText());
-//                comprobarMaxMin(min, max);
-//                comprobarFecha(fechaTorneo.getText());
-//            } catch (NumberFormatException e1) {
-//                numeroParticipantesMin.setText(null);
-//                numeroParticipantesMax.setText(null);
-//                JOptionPane.showMessageDialog(ventana,"El numero de participantes es un numero","MAL",JOptionPane.NO_OPTION);
-//            } catch (validarMinMax e1) {
-//                // TODO Auto-generated catch block
-//                JOptionPane.showMessageDialog(ventana,e1.getMessage(),"Imposible",JOptionPane.NO_OPTION);
-//                numeroParticipantesMin.setText(null);
-//                numeroParticipantesMax.setText(null);
-//            } catch (validarFecha e2) {
-//                JOptionPane.showMessageDialog(ventana,e2.getMessage(),"Imposible",JOptionPane.NO_OPTION);
-//                fechaTorneo.setBackground(Color.RED);
-//            }
-//        }
-    }
-
-//    public void comprobarMaxMin(int minimo, int maximo)throws validarMinMax {
-//        if (minimo>maximo){
-//            throw new validarMinMax();
-//        }
-//    }
-
-//    public void comprobarFecha(String fecha)throws validarFecha {
-//        if (!fecha.matches("^([0-2][0-9]||3[0-1])-(0[0-9]||1[0-2])-[0-9][0-9][0-9][0-9]$")){
-//            throw new validarFecha();
-//        }else{
-//            fechaTorneo.setBackground(Color.WHITE);
-//        }
-//    }
 }
