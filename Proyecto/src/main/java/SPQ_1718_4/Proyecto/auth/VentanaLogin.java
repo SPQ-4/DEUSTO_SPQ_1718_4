@@ -23,13 +23,11 @@ public class VentanaLogin {
         initialize();
     }
     private void initialize() {
-        //inicializamos la ventana, le metemos un panel y que se pueda cerrar
         ventana = new JFrame();
         ventana.setSize(ventana.getToolkit().getScreenSize());
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.getContentPane().setLayout(new FlowLayout());
 
-        //vamos metiendo cada uno de los elementos del formulario		
         labelTitle = new JLabel("PANENKA");
         ventana.getContentPane().add(labelTitle);
         labelTitle.setPreferredSize(new Dimension(300, 700));
