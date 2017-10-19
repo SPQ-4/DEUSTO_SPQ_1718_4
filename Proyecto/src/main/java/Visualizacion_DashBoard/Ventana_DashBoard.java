@@ -22,9 +22,11 @@ public class Ventana_DashBoard extends JFrame {
 	public JButton administrarTorneo;
 	public ModeloTabla modelo;
 	public JScrollPane panelCentral;
+	public String idUserVen=" ";
 	public JPanel panelArriba=new JPanel(new GridLayout());
-	public Ventana_DashBoard() {
+	public Ventana_DashBoard(String idUser) {
 		super();
+		this.idUser=idUser;
 		modelo=new ModeloTabla();
 		tablaPrincipal=new JTable(modelo);
 		panelCentral=new JScrollPane(tablaPrincipal);
@@ -58,9 +60,8 @@ public class Ventana_DashBoard extends JFrame {
 				
 				if(e.getSource()==crearTorneo) {
 					cerrarVentana();
-					//VentanaNuevoTorneo a=new VentanaNuevoTorneo();
+					VentanaNuevoTorneo a=new VentanaNuevoTorneo(idUserVen);
 				}
-				
 			}
 		});
 		
