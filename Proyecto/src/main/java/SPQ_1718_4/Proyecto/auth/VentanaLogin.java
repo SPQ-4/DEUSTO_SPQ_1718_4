@@ -87,9 +87,9 @@ public class VentanaLogin {
         ventana.setVisible(true);
     }
 
-    public void desdibujarVentana() {
-        ventana.setVisible(false);
-    }
+//    public void desdibujarVentana() {
+//        ventana.setVisible(false);
+//    }
 
     public static void main(String[] args) {
         VentanaLogin ventana= new VentanaLogin();
