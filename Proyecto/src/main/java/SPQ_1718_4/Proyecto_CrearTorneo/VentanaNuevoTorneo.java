@@ -146,8 +146,8 @@ public class VentanaNuevoTorneo implements ActionListener{
 			} catch (validarMinMax e1) {
 				// TODO Auto-generated catch block
 				JOptionPane.showMessageDialog(ventana,e1.getMessage(),"Imposible",JOptionPane.NO_OPTION);
-				numeroParticipantesMin.setText(null);
-				numeroParticipantesMax.setText(null);
+				numeroParticipantesMin.setBackground(Color.RED);
+				numeroParticipantesMax.setBackground(Color.RED);
 			} catch (validarFecha e2) {
 				JOptionPane.showMessageDialog(ventana,e2.getMessage(),"Imposible",JOptionPane.NO_OPTION);
 				fechaTorneo.setBackground(Color.RED);
