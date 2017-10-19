@@ -60,7 +60,7 @@ public class Ventana_DashBoard extends JFrame {
 				
 				if(e.getSource()==crearTorneo) {
 					cerrarVentana();
-					VentanaNuevoTorneo a=new VentanaNuevoTorneo(idUserVen);
+					//VentanaNuevoTorneo a=new VentanaNuevoTorneo(idUserVen);
 				}
 			}
 		});

@@ -1,6 +1,7 @@
 package SPQ_1718_4.Proyecto.auth;
 
 import SPQ_1718_4.Proyecto.db.MySQLDriver;
+import Visualizacion_DashBoard.Ventana_DashBoard;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -52,12 +53,13 @@ public class VentanaLogin {
            public void actionPerformed(ActionEvent e) {
                MySQLDriver dbDriver = new MySQLDriver();
                try {
-                   String query = "SELECT email, password FROM panenka.temporary_users WHERE email='" + fieldEmail.getText() + "'";
+                   String query = "SELECT * FROM panenka.temporary_users WHERE email='" + fieldEmail.getText() + "'";
                    ResultSet result = dbDriver.runQuery(query);
                    try {
                        if (result.next() && fieldEmail.getText().equals(result.getString("email"))) {
                            if (fieldPassword.getText().equals(result.getString("password"))) {
                                System.out.println("You're logged in!");
+                               Ventana_DashBoard dashBoard = new Ventana_DashBoard(result.getString("id_temporary_user"));
                            }
                            else
                            {
