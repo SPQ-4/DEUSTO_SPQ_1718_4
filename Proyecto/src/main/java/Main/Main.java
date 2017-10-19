@@ -11,7 +11,8 @@ public class Main {
 		log.debug("Funciona");
 		
 		//MySQLDriver sql=new MySQLDriver();
-		Ventana_DashBoard ven=new Ventana_DashBoard();
+		//Ventana_DashBoard ven=new Ventana_DashBoard();
+		
 		//ResultSet a=sql.runQuery("SELECT * FROM panenka.contests");
 	}
 
