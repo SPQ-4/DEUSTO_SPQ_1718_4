@@ -11,7 +11,7 @@ import SPQ_1718_4.Proyecto.db.MySQLDriver;
 public class ObtenerDatos {
 	private MySQLDriver driver;
 	public ObtenerDatos() {
-		driver=new MySQLDriver();
+		//driver=new MySQLDriver();
 	}
 	public ArrayList<Torneo> obtenerTorneos() {
 		// TODO Auto-generated method stub
@@ -33,10 +33,9 @@ public class ObtenerDatos {
 		return null;
 	}
 	public ArrayList<Torneo>pruebaObtenerTorneos(){
-		String[]name= {"Asier","Javi","Juan","Paula"};
-		@SuppressWarnings("deprecation")
+		/*String[]name= {"Asier","Javi","Juan","Paula"};
 		ArrayList<Torneo>lista=new ArrayList<Torneo>();
-		Date date=new Date(2017,10,9);
+		Date date=new Date(117,10,9);
 		int[]estado= {0,1};
 		int[]aleatorios= {10,20,30,50,100,102,340,495};
 		Random b=new Random();
@@ -44,7 +43,7 @@ public class ObtenerDatos {
 			Torneo a=new Torneo(name[i],aleatorios[b.nextInt(8)],date,aleatorios[b.nextInt(8)],aleatorios[b.nextInt(8)],estado[b.nextInt(2)]);
 			lista.add(a);
 		}
-		return lista;
-		
+		return lista;*/
+		return null;
 	}
 }
