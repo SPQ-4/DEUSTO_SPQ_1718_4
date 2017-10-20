@@ -10,7 +10,7 @@ public class MySQLDriver {
     private Statement statement;
 
     public MySQLDriver() {
-        try {
+        try { 
             connection = DriverManager.getConnection("jdbc:mysql://panenka-dev.c8sznodk2hny.eu-west-2.rds.amazonaws.com",
                     "panenka_master", "spqpanenka");
 
@@ -31,6 +31,27 @@ public class MySQLDriver {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public int runUpdate(String query) {
+        try {
+            this.statement = this.connection.createStatement();
+            int result = this.statement.executeUpdate(query);
+            return result;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public void close() {
+        try {
+            this.connection.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
