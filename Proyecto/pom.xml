@@ -33,11 +33,6 @@
     	<artifactId>log4j</artifactId>
     	<version>1.2.17</version>
 	</dependency>
-	<dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.8-dmr</version>
-    </dependency>
   </dependencies>
   <!--  Para usar el GOAL de reporting de cobertura  -->
   <reporting>
@@ -105,6 +100,18 @@
 	          <mainClass>Main</mainClass>
 	        </configuration>
       	</plugin>
+		<plugin>
+      		<groupId>org.apache.maven.plugins</groupId>
+      		<artifactId>maven-jar-plugin</artifactId>
+     		<version>3.0.2</version>
+      		<configuration>
+        		<archive>
+          			<manifest>
+               			<mainClass>SPQ_1718_4.Proyecto.auth.VentanaLogin</mainClass>
+          			</manifest>
+        		</archive>
+      		</configuration>
+   		</plugin>
    </plugins>
 </build>
 </project>
