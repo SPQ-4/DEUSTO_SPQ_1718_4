@@ -12,7 +12,7 @@ import SPQ_1718_4.Proyecto.db.MySQLDriver;
 public class ObtenerDatos {
 	private MySQLDriver driver;
 	public ObtenerDatos() {
-		//driver=new MySQLDriver();
+		driver=new MySQLDriver();
 	}
 	public ArrayList<Torneo> obtenerTorneos() {
 		// TODO Auto-generated method stub

@@ -19,6 +19,7 @@ import SPQ_1718_4.Proyecto.Exceptions.validarFecha;
 import SPQ_1718_4.Proyecto.Exceptions.validarMinMax;
 import SPQ_1718_4.Proyecto.Exceptions.validarNombreTorneo;
 import SPQ_1718_4.Proyecto.db.MySQLDriver;
+import Visualizacion_DashBoard.Ventana_DashBoard;
 
 public class VentanaNuevoTorneo implements ActionListener{
 	//ventana en la que se va a colocar el formulario
@@ -154,6 +155,7 @@ public class VentanaNuevoTorneo implements ActionListener{
 				driverDB.runUpdate(insert);
 				clearTodo();
 				desdibujarventana();
+				Ventana_DashBoard dashBoard = new Ventana_DashBoard(user);
 			} catch (NumberFormatException e1) {
 				numeroParticipantesMin.setText(null);
 				numeroParticipantesMax.setText(null);

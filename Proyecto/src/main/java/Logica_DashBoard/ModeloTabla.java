@@ -11,7 +11,7 @@ public class ModeloTabla extends AbstractTableModel {
 	public ModeloTabla() {
 		 datos=new ObtenerDatos();
 		// this.listaTorneos=this.datos.obtenerTorneos();
-		 this.listaTorneos=this.datos.pruebaObtenerTorneos();
+		 this.listaTorneos=this.datos.obtenerTorneos();
 		 //System.out.println(listaTorneos.get(0).getName());
 	}
 	public String getColumnName(int col) {
