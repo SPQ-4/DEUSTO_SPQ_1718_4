@@ -58,16 +58,23 @@ public class VentanaLogin {
                    try {
                        if (result.next() && fieldEmail.getText().equals(result.getString("email"))) {
                            if (fieldPassword.getText().equals(result.getString("password"))) {
-                               System.out.println("You're logged in!");
                                Ventana_DashBoard dashBoard = new Ventana_DashBoard(result.getString("id_temporary_user"));
+                               desdibujarVentana();
                            }
                            else
                            {
-                               System.out.println("The login credentials are invalid");
+//                              JFrame message_window = new JFrame();
+//                              message_window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//                              message_window.getContentPane().setLayout(new FlowLayout());
+//                              JLabel label_message = new JLabel("Las credenciales no son válidas");
+//                             label_message = new JLabel("No existe ninguna cuenta con ese email");
+//                              message_window.getContentPane().add(label_message);
+//                              message_window.setVisible(true);
+                             VentanaPopup popup = new VentanaPopup(new JLabel("Las credenciales no son válidas"));
                            }
                        }
                        else {
-                           System.out.println("That email is not registered");
+                          VentanaPopup popup = new VentanaPopup(new JLabel("No existe ninguna cuenta con ese email"));
                        }
                    }
                    catch (Exception e1) {
@@ -80,7 +87,6 @@ public class VentanaLogin {
                dbDriver.close();
            }
         });
-
         linkSignUp = new JTextArea("¿No tienes cuenta? Crea una");
         ventana.getContentPane().add(linkSignUp);
     }
@@ -89,9 +95,23 @@ public class VentanaLogin {
         ventana.setVisible(true);
     }
 
-//    public void desdibujarVentana() {
-//        ventana.setVisible(false);
-//    }
+    public void desdibujarVentana() {
+        ventana.setVisible(false);
+    }
+
+    private class VentanaPopup {
+      private JFrame popup_window;
+      private JLabel label_message;
+
+      public VentanaPopup(JLabel label_message) {
+        popup_window = new JFrame();
+        popup_window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        popup_window.getContentPane().setLayout(new FlowLayout());
+        this.label_message = label_message;
+        popup_window.getContentPane().add(this.label_message);
+        popup_window.setVisible(true);
+      }
+  }
 
     public static void main(String[] args) {
         VentanaLogin ventana= new VentanaLogin();
