@@ -20,9 +20,6 @@ public class ObtenerDatos {
 		ResultSet rs=driver.runQuery("SELECT * FROM panenka.contests");
 		try {
 			while(rs.next()){
-				//NO PARECE QUE HAYA UN ATRIBUTO PREMIO COMO TAL
-				//EL FEE EN PRINCIPIO HAY QUE HACER OTRA CONSULTA PARA SACARLO
-				//ESTADO NO SE QUÉ ES, HABRÁ QUE MIRAR A QUE SE CORRESPONDE
 				Torneo a=new Torneo(1,rs.getString(1),rs.getDate(6),rs.getInt(9),50);
 				listaTorneos.add(a);
 			}

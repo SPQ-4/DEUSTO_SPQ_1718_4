@@ -61,6 +61,7 @@ public class Torneo {
 	public int getNumeroColumnas() {
 		return columnas.length;
 	}
+	//PAra devolver el atributo concreto
 	public Object getAtributo(int i) {
 		Object [] atributos= {this.idTorneo,this.nombre,this.fecha,this.precio,this.premio};
 		return atributos[i];
