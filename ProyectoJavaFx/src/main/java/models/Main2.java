@@ -1,25 +1,18 @@
 package models;
-import controllers.Controller;
 import controllers.Usuario;
 
-import java.io.InputStream;
 import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.collections.FXCollections;
 
-public class Main extends Application {
+public class Main2 extends Application {
 	private ObservableList<Usuario> userData = FXCollections.observableArrayList();
-	public Main() {
+	public Main2() {
 		//System.out.println("HOLA");
 		userData.add(new Usuario("Asier",23));
 		userData.add(new Usuario("Paula",23));
@@ -29,19 +22,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
     	//InputStream resource=getClass().getResourceAsStream("../../resources/views/sample.fxml");
-    	URL resource =this.getClass().getResource("../views/sample.fxml");
+    	URL resource =this.getClass().getResource("../views/HomePage.fxml");
     	Usuario a=new Usuario("A",1);
     	System.out.println(resource);
     	Parent root = FXMLLoader.load(resource);
-    	//Button btn = new Button("Sign in");
-    	//GridPane grid=new GridPane();
-    	/*grid.add(btn, 5, 5);
-    	btn.setOnAction(new EventHandler<ActionEvent>() {
-    	    @Override public void handle(ActionEvent e) {
-    	        Controller.button1();
-    	    }
-    	});*/	
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("HomePage");
         primaryStage.setScene(new Scene(root, 800, 475));
         primaryStage.show();
     }
