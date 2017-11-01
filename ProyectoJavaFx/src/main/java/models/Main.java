@@ -2,8 +2,12 @@ package models;
 import controllers.Controller;
 import controllers.Usuario;
 
+
 import java.io.InputStream;
 import java.net.URL;
+=======
+import controllers.ControllerUser;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,6 +32,7 @@ public class Main extends Application {
 	
     @Override
     public void start(Stage primaryStage) throws Exception{
+
     	//InputStream resource=getClass().getResourceAsStream("../../resources/views/sample.fxml");
     	URL resource =this.getClass().getResource("../views/sample.fxml");
     	Usuario a=new Usuario("A",1);
@@ -43,6 +48,11 @@ public class Main extends Application {
     	});*/	
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 800, 475));
+
+        Parent root = FXMLLoader.load(getClass().getResource("../views/User_Table.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 500, 500));
+
         primaryStage.show();
     }
 

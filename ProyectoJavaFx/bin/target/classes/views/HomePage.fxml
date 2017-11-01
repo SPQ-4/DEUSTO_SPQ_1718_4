@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.StackPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="95.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/balon.jpg" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="102.0" text="Situacion Actual" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Cambria" size="12.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect></Button>
+            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="102.0" text="Situación Económica" textAlignment="CENTER" wrapText="true">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="Cambria" size="12.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="102.0" text="Situación de Usuarios" textAlignment="CENTER" wrapText="true">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="Cambria" size="12.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="102.0" text="Salir">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="Cambria" size="12.0" />
+               </font></Button>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>
