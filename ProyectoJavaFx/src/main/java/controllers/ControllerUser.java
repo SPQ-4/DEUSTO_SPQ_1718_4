@@ -3,12 +3,15 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.User;
 
@@ -19,12 +22,22 @@ public class ControllerUser implements Initializable{
 	private TableColumn <User,String>nameCol;
 	@FXML
 	private TableColumn <User,String>mailCol;
-	
+	@FXML
+	private TextField textField;
 	ObservableList <User>UsersData=FXCollections.observableArrayList();
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setUsersToTable();
 		setUsersToList();
+		textField.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				// TODO Auto-generated method stub
+				filterTable(newValue);
+				System.out.println(newValue);
+			}
+		});
+
 	}
 	public void setUsersToTable() {
 		/*Investigar por qué solo funciona si se llama desde el initialize y sino da fallo*/
@@ -40,6 +53,8 @@ public class ControllerUser implements Initializable{
 		UsersData.add(new User("Paula","paula@mail.com"));
 		UsersData.add(new User("Juan","juan@mail.com"));
 		UsersData.add(new User("Javier","javier@mail.com"));
+	}	
+	public void filterTable(String searchedValue) {
+		
 	}
-	
 }
