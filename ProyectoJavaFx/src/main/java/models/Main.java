@@ -5,7 +5,7 @@ import controllers.Usuario;
 
 import java.io.InputStream;
 import java.net.URL;
-=======
+
 import controllers.ControllerUser;
 
 import javafx.application.Application;
@@ -34,10 +34,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
     	//InputStream resource=getClass().getResourceAsStream("../../resources/views/sample.fxml");
-    	URL resource =this.getClass().getResource("../views/sample.fxml");
+    	//URL resource =this.getClass().getResource("../views/sample.fxml");
     	Usuario a=new Usuario("A",1);
-    	System.out.println(resource);
-    	Parent root = FXMLLoader.load(resource);
+    	//System.out.println(resource);
+    	//Parent rooti = FXMLLoader.load(resource);
     	//Button btn = new Button("Sign in");
     	//GridPane grid=new GridPane();
     	/*grid.add(btn, 5, 5);
@@ -47,7 +47,7 @@ public class Main extends Application {
     	    }
     	});*/	
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 800, 475));
+     //   primaryStage.setScene(new Scene(rooti, 800, 475));
 
         Parent root = FXMLLoader.load(getClass().getResource("../views/User_Table.fxml"));
         primaryStage.setTitle("Hello World");
