@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+
+<GridPane alignment="CENTER" hgap="10.0" vgap="10.0"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="controllers.UserTableController">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
+    <Label style="-fx-font: NORMAL 20 Tahoma;" text="Información de usuario"                
+        GridPane.columnIndex="0" GridPane.rowIndex="0">
+    </Label>
+   <TableView fx:id="tableView" GridPane.columnIndex="0" GridPane.rowIndex="1" prefHeight="50">
+     <columns>
+          <TableColumn text="Email" prefWidth="200">
+          	<cellValueFactory><PropertyValueFactory property="email" />
+       		 </cellValueFactory>
+          </TableColumn>
+          <TableColumn text="Fecha de Registro" prefWidth="150">
+          	<cellValueFactory>      <PropertyValueFactory property="fecha_registro" /> 		 </cellValueFactory>
+          </TableColumn>
+          <TableColumn text="Saldo Actual" prefWidth="100" >
+          	<cellValueFactory><PropertyValueFactory property="saldo"/>
+       		 </cellValueFactory>
+          </TableColumn>
+          <TableColumn text="Total Dinero Ingresado" prefWidth="175">
+          	<cellValueFactory><PropertyValueFactory property="dineroIngresado" />
+       		 </cellValueFactory>
+          </TableColumn>
+           <TableColumn text="Última Conexión" prefWidth="250">
+          	
+          </TableColumn>
+     </columns> 
+        
+</TableView>
+
+ 
+</GridPane>
+
