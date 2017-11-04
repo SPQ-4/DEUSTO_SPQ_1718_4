@@ -2,11 +2,13 @@ package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -25,19 +27,21 @@ public class ControllerUser implements Initializable{
 	@FXML
 	private TextField textField;
 	ObservableList <User>UsersData=FXCollections.observableArrayList();
+	FilteredList<User> filteredData ;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setUsersToTable();
 		setUsersToList();
+		// 1. Wrap the ObservableList in a FilteredList (initially display all data).
+		filteredData= new FilteredList<User>(UsersData);
 		textField.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				// TODO Auto-generated method stub
-				filterTable(newValue);
+				filterTable();
 				System.out.println(newValue);
 			}
 		});
-
 	}
 	public void setUsersToTable() {
 		/*Investigar por qué solo funciona si se llama desde el initialize y sino da fallo*/
@@ -45,8 +49,7 @@ public class ControllerUser implements Initializable{
 		mailCol.setCellValueFactory(new PropertyValueFactory<User,String>("mail"));
 		UsersTable.setItems(UsersData);
 		nameCol.setText("NAME");
-		mailCol.setText("COL");
-		
+		mailCol.setText("COL");	
 	}
 	public void setUsersToList() {
 		UsersData.add(new User("Asier","asier@mail.com"));
@@ -54,7 +57,18 @@ public class ControllerUser implements Initializable{
 		UsersData.add(new User("Juan","juan@mail.com"));
 		UsersData.add(new User("Javier","javier@mail.com"));
 	}	
-	public void filterTable(String searchedValue) {
-		
+	public void filterTable() {
+		filteredData.setPredicate(new Predicate<User>() {
+			@Override
+			public boolean test(User arg0) {				
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = textField.getText().toLowerCase();			
+				if (arg0.getName().toLowerCase().contains(lowerCaseFilter)) {
+					return true; // Filter matches first name.
+				}else {
+				return false; // Does not match.
+				}
+			}	
+		});
 	}
 }
