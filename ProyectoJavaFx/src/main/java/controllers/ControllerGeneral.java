@@ -89,15 +89,24 @@ public class ControllerGeneral {
     	});
 	}
 	public void datosTorneoPorTipo() throws SQLException{
-		//habrá que hacer una query por cada tipo de torneo, por ahora hay 4 tipos (en caso de haber más se podría hacer con un while)
-		String query2="select count(case id_contest_type when 'contest_type_1' then 1 else NULL end ) as value from panenka.contests "
+		//habrá que hacer una query por cada tipo de torneo, por ahora hay 2 tipos (en caso de haber más se podría hacer con un while)
+		String query1="select count(case id_contest_type when 'contest_type_1' then 1 else NULL end ) as value from panenka.contests "
 				+ "where YEAR(open_date) = YEAR(CURDATE()) ;";
-		ResultSet jornadas= driverDB.runQuery(query2);
-		String queJornada=new String();
-		while(jornadas.next()){
-			queJornada=jornadas.getString("value");
+		ResultSet type1= driverDB.runQuery(query1);
+		String type1Q=new String();
+		while(type1.next()){
+			type1Q=type1.getString("value");
 		}
-		System.out.println(queJornada);
+		System.out.println(type1Q);
+		
+		String query2="select count(case id_contest_type when 'contest_type_2' then 1 else NULL end ) as value from panenka.contests "
+				+ "where YEAR(open_date) = YEAR(CURDATE()) ;";
+		ResultSet type2= driverDB.runQuery(query2);
+		String type2Q=new String();
+		while(type2.next()){
+			type2Q=type2.getString("value");
+		}
+		System.out.println(type2Q);
 	}
 }
 
