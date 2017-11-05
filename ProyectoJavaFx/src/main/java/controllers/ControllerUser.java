@@ -2,25 +2,20 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
-import javax.xml.stream.EventFilter;
-import javax.xml.stream.events.XMLEvent;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import models.User;
 
 public class ControllerUser implements Initializable{
 	@FXML
