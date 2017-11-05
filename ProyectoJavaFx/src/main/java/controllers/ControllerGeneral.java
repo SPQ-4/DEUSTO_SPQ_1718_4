@@ -38,7 +38,7 @@ public class ControllerGeneral {
 		}		
 		
 		String query2="select count(case id_contest_type when 'contest_type_2' then 1 else NULL end ) as value from panenka.contests "
-				+ "where YEAR(open_date) = YEAR(CURDATE()) ;";
+				+ "where YEAR(open_date) = YEAR(CURDATE()) ;"; 
 		ResultSet type2= driverDB.runQuery(query2);
 		while(type2.next()){
 			slice2 = new PieChart.Data("Multiuser", Integer.parseInt(type2.getString("value")));
