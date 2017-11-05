@@ -69,6 +69,7 @@ public class ControllerUser implements Initializable{
 				if ( event.getClickCount() == 2) {
 	                System.out.println("Doble click en "+selectedUser.getNombre());
 	                System.out.println("insertar aquí llamada a Juan");
+	                
 	            }
 			}
 		});
