@@ -31,6 +31,10 @@ public class Usuario {
        this.nombre = new SimpleStringProperty(nombre);
        this.edad = new SimpleIntegerProperty(edad);
 }
+	public Usuario(String nombre, String email) {
+	       this.nombre = new SimpleStringProperty(nombre);
+	       this.email = new SimpleStringProperty(email);
+	}
 	public String getEmail() {
 		return email.get();
 	}

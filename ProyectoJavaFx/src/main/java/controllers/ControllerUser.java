@@ -1,13 +1,9 @@
 package controllers;
-
-import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
-
 import javax.xml.stream.EventFilter;
 import javax.xml.stream.events.XMLEvent;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -23,27 +19,28 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import models.User;
 
 public class ControllerUser implements Initializable{
 	@FXML
-	TableView<User>UsersTable=new TableView<>();
+	TableView<Usuario>UsersTable=new TableView<>();
 	@FXML
-	private TableColumn <User,String>nameCol;
+	private TableColumn <Usuario,String>nameCol;
 	@FXML
-	private TableColumn <User,String>mailCol;
+	private TableColumn <Usuario,String>mailCol;
 	@FXML
 	private TextField textField;
-	ObservableList <User>UsersData=FXCollections.observableArrayList();
-	FilteredList<User> filteredData ;
-	User selectedUser;
+	ObservableList <Usuario>UsersData=FXCollections.observableArrayList();
+	FilteredList<Usuario> filteredData ;
+	Usuario selectedUser;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		selectedUser=null;
 		setUsersToTable();
 		setUsersToList();
 		// 1. Wrap the ObservableList in a FilteredList (initially display all data).
-		filteredData= new FilteredList<User>(UsersData);
+		filteredData= new FilteredList<Usuario>(UsersData);
 		textField.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -52,45 +49,56 @@ public class ControllerUser implements Initializable{
 				System.out.println(newValue);
 			}
 		});
-		UsersTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
+		UsersTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Usuario>() {
 			@Override
-			public void changed(ObservableValue<? extends User> observableValue, User oldValue, User newValue) {
+			public void changed(ObservableValue<? extends Usuario> observableValue, Usuario oldValue, Usuario newValue) {
 			       //Check whether item is selected and set value of selected item to Label
 			       if(UsersTable.getSelectionModel().getSelectedItem() != null) 
 			        {    
 			           TableViewSelectionModel selectionModel = UsersTable.getSelectionModel();
 			           ObservableList selectedItems = selectionModel.getSelectedItems();
-			           selectedUser=(User) selectedItems.get(0);
-			           System.out.println("El usuario se ha quedado seleccionado");
+			           selectedUser=(Usuario) selectedItems.get(0);
 			         }
 				}
 			});
+		UsersTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				if ( event.getClickCount() == 2) {
+	                System.out.println("Doble click en "+selectedUser.getNombre());
+	                System.out.println("insertar aquí llamada a Juan");
+	            }
+			}
+		});
 		UsersTable.setItems(filteredData);
 	}
 	public void setUsersToTable() {
 		/*Investigar por qué solo funciona si se llama desde el initialize y sino da fallo*/
-		nameCol.setCellValueFactory(new PropertyValueFactory<User,String>("name"));
-		mailCol.setCellValueFactory(new PropertyValueFactory<User,String>("mail"));
+		nameCol.setCellValueFactory(new PropertyValueFactory<Usuario,String>("nombre"));
+		mailCol.setCellValueFactory(new PropertyValueFactory<Usuario,String>("email"));
 		UsersTable.setItems(UsersData);
 		nameCol.setText("NAME");
 		mailCol.setText("COL");	
 	}
 	public void setUsersToList() {
-		UsersData.add(new User("Asier","asier@mail.com"));
-		UsersData.add(new User("Paula","paula@mail.com"));
-		UsersData.add(new User("Juan","juan@mail.com"));
-		UsersData.add(new User("Javier","javier@mail.com"));
-		UsersData.add(new User("Virginia","virginia@mail.com"));
-		UsersData.add(new User("Pablo","pablo@mail.com"));
-		UsersData.add(new User("Iker","iker@mail.com"));
+		//HAY QUE LEER DE LA BD
+		UsersData.add(new Usuario("Asier","asier@mail.com"));
+		UsersData.add(new Usuario("Paula","paula@mail.com"));
+		UsersData.add(new Usuario("Juan","juan@mail.com"));
+		UsersData.add(new Usuario("Javier","javier@mail.com"));
+		UsersData.add(new Usuario("Virginia","virginia@mail.com"));
+		UsersData.add(new Usuario("Pablo","pablo@mail.com"));
+		UsersData.add(new Usuario("Iker","iker@mail.com"));
 	}	
 	public void filterTable() {
-		filteredData.setPredicate(new Predicate<User>() {
+		filteredData.setPredicate(new Predicate<Usuario>() {
 			@Override
-			public boolean test(User arg0) {				
+			public boolean test(Usuario arg0) {				
 				// Compare first name and last name of every person with filter text.
 				String lowerCaseFilter = textField.getText().toLowerCase();			
-				if (arg0.getName().toLowerCase().contains(lowerCaseFilter)) {
+				if (arg0.getNombre().toLowerCase().contains(lowerCaseFilter)) {
 					return true; // Filter matches first name.
 				}else {
 				return false; // Does not match.
