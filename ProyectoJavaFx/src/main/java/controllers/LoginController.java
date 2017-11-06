@@ -69,7 +69,6 @@ public class LoginController {
                         //TODO - Mirar como hacer para cerrar la ventana entera en lugar del Scene
                         this.borderPane.getParent().getScene().getRoot().setVisible(false);
                         URL resource =this.getClass().getResource("../views/HomePage.fxml");
-                    	System.out.println(resource);
                     	Parent root = FXMLLoader.load(resource);
                         primaryStage.setTitle("HomePage");
                         primaryStage.setScene(new Scene(root, 800, 475));

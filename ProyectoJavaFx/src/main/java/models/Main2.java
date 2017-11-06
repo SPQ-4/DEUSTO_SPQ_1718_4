@@ -14,17 +14,16 @@ public class Main2 extends Application {
 	private ObservableList<Usuario> userData = FXCollections.observableArrayList();
 	public Main2() {
 		//System.out.println("HOLA");
-		userData.add(new Usuario("Asier",23));
-		userData.add(new Usuario("Paula",23));
-		userData.add(new Usuario("Juan",22));
+		userData.add(new Usuario("Asier", 23));
+		userData.add(new Usuario("Paula", 23));
+		userData.add(new Usuario("Juan", 22));
 	}
 	
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
     	URL resource =this.getClass().getResource("../views/login.fxml");
-    	System.out.println(resource);
     	Parent root = FXMLLoader.load(resource);
-        primaryStage.setTitle("HomePage");
+        primaryStage.setTitle("Panenka - Admin");
         primaryStage.setScene(new Scene(root, 800, 475));
         primaryStage.show();
     }
