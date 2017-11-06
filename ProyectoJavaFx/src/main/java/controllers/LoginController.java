@@ -2,6 +2,9 @@ package controllers;
 
 import db.MySQLDriver;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -9,8 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import models.Popup;
 
+import java.net.URL;
 import java.sql.ResultSet;
 
 public class LoginController {
@@ -31,6 +36,7 @@ public class LoginController {
     public PasswordField txtPassword;
     @FXML
     public Button btnLogin;
+    private Stage primaryStage;
 
     public LoginController() {
         borderPane = new BorderPane();
@@ -62,6 +68,12 @@ public class LoginController {
                         System.out.println("Opening dashboard");
                         //TODO - Mirar como hacer para cerrar la ventana entera en lugar del Scene
                         this.borderPane.getParent().getScene().getRoot().setVisible(false);
+                        URL resource =this.getClass().getResource("../views/HomePage.fxml");
+                    	System.out.println(resource);
+                    	Parent root = FXMLLoader.load(resource);
+                        primaryStage.setTitle("HomePage");
+                        primaryStage.setScene(new Scene(root, 800, 475));
+                        primaryStage.show();
                     }
                     else
                     {
