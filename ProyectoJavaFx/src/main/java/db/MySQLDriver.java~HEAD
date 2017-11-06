@@ -10,7 +10,7 @@ public class MySQLDriver {
     private Statement statement;
 
     public MySQLDriver() {
-        try {
+        try { 
             connection = DriverManager.getConnection("jdbc:mysql://panenka-dev.c8sznodk2hny.eu-west-2.rds.amazonaws.com",
                     "panenka_master", "spqpanenka");
 
@@ -32,7 +32,7 @@ public class MySQLDriver {
         }
         return null;
     }
-
+    
     public int runUpdate(String query) {
         try {
             this.statement = this.connection.createStatement();

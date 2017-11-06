@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 public class Controller {
 
+
 	@FXML
 	private Button actualState;
 	@FXML

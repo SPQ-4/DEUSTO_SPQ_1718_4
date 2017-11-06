@@ -1,14 +1,12 @@
 package models;
 import controllers.Controller;
 import controllers.Usuario;
-
-
 import java.io.InputStream;
 import java.net.URL;
-
 import controllers.ControllerUser;
-
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,10 +14,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.collections.FXCollections;
+
 
 public class Main extends Application {
 	private ObservableList<Usuario> userData = FXCollections.observableArrayList();
@@ -31,6 +28,7 @@ public class Main extends Application {
 	}
 	
     @Override
+
     public void start(Stage primaryStage) throws Exception{
 
     	//InputStream resource=getClass().getResourceAsStream("../../resources/views/sample.fxml");
@@ -49,7 +47,10 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
      //   primaryStage.setScene(new Scene(rooti, 800, 475));
 
-        Parent root = FXMLLoader.load(getClass().getResource("../views/User_Table.fxml"));
+       // Parent root = FXMLLoader.load(getClass().getResource("../views/User_Table.fxml"));
+
+        Parent root = FXMLLoader.load(getClass().getResource("../views/MonthKPI.fxml"));
+
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 500, 500));
 
