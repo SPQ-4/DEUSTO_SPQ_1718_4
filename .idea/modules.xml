@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/DEUSTO_SPQ_1718_4.iml" filepath="$PROJECT_DIR$/.idea/DEUSTO_SPQ_1718_4.iml" />
       <module fileurl="file://$PROJECT_DIR$/Proyecto/Proyecto.iml" filepath="$PROJECT_DIR$/Proyecto/Proyecto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProyectoJavaFx/ProyectoJavaFx.iml" filepath="$PROJECT_DIR$/ProyectoJavaFx/ProyectoJavaFx.iml" />
     </modules>
   </component>
 </project>
