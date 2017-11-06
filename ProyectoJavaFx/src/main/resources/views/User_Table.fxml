@@ -30,8 +30,8 @@
                      <children>
                         <TableView fx:id="UsersTable" layoutY="7.0" prefHeight="289.0" prefWidth="439.0">
                           <columns>
-                            <TableColumn fx:id="nameCol" prefWidth="75.0" text="C1" />
-                            <TableColumn fx:id="mailCol" prefWidth="75.0" text="C2" />
+                            <TableColumn fx:id="emailCol" prefWidth="75.0" text="C1" />
+                            <TableColumn fx:id="saldoCol" prefWidth="75.0" text="C2" />
                           </columns>
                         </TableView>
                      </children>

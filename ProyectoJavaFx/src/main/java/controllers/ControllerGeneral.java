@@ -7,13 +7,16 @@ import db.MySQLDriver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.PieChart;
-import javafx.scene.text.Text;
+
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
  
 public class ControllerGeneral implements Initializable{
@@ -33,6 +36,8 @@ public class ControllerGeneral implements Initializable{
 	private MySQLDriver driverDB;
 	@FXML
 	private PieChart contestsRatio;
+	@FXML
+	private Pane monthUsersChart;
 	
 	private PieChart.Data slice1;
 	private PieChart.Data slice2;
@@ -52,6 +57,22 @@ public class ControllerGeneral implements Initializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		ArrayList<Integer> datos = new ArrayList();
+		 int suma=0;
+		 for(int i=0;i<30;i++) {
+			 datos.add(i+3);
+			 suma=suma + i +3;
+		 }	 
+		double media = suma/datos.size();
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/monthUsersChart.fxml"));
+		try {
+			monthUsersChart.getChildren().add((Pane)fxmlLoader.load());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		UsersChartController controller = fxmlLoader.getController();
+	       controller.cargarDatos(datos, media);
 	}
 	public void paintMonthKPI() {
 		usersThisMonth.setShape(new Circle(10,10,10));
@@ -62,18 +83,18 @@ public class ControllerGeneral implements Initializable{
 	}
 	public void datosTorneoPorTipo() throws SQLException{
 		//habrá que hacer una query por cada tipo de torneo, por ahora hay 2 tipos (en caso de haber más se podría hacer con un while)
-		String query1="select count(case id_contest_type when 'contest_type_1' then 1 else NULL end ) as value from panenka.contests "
-				+ "where YEAR(open_date) = YEAR(CURDATE()) ;";
+		String query1="select count(case contest_type_id when 1 then 1 else NULL end ) as value from panenka_db.contests_contest "
+				+ "where YEAR(close_date) = YEAR(CURDATE()) ;";
 		ResultSet type1= driverDB.runQuery(query1);
 		while(type1.next()){
-			slice1 = new PieChart.Data("Head-to-Head", Integer.parseInt(type1.getString("value")));
+			slice1 = new PieChart.Data("Public", Integer.parseInt(type1.getString("value")));
 		}		
 		
-		String query2="select count(case id_contest_type when 'contest_type_2' then 1 else NULL end ) as value from panenka.contests "
-				+ "where YEAR(open_date) = YEAR(CURDATE()) ;"; 
+		String query2="select count(case contest_type_id when '2' then 1 else NULL end ) as value from panenka_db.contests_contest "
+				+ "where YEAR(close_date) = YEAR(CURDATE()) ;"; 
 		ResultSet type2= driverDB.runQuery(query2);
 		while(type2.next()){
-			slice2 = new PieChart.Data("Multiuser", Integer.parseInt(type2.getString("value")));
+			slice2 = new PieChart.Data("Private", Integer.parseInt(type2.getString("value")));
 		}
 		ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(slice1,slice2);
 		contestsRatio.setData(pieChartData);

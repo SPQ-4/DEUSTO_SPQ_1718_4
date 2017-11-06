@@ -55,21 +55,38 @@ public class Controller {
 				userState.setOnAction(new EventHandler<ActionEvent>() {
 		    	    @Override public void handle(ActionEvent e) {
 		    	    	centralPane.getChildren().clear();
-		    	    	try {
-							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("../views/User_Table.fxml")));
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+		    	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/User_Table.fxml"));
+		    	    	
+		    			try {
+		    				centralPane.getChildren().add((Pane)fxmlLoader.load());
+		    				setControllerToControllerUser(fxmlLoader);
+		    			} catch (IOException a) {
+		    				// TODO Auto-generated catch block
+		    				a.printStackTrace();
+		    			}
 		    	    }
 		    	});
 				exit.setOnAction(new EventHandler<ActionEvent>() {
 		    	    @Override public void handle(ActionEvent e) {
-		    	    	Stage stage = (Stage) exit.getScene().getWindow();
-		    	        
+		    	    	Stage stage = (Stage) exit.getScene().getWindow();        
 		    	        stage.close();
 		    	    }
 		    	});
 	}
-
+	public void setControllerToControllerUser(FXMLLoader fxmlLoader){
+		ControllerUser control=fxmlLoader.getController();
+		control.setController(this);
+	}
+	public void seeUserInfor(Usuario user){
+		centralPane.getChildren().clear();
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/userTable.fxml"));
+		try {
+			centralPane.getChildren().add((Pane)fxmlLoader.load());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		UserTableController userTableController = fxmlLoader.getController();
+	    userTableController.selectUser(user);
+	}
 }

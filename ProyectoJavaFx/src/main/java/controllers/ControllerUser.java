@@ -1,5 +1,8 @@
 package controllers;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import javafx.beans.value.ChangeListener;
@@ -21,14 +24,15 @@ public class ControllerUser implements Initializable{
 	@FXML
 	TableView<Usuario>UsersTable=new TableView<>();
 	@FXML
-	private TableColumn <Usuario,String>nameCol;
+	private TableColumn <Usuario,String>emailCol;
 	@FXML
-	private TableColumn <Usuario,String>mailCol;
+	private TableColumn <Usuario,Integer>saldoCol;
 	@FXML
 	private TextField textField;
 	ObservableList <Usuario>UsersData=FXCollections.observableArrayList();
 	FilteredList<Usuario> filteredData ;
 	Usuario selectedUser;
+	Controller control;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		selectedUser=null;
@@ -62,8 +66,7 @@ public class ControllerUser implements Initializable{
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
 				if ( event.getClickCount() == 2) {
-	                System.out.println("Doble click en "+selectedUser.getNombre());
-	                System.out.println("insertar aquí llamada a Juan");
+	                control.seeUserInfor(selectedUser);
 	                
 	            }
 			}
@@ -72,22 +75,34 @@ public class ControllerUser implements Initializable{
 	}
 	public void setUsersToTable() {
 		/*Investigar por qué solo funciona si se llama desde el initialize y sino da fallo*/
-		nameCol.setCellValueFactory(new PropertyValueFactory<Usuario,String>("nombre"));
-		mailCol.setCellValueFactory(new PropertyValueFactory<Usuario,String>("email"));
+		emailCol.setCellValueFactory(new PropertyValueFactory<Usuario,String>("email"));
+		saldoCol.setCellValueFactory(new PropertyValueFactory<Usuario,Integer>("saldo"));
 		UsersTable.setItems(UsersData);
-		nameCol.setText("NAME");
-		mailCol.setText("COL");	
+		emailCol.setText("EMAIL");
+		saldoCol.setText("SALDO");	
 	}
 	public void setUsersToList() {
 		//HAY QUE LEER DE LA BD
-		UsersData.add(new Usuario("Asier","asier@mail.com"));
-		UsersData.add(new Usuario("Paula","paula@mail.com"));
-		UsersData.add(new Usuario("Juan","juan@mail.com"));
-		UsersData.add(new Usuario("Javier","javier@mail.com"));
-		UsersData.add(new Usuario("Virginia","virginia@mail.com"));
-		UsersData.add(new Usuario("Pablo","pablo@mail.com"));
-		UsersData.add(new Usuario("Iker","iker@mail.com"));
+		String str = "04/11/2017";
+		Date fecha;
+		try {
+			fecha = new SimpleDateFormat("dd/mm/yyyy").parse(str);
+			Usuario user = new Usuario("juan@hotmail.com", 20, 500, fecha);
+			UsersData.add(user);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+//		UsersData.add(new Usuario("Asier","asier@mail.com"));
+//		UsersData.add(new Usuario("Paula","paula@mail.com"));
+//		UsersData.add(new Usuario("Juan","juan@mail.com"));
+//		UsersData.add(new Usuario("Javier","javier@mail.com"));
+//		UsersData.add(new Usuario("Virginia","virginia@mail.com"));
+//		UsersData.add(new Usuario("Pablo","pablo@mail.com"));
+//		UsersData.add(new Usuario("Iker","iker@mail.com"));
 	}	
+
+	
 	public void filterTable() {
 		filteredData.setPredicate(new Predicate<Usuario>() {
 			@Override
@@ -101,5 +116,8 @@ public class ControllerUser implements Initializable{
 				}
 			}	
 		});
+	}
+	public void setController(Controller control){
+		this.control=control;
 	}
 }

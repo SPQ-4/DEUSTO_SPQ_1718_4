@@ -25,7 +25,7 @@ public class Main2 extends Application {
     	System.out.println(resource);
     	Parent root = FXMLLoader.load(resource);
         primaryStage.setTitle("HomePage");
-        primaryStage.setScene(new Scene(root, 800, 475));
+        primaryStage.setScene(new Scene(root, 1000, 700));
         primaryStage.show();
     }
 
