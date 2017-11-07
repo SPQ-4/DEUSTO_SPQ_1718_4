@@ -44,10 +44,10 @@ public class ControllerGeneral implements Initializable{
 	Circle tournamentsByUsersCircle;
 	@FXML
 	Circle playedRateCircle;
-	int [] usersThisMonthThresholds=new int[2];
-	int [] revenuesThisMonthThresholds=new int[2];
-	int [] tournamentsByUsersThresholds=new int[2];
-	int [] playedRateThresholds=new int[2];
+	double [] usersThisMonthThresholds= {10,20};
+	double [] revenuesThisMonthThresholds= {500,1000};
+	double [] tournamentsByUsersThresholds= {4,10};
+	double [] playedRateThresholds= {0.5,0.8};
 	
 	private MySQLDriver driverDB;
 	@FXML
@@ -60,13 +60,15 @@ public class ControllerGeneral implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		obtainMonthKPI();
+		driverDB= new MySQLDriver();
+		try {
+			obtainMonthKPI();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		paintMonthKPI();
-//		usersThisMonth.setText("label1");
-//		revenuesThisMonth.setText("Label2");
-//		tournamentsByUsers.setText("label3");
-//		playedRate.setText("label4");
-//		driverDB= new MySQLDriver();
+		
 //		try {
 //			datosTorneoPorTipo();
 //		} catch (SQLException e) {
@@ -91,10 +93,59 @@ public class ControllerGeneral implements Initializable{
 //	       controller.cargarDatos(datos, media);
 	}
 	public void paintMonthKPI() {
-		this.playedRateCircle.setFill(Color.RED);
+		double playedRateD=Double.parseDouble(playedRate.getText());
+		double revenuesThisMonthD=Double.parseDouble(revenuesThisMonth.getText());
+		double tournamentsByUsersD=Double.parseDouble(tournamentsByUsers.getText());
+		double usersThisMonthD=Double.parseDouble(usersThisMonth.getText());
+		if(playedRateD<playedRateThresholds[0]) {
+			this.playedRateCircle.setFill(Color.RED);
+		}else if(playedRateD<playedRateThresholds[1]) {
+			this.playedRateCircle.setFill(Color.YELLOW);
+		}else {
+			this.playedRateCircle.setFill(Color.GREEN);
+		}
+		
+		if(revenuesThisMonthD<revenuesThisMonthThresholds[0]) {
+			this.revenuesThisMonthCircle.setFill(Color.RED);
+		}else if(revenuesThisMonthD<revenuesThisMonthThresholds[1]) {
+			this.revenuesThisMonthCircle.setFill(Color.YELLOW);
+		}else {
+			this.revenuesThisMonthCircle.setFill(Color.GREEN);
+		}
+		
+		if(tournamentsByUsersD<tournamentsByUsersThresholds[0]) {
+			this.tournamentsByUsersCircle.setFill(Color.RED);
+		}else if(tournamentsByUsersD<tournamentsByUsersThresholds[1]) {
+			this.tournamentsByUsersCircle.setFill(Color.YELLOW);
+		}else {
+			this.tournamentsByUsersCircle.setFill(Color.GREEN);
+		}
+		
+		if(usersThisMonthD<usersThisMonthThresholds[0]) {
+			this.usersThisMonthCircle.setFill(Color.RED);
+		}else if(usersThisMonthD<usersThisMonthThresholds[1]) {
+			this.usersThisMonthCircle.setFill(Color.YELLOW);
+		}else {
+			this.usersThisMonthCircle.setFill(Color.GREEN);
+		}
+		
+		
 	}
-	public void obtainMonthKPI() {
-		this.playedRate.setText("0.5");
+	public void obtainMonthKPI() throws SQLException {
+		//OBTENER DE LA BASE DE DATOS
+		String playedTournaments="select count(*) from panenka_db.contests_contest where MONTH(close_date) = MONTH(CURDATE()) AND MONTH(created_date) = MONTH(CURDATE()) ;";
+		String openTournaments="select count(*) from panenka_db.contests_contest where MONTH(created_date) =MONTH(CURDATE())";
+		ResultSet type1=driverDB.runQuery(playedTournaments);
+		ResultSet type2=driverDB.runQuery(openTournaments);
+		Double playedRateParcial=new Double(0);
+		while(type1.next()){
+			 playedRateParcial=(double) (type1.getInt(1));
+		}	
+		while(type2.next()){
+			 playedRateParcial=playedRateParcial/(double)(type2.getInt(1));
+		}	
+		
+		this.playedRate.setText(playedRateParcial.toString());
 		this.revenuesThisMonth.setText("1");
 		this.tournamentsByUsers.setText("20");
 		this.usersThisMonth.setText("10");

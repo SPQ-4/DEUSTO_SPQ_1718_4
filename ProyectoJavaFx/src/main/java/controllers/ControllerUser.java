@@ -1,10 +1,14 @@
 package controllers;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+
+import db.MySQLDriver;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -13,6 +17,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
@@ -29,6 +34,7 @@ public class ControllerUser implements Initializable{
 	private TableColumn <Usuario,Integer>saldoCol;
 	@FXML
 	private TextField textField;
+	private MySQLDriver driverDB;
 	ObservableList <Usuario>UsersData=FXCollections.observableArrayList();
 	FilteredList<Usuario> filteredData ;
 	Usuario selectedUser;
@@ -36,6 +42,7 @@ public class ControllerUser implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		selectedUser=null;
+		driverDB= new MySQLDriver();
 		setUsersToTable();
 		setUsersToList();
 		// 1. Wrap the ObservableList in a FilteredList (initially display all data).
@@ -82,24 +89,18 @@ public class ControllerUser implements Initializable{
 		saldoCol.setText("SALDO");	
 	}
 	public void setUsersToList() {
-		//HAY QUE LEER DE LA BD
-		String str = "04/11/2017";
-		Date fecha;
+		String query1="select * from panenka_db.users_user";
+		ResultSet type1= driverDB.runQuery(query1);
 		try {
-			fecha = new SimpleDateFormat("dd/mm/yyyy").parse(str);
-			Usuario user = new Usuario("juan@hotmail.com", 20, 500, fecha);
-			UsersData.add(user);
-		} catch (ParseException e) {
+			while(type1.next()){
+					Usuario user=new Usuario(type1.getString("username"),type1.getDouble("balance"),type1.getDouble("balance"),type1.getDate("created"));
+					System.out.println(user.getFecha_registro());
+					UsersData.add(user);
+			}		
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-//		UsersData.add(new Usuario("Asier","asier@mail.com"));
-//		UsersData.add(new Usuario("Paula","paula@mail.com"));
-//		UsersData.add(new Usuario("Juan","juan@mail.com"));
-//		UsersData.add(new Usuario("Javier","javier@mail.com"));
-//		UsersData.add(new Usuario("Virginia","virginia@mail.com"));
-//		UsersData.add(new Usuario("Pablo","pablo@mail.com"));
-//		UsersData.add(new Usuario("Iker","iker@mail.com"));
 	}	
 
 	

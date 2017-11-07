@@ -47,7 +47,7 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
      //   primaryStage.setScene(new Scene(rooti, 800, 475));
 
-       // Parent root = FXMLLoader.load(getClass().getResource("../views/User_Table.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("../views/User_Table.fxml"));
 
         Parent root = FXMLLoader.load(getClass().getResource("../views/MonthKPI.fxml"));
 
