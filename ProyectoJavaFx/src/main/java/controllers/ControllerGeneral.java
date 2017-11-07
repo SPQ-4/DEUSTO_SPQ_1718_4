@@ -10,6 +10,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.PieChart;
 
+import java.awt.Paint;
+import java.awt.PaintContext;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.ColorModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,6 +24,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
  
 public class ControllerGeneral implements Initializable{
@@ -28,6 +36,14 @@ public class ControllerGeneral implements Initializable{
 	Label tournamentsByUsers;
 	@FXML
 	Label playedRate;
+	@FXML
+	Circle usersThisMonthCircle;
+	@FXML
+	Circle revenuesThisMonthCircle;
+	@FXML
+	Circle tournamentsByUsersCircle;
+	@FXML
+	Circle playedRateCircle;
 	int [] usersThisMonthThresholds=new int[2];
 	int [] revenuesThisMonthThresholds=new int[2];
 	int [] tournamentsByUsersThresholds=new int[2];
@@ -46,40 +62,42 @@ public class ControllerGeneral implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		obtainMonthKPI();
 		paintMonthKPI();
-		usersThisMonth.setText("label1");
-		revenuesThisMonth.setText("Label2");
-		tournamentsByUsers.setText("label3");
-		playedRate.setText("label4");
-		driverDB= new MySQLDriver();
-		try {
-			datosTorneoPorTipo();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ArrayList<Integer> datos = new ArrayList();
-		 int suma=0;
-		 for(int i=0;i<30;i++) {
-			 datos.add(i+3);
-			 suma=suma + i +3;
-		 }	 
-		double media = suma/datos.size();
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/monthUsersChart.fxml"));
-		try {
-			monthUsersChart.getChildren().add((Pane)fxmlLoader.load());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		UsersChartController controller = fxmlLoader.getController();
-	       controller.cargarDatos(datos, media);
+//		usersThisMonth.setText("label1");
+//		revenuesThisMonth.setText("Label2");
+//		tournamentsByUsers.setText("label3");
+//		playedRate.setText("label4");
+//		driverDB= new MySQLDriver();
+//		try {
+//			datosTorneoPorTipo();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		ArrayList<Integer> datos = new ArrayList();
+//		 int suma=0;
+//		 for(int i=0;i<30;i++) {
+//			 datos.add(i+3);
+//			 suma=suma + i +3;
+//		 }	 
+//		double media = suma/datos.size();
+//		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/monthUsersChart.fxml"));
+//		try {
+//			monthUsersChart.getChildren().add((Pane)fxmlLoader.load());
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		UsersChartController controller = fxmlLoader.getController();
+//	       controller.cargarDatos(datos, media);
 	}
 	public void paintMonthKPI() {
-		usersThisMonth.setShape(new Circle(10,10,10));
-		
+		this.playedRateCircle.setFill(Color.RED);
 	}
 	public void obtainMonthKPI() {
-		
+		this.playedRate.setText("0.5");
+		this.revenuesThisMonth.setText("1");
+		this.tournamentsByUsers.setText("20");
+		this.usersThisMonth.setText("10");
 	}
 	public void datosTorneoPorTipo() throws SQLException{
 		//habrá que hacer una query por cada tipo de torneo, por ahora hay 2 tipos (en caso de haber más se podría hacer con un while)
