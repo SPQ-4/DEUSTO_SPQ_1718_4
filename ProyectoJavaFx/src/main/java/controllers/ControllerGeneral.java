@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import db.MySQLDriver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.PieChart;
@@ -23,6 +24,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -54,43 +57,56 @@ public class ControllerGeneral implements Initializable{
 	private PieChart contestsRatio;
 	@FXML
 	private Pane monthUsersChart;
+	@FXML
+	private Pane monthKPI;
+	@FXML
+	private Label caption;
 	
 	private PieChart.Data slice1;
 	private PieChart.Data slice2;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		driverDB= new MySQLDriver();
+		driverDB= new MySQLDriver();	
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/UserTable.fxml"));
 		try {
-			obtainMonthKPI();
-		} catch (SQLException e) {
+			monthKPI.getChildren().add((GridPane)fxmlLoader.load());
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		paintMonthKPI();
+		ControllerGeneral controller;// = fxmlLoader.getController();
+			/*try {
+				controller.obtainMonthKPI();
+			} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+	       controller.paintMonthKPI();*/
 		
-//		try {
-//			datosTorneoPorTipo();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		ArrayList<Integer> datos = new ArrayList();
-//		 int suma=0;
-//		 for(int i=0;i<30;i++) {
-//			 datos.add(i+3);
-//			 suma=suma + i +3;
-//		 }	 
-//		double media = suma/datos.size();
-//		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/monthUsersChart.fxml"));
-//		try {
-//			monthUsersChart.getChildren().add((Pane)fxmlLoader.load());
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		UsersChartController controller = fxmlLoader.getController();
-//	       controller.cargarDatos(datos, media);
+		try {
+			datosTorneoPorTipo();
+		} catch (SQLException a) {
+			// TODO Auto-generated catch block
+			a.printStackTrace();
+		}
+		ArrayList<Integer> datos = new ArrayList();
+		 int suma=0;
+		 for(int i=0;i<30;i++) {
+			 datos.add(i+3);
+			 suma=suma + i +3;
+		 }	 
+		double media = suma/datos.size();
+		fxmlLoader = new FXMLLoader(getClass().getResource("../views/monthUsersChart.fxml"));
+		try {
+			monthUsersChart.getChildren().add((Pane)fxmlLoader.load());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		UsersChartController controllerA = fxmlLoader.getController();
+	       controllerA.cargarDatos(datos, media);
+	   
 	}
 	public void paintMonthKPI() {
 		double playedRateD=Double.parseDouble(playedRate.getText());
@@ -127,9 +143,7 @@ public class ControllerGeneral implements Initializable{
 			this.usersThisMonthCircle.setFill(Color.YELLOW);
 		}else {
 			this.usersThisMonthCircle.setFill(Color.GREEN);
-		}
-		
-		
+		}	
 	}
 	public void obtainMonthKPI() throws SQLException {
 		//OBTENER DE LA BASE DE DATOS
@@ -167,6 +181,20 @@ public class ControllerGeneral implements Initializable{
 		}
 		ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(slice1,slice2);
 		contestsRatio.setData(pieChartData);
+		caption.setTextFill(Color.BLACK);
+        caption.setStyle("-fx-font: 24 arial;");
+		for (final PieChart.Data data : contestsRatio.getData()) {
+			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+			        new EventHandler<MouseEvent>() {
+			            @Override public void handle(MouseEvent e) {
+		                	caption.setLayoutX(e.getSceneX());
+		                    caption.setLayoutY(e.getSceneY());
+		                    caption.setText(Double.toString(data.getPieValue()));
+		                    System.out.println(e.getSceneX());
+		                    System.out.println(e.getX());
+			             }
+			        });
+		}
 	}
 }
 

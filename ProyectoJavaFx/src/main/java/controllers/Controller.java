@@ -44,7 +44,7 @@ public class Controller {
 		    	    @Override public void handle(ActionEvent e) {
 		    	    	centralPane.getChildren().clear();
 		    	    	try {
-							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("../views/sample.fxml")));
+							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("../views/MonthKPI.fxml")));
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
