@@ -21,11 +21,11 @@ public class Main2 extends Application {
 	
     @Override
     public void start(Stage primaryStage) throws Exception {
-    	URL resource =this.getClass().getResource("../views/piechart.fxml");
+    	URL resource =this.getClass().getResource("../views/barchart.fxml");
     	Parent root = FXMLLoader.load(resource);
-        primaryStage.setTitle("Panenka - Admin");
-        primaryStage.setScene(new Scene(root, 800, 475));
-        primaryStage.show();
+      primaryStage.setTitle("Panenka - Admin");
+      primaryStage.setScene(new Scene(root, 800, 475));
+      primaryStage.show();
     }
 
     /**

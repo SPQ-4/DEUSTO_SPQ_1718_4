@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,10 +21,12 @@ public class StackedBarChartController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        ContestController contestController = new ContestController();
+        HashMap<String, HashMap<String, Double>> dbResults = contestController.getLastWeekContestStats();
+        loadData(dbResults);
     }
 
-    public void loadData(HashMap<String, Double> data) {
+    public void loadData(HashMap<String, HashMap<String, Double>> data) {
         ObservableList<String> weekdays = FXCollections.observableArrayList(
                 "Monday",
                 "Tuesday",
@@ -38,15 +41,19 @@ public class StackedBarChartController implements Initializable {
         xAxis.setLabel("Weekdays");
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Revenue");
-        this.stackedBarChart = new StackedBarChart(xAxis, yAxis);
+        this.stackedBarChart = new StackedBarChart<String, Number>(xAxis, yAxis);
 
-        XYChart.Series classicData = new XYChart.Series();
         for (String key : data.keySet()) {
+            XYChart.Series classicData = new XYChart.Series<String, Number>();
             classicData.setName(key);
-            classicData.getData().add(new XYChart.Data(key, data.get(key)));
+            for (String secondKey : data.get(key).keySet()) {
+                classicData.getData().add(new XYChart.Data<String, Number>(secondKey, data.get(key).get(secondKey)));
+            }
+            this.stackedBarChart.getData().add(classicData);
         }
-        this.stackedBarChart.getData().add(classicData);
-        this.stackedBarChart.setScaleY(2.0);
+        this.stackedBarChart.setTitle("Revenue by weekday");
+
+
 //        XYChart.Series h2hData = new XYChart.Series();
 //        for (String key : data.keySet()) {
 //            h2hData.setName(key);

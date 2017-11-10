@@ -195,14 +195,12 @@ public class ContestController {
         h2hData.put("Friday", h2hFriday);
         h2hData.put("Saturday", h2hSaturday);
         h2hData.put("Sunday", h2hSunday);
-        for (String key : h2hData.keySet()) {
-            System.out.println(key + ": " + h2hData.get(key));
-        }
-
+//        for (String key : h2hData.keySet()) {
+//            System.out.println(key + ": " + h2hData.get(key));
+//        }
         HashMap<String, HashMap<String, Double>> resultData = new HashMap<>();
         resultData.put("Classic", classicData);
         resultData.put("Head-to-head", h2hData);
-
         return resultData;
     }
 
