@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 public class ContestController {
 
@@ -18,7 +19,7 @@ public class ContestController {
         dbDriver = new MySQLDriver();
     }
 
-    public void getContestEntryStats(String fromDate, String toDate) {
+    public HashMap<String, Double> getContestEntryStats(String fromDate, String toDate) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date initialDate = null;
         Date finalDate = new Date();
@@ -71,7 +72,6 @@ public class ContestController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("CONTESTS");
         double classicSum = 0;
         double h2hSum = 0;
         for (Double d : classicList) {
@@ -81,12 +81,13 @@ public class ContestController {
             h2hSum += d;
         }
         double totalSum = classicSum + h2hSum;
-        System.out.println("   Classic: " + (classicSum * 0.1) + " (" + ((classicSum / totalSum) * 100) + "%)");
-        System.out.println("   H2H: " + (h2hSum * 0.1) + " (" + ((h2hSum / totalSum) * 100) + "%)");
-        System.out.println("   Total: " + (totalSum * 0.1));
+        HashMap<String, Double> data = new HashMap<>();
+        data.put("Classic", classicSum);
+        data.put("Head-to-head", h2hSum);
+        return data;
     }
 
-    public void getLastWeekContestStats() {
+    public HashMap<String, HashMap<String, Double>> getLastWeekContestStats() {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         calendar.setTime(new Date());
@@ -146,6 +147,18 @@ public class ContestController {
             classicSaturday += b;
         }
 
+        HashMap<String, Double> classicData = new HashMap<>();
+        classicData.put("Monday", classicMonday);
+        classicData.put("Tuesday", classicTuesday);
+        classicData.put("Wednesday", classicWednesday);
+        classicData.put("Thursday", classicThursday);
+        classicData.put("Friday", classicFriday);
+        classicData.put("Saturday", classicSaturday);
+        classicData.put("Sunday", classicSunday);
+        for (String key : classicData.keySet()) {
+            System.out.println(key + ": " + classicData.get(key));
+        }
+
         Double h2hSunday = 0.0;
         for (Double b : h2hArray[0]) {
             h2hSunday += b;
@@ -174,21 +187,23 @@ public class ContestController {
         for (Double b : h2hArray[6]) {
             h2hSaturday += b;
         }
-        Double totalMonday = classicMonday + h2hMonday;
-        Double totalTuesday = classicTuesday + h2hTuesday;
-        Double totalWednesday = classicWednesday + h2hWednesday;
-        Double totalThursday = classicThursday + h2hThursday;
-        Double totalFriday = classicFriday + h2hFriday;
-        Double totalSaturday = classicSaturday + h2hSaturday;
-        Double totalSunday = classicSunday + h2hSunday;
-        System.out.println("CLASSICS | HEAD-TO-HEAD");
-        System.out.println("   Monday: " + classicMonday + " (" + ((classicMonday / totalMonday) * 100) + "%) | " + h2hMonday + " (" + ((h2hMonday / totalMonday) * 100) + "%)");
-        System.out.println("   Tuesday: " + classicTuesday + " (" + ((classicTuesday / totalTuesday) * 100) + "%) | " + h2hTuesday + " (" + ((h2hTuesday / totalTuesday) * 100) + "%)");
-        System.out.println("   Wednesday: " + classicWednesday + " (" + ((classicWednesday / totalWednesday) * 100) + "%) | " + h2hWednesday + " (" + ((h2hWednesday / totalWednesday) * 100) + "%)");
-        System.out.println("   Thursday: " + classicThursday + " (" + ((classicThursday / totalThursday) * 100) + "%) | " + h2hThursday + " (" + ((h2hThursday / totalThursday) * 100) + "%)");
-        System.out.println("   Friday: " + classicFriday + " (" + ((classicFriday / totalFriday) * 100) + "%) | " + h2hFriday + " (" + ((h2hFriday / totalFriday) * 100) + "%)");
-        System.out.println("   Saturday: " + classicSaturday + " (" + ((classicSaturday / totalSaturday) * 100) + "%) | " + h2hSaturday + " (" + ((h2hSaturday / totalSaturday) * 100) + "%)");
-        System.out.println("   Sunday: " + classicSunday + " (" + ((classicSunday / totalSunday) * 100) + "%) | " + h2hSunday + " (" + ((h2hSunday / totalSunday) * 100) + "%)");
+        HashMap<String, Double> h2hData = new HashMap<>();
+        h2hData.put("Monday", h2hMonday);
+        h2hData.put("Tuesday", h2hTuesday);
+        h2hData.put("Wednesday", h2hWednesday);
+        h2hData.put("Thursday", h2hThursday);
+        h2hData.put("Friday", h2hFriday);
+        h2hData.put("Saturday", h2hSaturday);
+        h2hData.put("Sunday", h2hSunday);
+        for (String key : h2hData.keySet()) {
+            System.out.println(key + ": " + h2hData.get(key));
+        }
+
+        HashMap<String, HashMap<String, Double>> resultData = new HashMap<>();
+        resultData.put("Classic", classicData);
+        resultData.put("Head-to-head", h2hData);
+
+        return resultData;
     }
 
 }
