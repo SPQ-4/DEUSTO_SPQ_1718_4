@@ -7,10 +7,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StackedBarChartController">
+<AnchorPane prefHeight="358.0" prefWidth="388.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StackedBarChartController">
    <children>
-      <StackedBarChart fx:id="stackedBarChart">
+      <StackedBarChart fx:id="stackedBarChart" prefHeight="289.0" prefWidth="388.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>

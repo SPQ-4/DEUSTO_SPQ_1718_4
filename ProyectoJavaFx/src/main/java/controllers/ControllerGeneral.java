@@ -98,7 +98,7 @@ public class ControllerGeneral implements Initializable{
 			 suma=suma + i +3;
 		 }	 
 		double media = suma/datos.size();
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/monthUsersChart.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/monthUsersChart.fxml"));
 		try {
 			monthUsersChart.getChildren().add((Pane)fxmlLoader.load());
 		} catch (IOException e) {
