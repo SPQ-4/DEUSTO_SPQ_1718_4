@@ -46,7 +46,6 @@ public class StackedBarChartController implements Initializable {
             XYChart.Series classicData = new XYChart.Series<String, Number>();
             classicData.setName(key);
             for (String secondKey : data.get(key).keySet()) {
-                System.out.println(key + " (" + secondKey + "): " + data.get(key).get(secondKey));
                 classicData.getData().add(new XYChart.Data<String, Number>(secondKey, data.get(key).get(secondKey)));
             }
             this.stackedBarChart.getData().add(classicData);
