@@ -72,7 +72,7 @@
                 </executions>
                 <configuration>
                     <!--<mainClass>SPQ_1718_4.Proyecto.auth.VentanaLogin</mainClass>-->
-                    <mainClass>models.Main</mainClass>
+                    <mainClass>models.Main2</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -83,7 +83,7 @@
                     <archive>
                         <manifest>
                             <!--<mainClass>SPQ_1718_4.Proyecto.auth.VentanaLogin</mainClass>-->
-                            <mainClass>models.Main</mainClass>
+                            <mainClass>models.Main2</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -94,7 +94,7 @@
                     <archive>
                         <manifest>
                             <!--<mainClass>SPQ_1718_4.Proyecto.auth.VentanaLogin</mainClass>-->
-                            <mainClass>models.Main</mainClass>
+                            <mainClass>models.Main2</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -117,6 +117,16 @@
 	        <version>1.1.0</version>
 	     </plugin>
         </plugins>
+        <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.fxml</include>
+                <include>**/*.css</include>
+                <include>**/*.jpg</include>
+            </includes>
+        </resource>
+    </resources>
     </build>
     <dependencies>
         <dependency>
@@ -136,6 +146,12 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+        <dependency>
+        	<groupId>org.databene</groupId>
+        	<artifactId>contiperf</artifactId>
+        	<version>2.0.0</version>
+        	<scope>test</scope>
+        </dependency>
     </dependencies>
     
     <!--  Para usar el GOAL de reporting de cobertura  -->
@@ -146,15 +162,6 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>2.6</version>
             </plugin>
-	    <plugin>
-      		<groupId>com.soebes.maven.plugins.dmg</groupId>
-		<artifactId>doxygen-maven-plugin</artifactId>
-		<version>1.1.0</version>
-		<configuration>
-		<configurationFile>${doxygen.config.file}</configurationFile>
-		<executable>C:\Program Files\doxygen\bin\doxygen.exe</executable>
-		</configuration>
-	    </plugin>
         </plugins>
     </reporting>
 </project>
