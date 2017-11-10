@@ -135,8 +135,8 @@ public class ControllerGeneral implements Initializable{
 		//OBTENER DE LA BASE DE DATOS
 		String playedTournaments="select count(*) from panenka_db.contests_contest where MONTH(close_date) = MONTH(CURDATE()) AND MONTH(created_date) = MONTH(CURDATE()) ;";
 		String openTournaments="select count(*) from panenka_db.contests_contest where MONTH(created_date) =MONTH(CURDATE())";
-		String revenues="select sum(\"fee\") from panenka_db.contests_contest, panenka.entry_fees,panenka_db.contests_entry where MONTH(created_date) =MONTH(CURDATE()) AND panenka.entry_fees.fee=panenka_db.contests_contest.entry_fee AND panenka_db.contests_entry.id_contest_id=panenka_db.contests_contest.id";
-		String by_admin="SELECT count(*) FROM panenka_db.contests_contest where created_by_admin!=0";
+		String revenues="select sum(\"fee\") from panenka_db.contests_contest,panenka_db.contests_entry where MONTH(created_date) =MONTH(CURDATE()) AND panenka_db.contests_entry.id_contest_id=panenka_db.contests_contest.id";
+		String by_admin="SELECT count(*) FROM panenka_db.contests_contest where created_by_admin=0";
 		String usersMonth="SELECT count(DISTINCT \"user_id\") FROM panenka_db.users_login where MONTH(login_date)=MONTH(CURDATE())";
 		ResultSet type1=driverDB.runQuery(playedTournaments);
 		ResultSet type2=driverDB.runQuery(openTournaments);
