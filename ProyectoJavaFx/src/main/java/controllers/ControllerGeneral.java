@@ -149,20 +149,39 @@ public class ControllerGeneral implements Initializable{
 		//OBTENER DE LA BASE DE DATOS
 		String playedTournaments="select count(*) from panenka_db.contests_contest where MONTH(close_date) = MONTH(CURDATE()) AND MONTH(created_date) = MONTH(CURDATE()) ;";
 		String openTournaments="select count(*) from panenka_db.contests_contest where MONTH(created_date) =MONTH(CURDATE())";
+		String revenues="select sum(\"fee\") from panenka_db.contests_contest,panenka_db.contests_entry where MONTH(created_date) =MONTH(CURDATE()) AND panenka_db.contests_entry.id_contest_id=panenka_db.contests_contest.id";
+		String by_admin="SELECT count(*) FROM panenka_db.contests_contest where created_by_admin=0";
+		String usersMonth="SELECT count(DISTINCT \"user_id\") FROM panenka_db.users_login where MONTH(login_date)=MONTH(CURDATE())";
 		ResultSet type1=driverDB.runQuery(playedTournaments);
 		ResultSet type2=driverDB.runQuery(openTournaments);
+		ResultSet type3=driverDB.runQuery(revenues);
+		ResultSet type4=driverDB.runQuery(by_admin);
+		ResultSet type5=driverDB.runQuery(usersMonth);
 		Double playedRateParcial=new Double(0);
+		Double revenuesThisMonthParcial=new Double(0);
+		Double tournamentsByUsersParcial=new Double(0);
+		Double usersThisMonthParcial=new Double(0);
 		while(type1.next()){
 			 playedRateParcial=(double) (type1.getInt(1));
 		}	
 		while(type2.next()){
 			 playedRateParcial=playedRateParcial/(double)(type2.getInt(1));
 		}	
-		
+		if(type3!=null) {
+			while(type3.next()) {
+				revenuesThisMonthParcial=(double)type3.getInt(1);
+			}
+		}
+		while(type4.next()) {
+			tournamentsByUsersParcial=(double)type4.getInt(1);
+		}
+		while(type5.next()) {
+			usersThisMonthParcial=(double)type5.getInt(1);
+		}
 		this.playedRate.setText(playedRateParcial.toString());
-		this.revenuesThisMonth.setText("1");
-		this.tournamentsByUsers.setText("20");
-		this.usersThisMonth.setText("10");
+		this.revenuesThisMonth.setText(revenuesThisMonthParcial.toString());
+		this.tournamentsByUsers.setText(tournamentsByUsersParcial.toString());
+		this.usersThisMonth.setText(usersThisMonthParcial.toString());
 	}
 	public void datosTorneoPorTipo() throws SQLException{
 		//habrá que hacer una query por cada tipo de torneo, por ahora hay 2 tipos (en caso de haber más se podría hacer con un while)
