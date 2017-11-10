@@ -155,9 +155,9 @@ public class ContestController {
         classicData.put("Friday", classicFriday);
         classicData.put("Saturday", classicSaturday);
         classicData.put("Sunday", classicSunday);
-        for (String key : classicData.keySet()) {
-            System.out.println(key + ": " + classicData.get(key));
-        }
+//        for (String key : classicData.keySet()) {
+//            System.out.println(key + ": " + classicData.get(key));
+//        }
 
         Double h2hSunday = 0.0;
         for (Double b : h2hArray[0]) {

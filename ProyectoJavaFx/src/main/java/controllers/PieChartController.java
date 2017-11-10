@@ -32,5 +32,6 @@ public class PieChartController implements Initializable {
       System.out.println(list.get(i).toString());
     }
     this.pieChart.setData(list);
+    this.pieChart.setTitle("PRUEBA");
   }
 }

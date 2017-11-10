@@ -41,30 +41,16 @@ public class StackedBarChartController implements Initializable {
         xAxis.setLabel("Weekdays");
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Revenue");
-        this.stackedBarChart = new StackedBarChart<String, Number>(xAxis, yAxis);
-
+        this.stackedBarChart.setTitle("Revenue by weekday");
         for (String key : data.keySet()) {
             XYChart.Series classicData = new XYChart.Series<String, Number>();
             classicData.setName(key);
             for (String secondKey : data.get(key).keySet()) {
+                System.out.println(key + " (" + secondKey + "): " + data.get(key).get(secondKey));
                 classicData.getData().add(new XYChart.Data<String, Number>(secondKey, data.get(key).get(secondKey)));
             }
             this.stackedBarChart.getData().add(classicData);
         }
-        this.stackedBarChart.setTitle("Revenue by weekday");
 
-
-//        XYChart.Series h2hData = new XYChart.Series();
-//        for (String key : data.keySet()) {
-//            h2hData.setName(key);
-//            h2hData.getData().add(new XYChart.Data(key, data.get(key)));
-//        }
-//
-//        ArrayList<PieChart.Data> dataList = new ArrayList<>();
-//        for (String key : data.keySet()) {
-//            dataList.add(new PieChart.Data(key, data.get(key)));
-//        }
-//        ObservableList<PieChart.Data> list = FXCollections.observableArrayList(dataList);
-//        this.pieChart.setData(list);
     }
 }
