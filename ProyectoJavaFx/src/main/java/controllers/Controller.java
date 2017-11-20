@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -24,6 +26,12 @@ public class Controller {
 	private Button exit;
 	@FXML
 	private Pane centralPane;
+	@FXML
+	private Pane pieChart;
+	@FXML
+	private Pane barChart;
+	@FXML
+	private GridPane economic;
 	
 	@FXML
 	public void initialize() {
@@ -32,7 +40,7 @@ public class Controller {
 		    	    @Override public void handle(ActionEvent e) {
 		    	    	centralPane.getChildren().clear();
 		    	    	try {
-							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("../views/GeneralInformation.fxml")));
+							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/GeneralInformation.fxml")));
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -43,8 +51,15 @@ public class Controller {
 				economicState.setOnAction(new EventHandler<ActionEvent>() {
 		    	    @Override public void handle(ActionEvent e) {
 		    	    	centralPane.getChildren().clear();
+		    	    	centralPane.getChildren().add((GridPane)economic);
 		    	    	try {
-							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("../views/sample.fxml")));
+							pieChart.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/piechart.fxml")));
+		    	    	} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+		    	    	try {
+							barChart.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/barchart.fxml")));
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -55,7 +70,7 @@ public class Controller {
 				userState.setOnAction(new EventHandler<ActionEvent>() {
 		    	    @Override public void handle(ActionEvent e) {
 		    	    	centralPane.getChildren().clear();
-		    	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/User_Table.fxml"));
+		    	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/User_Table.fxml"));
 		    	    	
 		    			try {
 		    				centralPane.getChildren().add((Pane)fxmlLoader.load());
@@ -79,7 +94,7 @@ public class Controller {
 	}
 	public void seeUserInfor(Usuario user){
 		centralPane.getChildren().clear();
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/userTable.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/userTable.fxml"));
 		try {
 			centralPane.getChildren().add((Pane)fxmlLoader.load());
 		} catch (IOException e) {

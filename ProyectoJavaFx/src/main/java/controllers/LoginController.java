@@ -70,7 +70,7 @@ public class LoginController {
                        // this.borderPane.getParent().getScene().getRoot().setVisible(false);
                         this.borderPane.getChildren().clear();
                         this.borderPane.setBackground(null);
-                        this.borderPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("../views/HomePage.fxml")));
+                        this.borderPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/HomePage.fxml")));
                     }
                     else
                     {

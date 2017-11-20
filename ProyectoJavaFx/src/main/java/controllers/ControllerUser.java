@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
+import org.apache.log4j.Logger;
+
 import db.MySQLDriver;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -35,10 +37,14 @@ public class ControllerUser implements Initializable{
 	@FXML
 	private TextField textField;
 	private MySQLDriver driverDB;
-	ObservableList <Usuario>UsersData=FXCollections.observableArrayList();
-	FilteredList<Usuario> filteredData ;
-	Usuario selectedUser;
-	Controller control;
+	private ObservableList <Usuario>UsersData=FXCollections.observableArrayList();
+	private FilteredList<Usuario> filteredData ;
+	private Usuario selectedUser;
+	private Controller control;
+	static Logger logger = Logger.getLogger(ControllerGeneral.class);
+	public ControllerUser() {
+		driverDB=new MySQLDriver();
+	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		selectedUser=null;
@@ -88,7 +94,7 @@ public class ControllerUser implements Initializable{
 		emailCol.setText("EMAIL");
 		saldoCol.setText("SALDO");	
 	}
-	public void setUsersToList() {
+	public int setUsersToList() {
 		String query1="select * from panenka_db.users_user";
 		ResultSet type1= driverDB.runQuery(query1);
 		try {
@@ -99,8 +105,11 @@ public class ControllerUser implements Initializable{
 			}		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.getMessage());
+			//e.printStackTrace();
+			return 1;
 		}	
+		return 0;
 	}	
 
 	
@@ -110,7 +119,7 @@ public class ControllerUser implements Initializable{
 			public boolean test(Usuario arg0) {				
 				// Compare first name and last name of every person with filter text.
 				String lowerCaseFilter = textField.getText().toLowerCase();			
-				if (arg0.getNombre().toLowerCase().contains(lowerCaseFilter)) {
+				if (arg0.getEmail().toLowerCase().contains(lowerCaseFilter)) {
 					return true; // Filter matches first name.
 				}else {
 				return false; // Does not match.
