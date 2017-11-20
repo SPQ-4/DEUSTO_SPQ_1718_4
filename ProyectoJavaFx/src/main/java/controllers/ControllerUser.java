@@ -26,10 +26,14 @@ import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-
+/** 
+ * @author ASIER
+ * Esta clase va a controlar la visualización de los datos relacionados con los usuarios
+ * Su función será mostrar una tabla con los usuarios de la aplicación y poder filtrar
+ */
 public class ControllerUser implements Initializable{
 	@FXML
-	TableView<Usuario>UsersTable=new TableView<>();
+	TableView<Usuario>UsersTable;
 	@FXML
 	private TableColumn <Usuario,String>emailCol;
 	@FXML
@@ -37,16 +41,22 @@ public class ControllerUser implements Initializable{
 	@FXML
 	private TextField textField;
 	private MySQLDriver driverDB;
-	private ObservableList <Usuario>UsersData=FXCollections.observableArrayList();
+	ObservableList <Usuario>UsersData;
 	private FilteredList<Usuario> filteredData ;
 	private Usuario selectedUser;
 	private Controller control;
 	static Logger logger = Logger.getLogger(ControllerGeneral.class);
 	public ControllerUser() {
-		driverDB=new MySQLDriver();
 	}
 	@Override
+	/**
+	 * @param location
+	 * @param resources
+	 * Este método se ejecuta cuando se utiliza JAVAFX con plantillas. Inicializa la tabla y el filtro. Si no se utilizan plantillas hay que crear el constructor
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
+		UsersTable=new TableView<>();
+		UsersData=FXCollections.observableArrayList();
 		selectedUser=null;
 		driverDB= new MySQLDriver();
 		setUsersToTable();
@@ -86,6 +96,9 @@ public class ControllerUser implements Initializable{
 		});
 		UsersTable.setItems(filteredData);
 	}
+	/**
+	 * método que inicializa la tabla con los valores por defecto de los usuarios: email, saldo
+	 */
 	public void setUsersToTable() {
 		/*Investigar por qué solo funciona si se llama desde el initialize y sino da fallo*/
 		emailCol.setCellValueFactory(new PropertyValueFactory<Usuario,String>("email"));
@@ -94,6 +107,12 @@ public class ControllerUser implements Initializable{
 		emailCol.setText("EMAIL");
 		saldoCol.setText("SALDO");	
 	}
+	/**
+	 * Método que inserta los usuarios en la tabla. MEJORA A REALIZARLE: este método no se debería
+	 * encargar de realizar la consulta sino que debería hacerse en otra clase y que este método lo recibiese
+	 * por parámetro
+	 * @return devuelve 1 si ha habido fallo, 0 si todo OK
+	 */
 	public int setUsersToList() {
 		String query1="select * from panenka_db.users_user";
 		ResultSet type1= driverDB.runQuery(query1);
@@ -111,8 +130,9 @@ public class ControllerUser implements Initializable{
 		}	
 		return 0;
 	}	
-
-	
+	/**
+	 * Método que llama cada vez que ocurre una acción en el TextField para filtrar la tabla
+	 */
 	public void filterTable() {
 		filteredData.setPredicate(new Predicate<Usuario>() {
 			@Override
@@ -129,5 +149,8 @@ public class ControllerUser implements Initializable{
 	}
 	public void setController(Controller control){
 		this.control=control;
+	}
+	public void setDBDriver(MySQLDriver driver) {
+		driverDB=driver;
 	}
 }

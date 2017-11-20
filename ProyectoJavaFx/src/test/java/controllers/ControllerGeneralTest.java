@@ -1,16 +1,10 @@
 package controllers;
 import static org.junit.Assert.*;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import controllers.ControllerGeneral;
 import db.MySQLDriver;
-
-
 public class ControllerGeneralTest {
 	private MySQLDriver driverDB;
 	private ControllerGeneral controller;
