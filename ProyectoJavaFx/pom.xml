@@ -124,6 +124,7 @@
                 <include>**/*.fxml</include>
                 <include>**/*.css</include>
                 <include>**/*.jpg</include>
+                <include>**/*.properties</include>
             </includes>
         </resource>
     </resources>

@@ -1,3 +1,4 @@
+package controllers;
 import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
@@ -10,7 +11,7 @@ import controllers.ControllerGeneral;
 import db.MySQLDriver;
 
 
-public class BDTest {
+public class ControllerGeneralTest {
 	private MySQLDriver driverDB;
 	private ControllerGeneral controller;
 	@Before
@@ -26,7 +27,7 @@ public class BDTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		assertEquals(1,tipo1);
+		assertEquals(2,tipo1);
 		try {
 			tipo2= controller.getValueContestType(2).intValue();
 		} catch (SQLException e) {

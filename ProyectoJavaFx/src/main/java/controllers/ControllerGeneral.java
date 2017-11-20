@@ -2,7 +2,6 @@ package controllers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import db.MySQLDriver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

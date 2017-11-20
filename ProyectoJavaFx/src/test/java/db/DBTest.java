@@ -1,3 +1,4 @@
+package db;
 import java.sql.ResultSet;
 
 import org.databene.contiperf.PerfTest;
@@ -9,7 +10,7 @@ import org.junit.Test;
 
 import db.MySQLDriver;
 
-public class ContiperfTest {
+public class DBTest {
 @Rule public ContiPerfRule i=new ContiPerfRule();
 static MySQLDriver mysql;
 	@BeforeClass
