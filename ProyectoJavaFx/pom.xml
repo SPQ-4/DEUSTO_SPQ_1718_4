@@ -112,12 +112,12 @@
                 </executions>
             </plugin>
             <plugin>
-	        <groupId>com.soebes.maven.plugins</groupId>
-	        <artifactId>doxygen-maven-plugin</artifactId>
-	        <version>1.1.0</version>
-	     </plugin>
+		        <groupId>com.soebes.maven.plugins</groupId>
+		        <artifactId>doxygen-maven-plugin</artifactId>
+		        <version>1.1.0</version>
+	     	</plugin>
         </plugins>
-        <resources>
+	<resources>
         <resource>
             <directory>src/main/resources</directory>
             <includes>
@@ -128,7 +128,7 @@
             </includes>
         </resource>
     </resources>
-    </build>
+</build>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -163,6 +163,11 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>2.6</version>
             </plugin>
+            <plugin>
+      			<groupId>com.soebes.maven.plugins</groupId>
+      			<artifactId>doxygen-maven-plugin</artifactId>
+			    <version>1.1.0</version>
+			</plugin>
         </plugins>
     </reporting>
 </project>
