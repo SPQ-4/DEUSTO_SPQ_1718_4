@@ -67,11 +67,18 @@ public class ControllerGeneral implements Initializable{
 	private PieChart.Data slice1;
 	private PieChart.Data slice2;
 	static Logger logger = Logger.getLogger(ControllerGeneral.class);
-	
+	/**
+	 * este constructor es para cuando queremos utilizar métodos de
+	 * este controller y hace falta que el driver de MySQL esté activo
+	 */
 	public ControllerGeneral(){
 		driverDB= new MySQLDriver();
 	}
 	@Override
+	/**
+	 * método que se llama desde el fxml al cargarse,
+	 * inicializamos los drivers
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		logger.info("inicializando controller general");
 		driverDB= new MySQLDriver();	
