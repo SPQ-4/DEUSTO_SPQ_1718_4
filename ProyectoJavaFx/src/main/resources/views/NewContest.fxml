@@ -5,23 +5,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.StackPane?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.NewContestController">
   <columnConstraints>
     <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="21.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="133.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="144.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="152.0" minHeight="10.0" prefHeight="149.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="85.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="133.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="144.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="229.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="152.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label text="Título del torneo" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
@@ -35,17 +36,17 @@
       <Label text="Tipo de torneo" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
       <Label text="Modo de juego" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
       <Label text="Día de partido" GridPane.halignment="RIGHT" GridPane.rowIndex="10" GridPane.valignment="TOP" />
-      <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TextField GridPane.columnIndex="1" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10" GridPane.valignment="TOP" />
+      <DatePicker fx:id="openDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <DatePicker fx:id="closeDate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextArea fx:id="descrip" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="contest" GridPane.columnIndex="1" />
+      <TextField fx:id="minPart" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <TextField fx:id="maxPart" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <ComboBox fx:id="mode" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <ComboBox fx:id="entryFee" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <ComboBox fx:id="type" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <ComboBox fx:id="matchDay" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10" GridPane.valignment="TOP" />
+      <Button fx:id="create" mnemonicParsing="false" text="Crear Torneo" GridPane.columnIndex="1" GridPane.rowIndex="11" />
    </children>
 </GridPane>
-
