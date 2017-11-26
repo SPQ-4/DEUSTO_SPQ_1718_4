@@ -3,6 +3,7 @@ package db;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.apache.log4j.Logger;
 
@@ -23,7 +24,8 @@ public class PlayersBD {
 		ResultSet type1= driver.runQuery(query);
 		try {
 			while(type1.next()){
-				Player player=new Player(type1.getString("player_shirt"),type1.getString("player_position_category"),type1.getString("club_name"),type1.getString("id_country"));
+				Player player=new Player(type1.getString("player_shirt"),type1.getString("player_position_category"),type1.getString("club_name"),type1.getString("id_country"),type1.getDouble("player_value"));
+				player.setPlayer_points((double)10);
 				playerList.add(player);	
 			}		
 		} catch (SQLException e) {

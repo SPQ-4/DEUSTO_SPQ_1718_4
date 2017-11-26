@@ -55,7 +55,6 @@ public class ControllerUser implements Initializable{
 	 * Este método se ejecuta cuando se utiliza JAVAFX con plantillas. Inicializa la tabla y el filtro. Si no se utilizan plantillas hay que crear el constructor
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
-		UsersTable=new TableView<>();
 		UsersData=FXCollections.observableArrayList();
 		selectedUser=null;
 		driverDB= new MySQLDriver();

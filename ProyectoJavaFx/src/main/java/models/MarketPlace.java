@@ -7,8 +7,8 @@ public class MarketPlace {
 	private String marketName;
 	private double marketTotalValue;
 	private int points;
-	public MarketPlace(String marketName) {
-		
+	public MarketPlace(ArrayList<Player>playersList) {
+		setPlayersList(playersList);
 	}
 	public void setPlayersList(ArrayList<Player>playersList) {
 		this.playersList=playersList;
