@@ -49,7 +49,7 @@ public class Main extends Application {
 
         //Parent root = FXMLLoader.load(getClass().getResource("../views/User_Table.fxml"));
 
-        Parent root = FXMLLoader.load(getClass().getResource("../views/MonthKPI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../views/Market_Players.fxml"));
 
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 500, 500));

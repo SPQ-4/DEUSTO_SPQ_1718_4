@@ -24,11 +24,7 @@ public class Usuario {
 		this.dineroIngresado= new SimpleDoubleProperty(dineroIngresado);
 		this.fecha_registro= new SimpleObjectProperty<Date>(fecha_registro);
 	}
-
-
-
 	public Usuario(String nombre, int edad) {
-	 System.out.println("Se ha cambiado");
        this.nombre = new SimpleStringProperty(nombre);
        this.edad = new SimpleIntegerProperty(edad);
 }
