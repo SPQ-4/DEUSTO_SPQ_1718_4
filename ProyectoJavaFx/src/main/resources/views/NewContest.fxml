@@ -44,9 +44,9 @@
       <TextField fx:id="minPart" GridPane.columnIndex="1" GridPane.rowIndex="5" />
       <TextField fx:id="maxPart" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       <ComboBox fx:id="mode" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <ComboBox fx:id="entryFee" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <ComboBox fx:id="type" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
       <ComboBox fx:id="matchDay" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10" GridPane.valignment="TOP" />
       <Button fx:id="create" mnemonicParsing="false" text="Crear Torneo" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+      <TextField fx:id="entryFee" GridPane.columnIndex="1" GridPane.rowIndex="7" />
    </children>
 </GridPane>
