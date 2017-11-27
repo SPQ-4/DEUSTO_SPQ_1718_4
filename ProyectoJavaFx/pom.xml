@@ -163,6 +163,15 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>2.6</version>
             </plugin>
+        	<plugin>
+		        <groupId>com.soebes.maven.plugins</groupId>
+		      	<artifactId>doxygen-maven-plugin</artifactId>
+		        <version>1.1.0</version>
+		        <configuration>
+		        	<executable>C:\Program Files\doxygen\bin\doxygen.exe</executable>
+		        	<configurationFile>${doxygen.config.file}</configurationFile>
+		        </configuration>
+	     </plugin>
         </plugins>
     </reporting>
 </project>
