@@ -21,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import models.MarketPlace;
 import models.Player;
 
 public class PlayersController implements Initializable {
@@ -43,6 +44,7 @@ public class PlayersController implements Initializable {
 	@FXML
 	private Button actualizarPrecio;
 	private PlayersBD playerDB;
+	private MarketPlace market;
 	ObservableList <Player>PlayersData;
 	private FilteredList<Player> filteredData ;
 	static Logger logger = Logger.getLogger(ControllerGeneral.class);
@@ -66,6 +68,7 @@ public class PlayersController implements Initializable {
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				System.out.println("LLAMAR");
+				market.setMarketValuePlayers();
 			}
 		});
 		PlayersTable.setItems(filteredData);
@@ -98,6 +101,7 @@ public class PlayersController implements Initializable {
 			logger.info("Se han leído los jugadores de la BD");
 			//PlayersData.add(parcial.get(0));
 			PlayersData.addAll(parcial);	
+			market=new MarketPlace(parcial);
 			return 0;
 		}
 		
