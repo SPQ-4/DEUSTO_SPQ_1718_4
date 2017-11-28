@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2206e87-8a21-42ae-a00c-e0d31f7714b2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProyectoJavaFx/src/main/java/models/Main2.java" afterPath="$PROJECT_DIR$/ProyectoJavaFx/src/main/java/models/Main2.java" />
     </list>
     <ignored path="$PROJECT_DIR$/Proyecto/target/" />
@@ -26,10 +25,10 @@
         <entry file="file://$PROJECT_DIR$/ProyectoJavaFx/src/main/java/models/Main2.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="191">
-              <caret line="23" column="72" lean-forward="false" selection-start-line="23" selection-start-column="72" selection-end-line="23" selection-end-column="72" />
+              <caret line="23" column="68" lean-forward="false" selection-start-line="23" selection-start-column="68" selection-end-line="23" selection-end-column="68" />
               <folding>
-                <marker date="1511858433663" expanded="false" signature="1079:1090" ph=" { " />
-                <marker date="1511858433663" expanded="false" signature="1106:1112" ph=" }" />
+                <marker date="1511858689944" expanded="false" signature="1075:1086" ph=" { " />
+                <marker date="1511858689944" expanded="false" signature="1102:1108" ph=" }" />
               </folding>
             </state>
           </provider>
@@ -454,12 +453,12 @@
       <workItem from="1511420632760" duration="26000" />
       <workItem from="1511420713440" duration="488000" />
       <workItem from="1511421242612" duration="2836000" />
-      <workItem from="1511850550744" duration="7827000" />
+      <workItem from="1511850550744" duration="8076000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26501000" />
+    <option name="totallyTimeSpent" value="26750000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1294" height="1047" extended-state="0" />
@@ -858,10 +857,10 @@
     <entry file="file://$PROJECT_DIR$/ProyectoJavaFx/src/main/java/models/Main2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
-          <caret line="23" column="72" lean-forward="false" selection-start-line="23" selection-start-column="72" selection-end-line="23" selection-end-column="72" />
+          <caret line="23" column="68" lean-forward="false" selection-start-line="23" selection-start-column="68" selection-end-line="23" selection-end-column="68" />
           <folding>
-            <marker date="1511858433663" expanded="false" signature="1079:1090" ph=" { " />
-            <marker date="1511858433663" expanded="false" signature="1106:1112" ph=" }" />
+            <marker date="1511858689944" expanded="false" signature="1075:1086" ph=" { " />
+            <marker date="1511858689944" expanded="false" signature="1102:1108" ph=" }" />
           </folding>
         </state>
       </provider>
