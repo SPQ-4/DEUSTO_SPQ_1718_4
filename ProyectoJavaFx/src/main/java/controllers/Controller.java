@@ -23,7 +23,13 @@ public class Controller {
 	@FXML
 	private Button userState;
 	@FXML
+	private Button createContest;
+	@FXML
+	private Button market;
+	@FXML
 	private Button exit;
+	@FXML
+	private Button contest;
 	@FXML
 	private Pane centralPane;
 	@FXML
@@ -85,6 +91,40 @@ public class Controller {
 		    				// TODO Auto-generated catch block
 		    				a.printStackTrace();
 		    			}
+		    	    }
+		    	});
+				createContest.setOnAction(new EventHandler<ActionEvent>() {
+		    	    @Override public void handle(ActionEvent e) {
+		    	    	centralPane.getChildren().clear();
+		    	    	try {
+							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/NewContest.fxml")));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+		    	    }
+		    	});
+				
+				market.setOnAction(new EventHandler<ActionEvent>() {
+		    	    @Override public void handle(ActionEvent e) {
+		    	    	centralPane.getChildren().clear();
+		    	    	try {
+							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/Market_Players.fxml")));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+		    	    }
+		    	});
+				contest.setOnAction(new EventHandler<ActionEvent>() {
+		    	    @Override public void handle(ActionEvent e) {
+		    	    	centralPane.getChildren().clear();
+		    	    	try {
+							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/contestTable.fxml")));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 		    	    }
 		    	});
 				exit.setOnAction(new EventHandler<ActionEvent>() {

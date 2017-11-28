@@ -6,3 +6,9 @@ INFO - 11:26:06,653 - JavaFX Application Thread - controllers.ControllerGeneral 
 INFO - 11:32:23,896 - JavaFX Application Thread - controllers.ControllerGeneral - inicializando controller general
 INFO - 11:37:03,148 - JavaFX Application Thread - controllers.ControllerGeneral - inicializando controller general
 INFO - 23:39:28,718 - JavaFX Application Thread - controllers.ControllerGeneral - inicializando controller general
+INFO - 13:18:00,467 - JavaFX Application Thread - controllers.NewContestController - inicializando controller general
+INFO - 13:20:00,911 - JavaFX Application Thread - controllers.NewContestController - inicializando controller general
+INFO - 13:26:00,188 - JavaFX Application Thread - controllers.ControllerGeneral - Se han leído los jugadores de la BD
+INFO - 13:26:06,889 - JavaFX Application Thread - controllers.NewContestController - inicializando controller general
+INFO - 13:26:48,645 - JavaFX Application Thread - controllers.NewContestController - inicializando controller general
+INFO - 13:27:27,947 - JavaFX Application Thread - controllers.NewContestController - inicializando controller general
