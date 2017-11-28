@@ -80,7 +80,8 @@ public class NewContestController implements Initializable{
     	    @Override public void handle(ActionEvent e) {
     	    	if(checkings(contest.getText(), maxPart.getText(), minPart.getText(),
     	    		entryFee.getText(),(LocalDate)openDate.getValue(),
-    	    		(LocalDate) closeDate.getValue())){
+    	    		(LocalDate) closeDate.getValue()))
+    	    	{
     	    		metodos.newContest(contest.getText(), password.getText(),
     	    		(LocalDate)openDate.getValue(), (LocalDate) closeDate.getValue(), 
     	    		Integer.parseInt(minPart.getText()), Integer.parseInt(maxPart.getText()),
@@ -93,28 +94,28 @@ public class NewContestController implements Initializable{
 		if(yesNo){
 			contest.setStyle("-fx-border-color: RED");
 		}else{
-			contest.setStyle("-fx-border-color: BLACK");
+			contest.setStyle("-fx-border-color: GREEN");
 		}
 	}
 	public void setBorderMinPart(Boolean yesNo){
 		if(yesNo){
 			minPart.setStyle("-fx-border-color: RED");
 		}else{
-			minPart.setStyle("-fx-border-color: BLACK");
+			minPart.setStyle("-fx-border-color: GREEN");
 		}
 	}
 	public void setBorderMaxPart(Boolean yesNo){
 		if(yesNo){
 			maxPart.setStyle("-fx-border-color: RED");
 		}else{
-			maxPart.setStyle("-fx-border-color: BLACK");
+			maxPart.setStyle("-fx-border-color: GREEN");
 		}
 	}
 	public void setBorderEntryFee(boolean yesNo){
 		if(yesNo){
 			entryFee.setStyle("-fx-border-color: RED");
 		}else{
-			maxPart.setStyle("-fx-border-color: BLACK");
+			entryFee.setStyle("-fx-border-color: GREEN");
 		}
 	}
 	public void setBorderDate(boolean yesNo){
@@ -122,8 +123,8 @@ public class NewContestController implements Initializable{
 			openDate.setStyle("-fx-border-color: RED");
 			closeDate.setStyle("-fx-border-color: RED");
 		}else{
-			openDate.setStyle("-fx-border-color: BLACK");
-			closeDate.setStyle("-fx-border-color: BLACK");
+			openDate.setStyle("-fx-border-color: GREEN");
+			closeDate.setStyle("-fx-border-color: GREEN");
 		}
 	}
 	/**
@@ -175,6 +176,7 @@ public class NewContestController implements Initializable{
 			setBorderEntryFee(true);
 			return true;
 		}else{
+			
 			setBorderEntryFee(false);
 		}
 		return false;
@@ -191,14 +193,19 @@ public class NewContestController implements Initializable{
 				setBorderDate(true);
 				return false;
 			}else{
-				setBorderDate(true);
+				setBorderDate(false);
 			}
 			if(checkNumbers()){
 				return false;
 			}
-			if(metodos.checkMaxMin(Integer.parseInt(maxPart.getText()), Integer.parseInt(maxPart.getText()))){
+			if(metodos.checkMaxMin(Integer.parseInt(maxPart.getText()), Integer.parseInt(minPart.getText()))){
+				setBorderMaxPart(true);
+				setBorderMinPart(true);
 				return false;
-			}
+			}else{
+				setBorderMaxPart(false);
+				setBorderMinPart(false);
+			}	
 			
 		return true;
 	}
