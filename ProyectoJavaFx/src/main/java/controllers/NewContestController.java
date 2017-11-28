@@ -87,7 +87,7 @@ public class NewContestController implements Initializable{
 	    					new Popup("Se ha añadido correctamente");
 	    				} catch (IOException b) {
 	    					// TODO Auto-generated catch block
-	    					b.printStackTrace();
+	    					logger.error(b.getMessage());
 	    				}
 	    	    		setNull();
 	    	    	}  
