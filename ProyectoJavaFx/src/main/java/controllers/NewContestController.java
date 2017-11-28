@@ -9,8 +9,8 @@ import javafx.fxml.FXML;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 import org.apache.log4j.Logger;
 import javafx.fxml.Initializable;
@@ -19,6 +19,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import models.NewContestMethods;
  
 public class NewContestController implements Initializable{
 	
@@ -46,6 +47,10 @@ public class NewContestController implements Initializable{
     ComboBox <String> matchDay;
 	@FXML
 	Button create;
+	private int min;
+	private int max;
+	private int fee;
+	private NewContestMethods metodos;
 	
 	private MySQLDriver driverDB;
 	static Logger logger = Logger.getLogger(NewContestController.class);
@@ -64,6 +69,7 @@ public class NewContestController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		logger.info("inicializando controller general");
 		driverDB= new MySQLDriver();
+		metodos= new NewContestMethods();
 		try {
 			fillSelectlist();
 		} catch (SQLException e1) {
@@ -72,10 +78,53 @@ public class NewContestController implements Initializable{
 		}
 		create.setOnAction(new EventHandler<ActionEvent>() {
     	    @Override public void handle(ActionEvent e) {
-    	    	System.out.println(contest.getText());
-    	    	System.out.println(openDate.getValue());
+    	    	if(checkings(contest.getText(), maxPart.getText(), minPart.getText(),
+    	    		entryFee.getText(),(LocalDate)openDate.getValue(),
+    	    		(LocalDate) closeDate.getValue())){
+    	    		metodos.newContest(contest.getText(), password.getText(),
+    	    		(LocalDate)openDate.getValue(), (LocalDate) closeDate.getValue(), 
+    	    		Integer.parseInt(minPart.getText()), Integer.parseInt(maxPart.getText()),
+    	    		Integer.parseInt(entryFee.getText()), descrip.getText());
+    	    	}  
     	    }
     	});	 
+	}
+	public void setBorderContest(Boolean yesNo){
+		if(yesNo){
+			contest.setStyle("-fx-border-color: RED");
+		}else{
+			contest.setStyle("-fx-border-color: BLACK");
+		}
+	}
+	public void setBorderMinPart(Boolean yesNo){
+		if(yesNo){
+			minPart.setStyle("-fx-border-color: RED");
+		}else{
+			minPart.setStyle("-fx-border-color: BLACK");
+		}
+	}
+	public void setBorderMaxPart(Boolean yesNo){
+		if(yesNo){
+			maxPart.setStyle("-fx-border-color: RED");
+		}else{
+			maxPart.setStyle("-fx-border-color: BLACK");
+		}
+	}
+	public void setBorderEntryFee(boolean yesNo){
+		if(yesNo){
+			entryFee.setStyle("-fx-border-color: RED");
+		}else{
+			maxPart.setStyle("-fx-border-color: BLACK");
+		}
+	}
+	public void setBorderDate(boolean yesNo){
+		if(yesNo){
+			openDate.setStyle("-fx-border-color: RED");
+			closeDate.setStyle("-fx-border-color: RED");
+		}else{
+			openDate.setStyle("-fx-border-color: BLACK");
+			closeDate.setStyle("-fx-border-color: BLACK");
+		}
 	}
 	/**
 	 * rellenar los combobox para permitir al usuario elegir entre las opciones
@@ -109,51 +158,49 @@ public class NewContestController implements Initializable{
 		
 		mode.setItems(listMatchDay);
 	}
-	/**
-	 * En este método comprobamos que el nombre que hemos metido no existe ya en la BD
-	 * @param name nombre que le hemos dado al torneo
-	 * @return devolvemos si está cogido o no
-	 */
-	public boolean testContestName(String name){
-		return true;
+	public boolean checkNumbers(){
+		if(metodos.checkNumber(maxPart.getText())){
+			setBorderMaxPart(true);
+			return true;
+		}else{
+			setBorderMaxPart(false);
+		}
+		if(metodos.checkNumber(minPart.getText())){
+			setBorderMinPart(true);
+			return true;
+		}else{
+			setBorderMinPart(false);
+		}
+		if(metodos.checkNumber(entryFee.getText())){
+			setBorderEntryFee(true);
+			return true;
+		}else{
+			setBorderEntryFee(false);
+		}
+		return false;
 	}
-	/**
-	 * comprobamos que la fecha de open es anterior a la fecha de close. no nos hace falta comprobar
-	 * que sea una fecha porque al meterlo por datepicker solo te deja elegir una fecha real
-	 * @param dateOpen fecha de apertura del torneo
-	 * @param dateClose fecha  de cierre del torneo
-	 * @return devolvemos si la de cierre es posterior o no
-	 */
-	public boolean checkDates(String dateOpen, String dateClose){
-		return true;
-	}
-	/**
-	 * pasamos string del valor que queremos convertir en numero
-	 * @param number es el string que queremos pasar a number
-	 * @return devolvemos el numero creado
-	 */
-	public int checkAreNumbers(String number){
-		int a= Integer.parseInt(number);
-		return a;
-	}
-	/**
-	 * Comprobamos que el numero de participantes maximo es mayor que el minimo
-	 * @param max
-	 * @param min
-	 * @return
-	 */
-	public boolean checkMaxMin(int max, int min){
-		boolean a=false;
-			if(max>min){
-				a=true;
+	public boolean checkings(String contest,String max, String min, String fee, LocalDate open, 
+			LocalDate close){
+			if(metodos.testContestName(contest)){
+				setBorderContest(true);
+				return false;
+			}else{
+				setBorderContest(false);
 			}
-		return a;
-	}
-	/**
-	 * este método llama a la BD para crear un torneo
-	 */
-	public void newContest(){
-		
+			if(metodos.checkDates(open, close)){
+				setBorderDate(true);
+				return false;
+			}else{
+				setBorderDate(true);
+			}
+			if(checkNumbers()){
+				return false;
+			}
+			if(metodos.checkMaxMin(Integer.parseInt(maxPart.getText()), Integer.parseInt(maxPart.getText()))){
+				return false;
+			}
+			
+		return true;
 	}
 }
 

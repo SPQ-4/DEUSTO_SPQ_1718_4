@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import org.apache.log4j.Logger;
 import controllers.ControllerGeneral;
-import controllers.Usuario;
-import models.Main;
 import models.Player;
 
 public class PlayersBD {
