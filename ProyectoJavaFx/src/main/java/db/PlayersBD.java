@@ -6,9 +6,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import org.apache.log4j.Logger;
 import controllers.ControllerGeneral;
-import models.Main;
 import models.Player;
-import models.Usuario;
+
 
 public class PlayersBD {
 	private MySQLDriver driver;

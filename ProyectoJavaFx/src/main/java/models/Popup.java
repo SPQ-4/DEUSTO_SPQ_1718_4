@@ -18,7 +18,7 @@ public class Popup extends Window {
         controller.showMessage(message);
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Panenka - Admin");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(root, 700, 150));
         primaryStage.show();
     }
 
