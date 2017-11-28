@@ -29,6 +29,8 @@ public class Controller {
 	@FXML
 	private Button exit;
 	@FXML
+	private Button contest;
+	@FXML
 	private Pane centralPane;
 	@FXML
 	private Pane pieChart;
@@ -108,6 +110,17 @@ public class Controller {
 		    	    	centralPane.getChildren().clear();
 		    	    	try {
 							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/Market_Players.fxml")));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+		    	    }
+		    	});
+				contest.setOnAction(new EventHandler<ActionEvent>() {
+		    	    @Override public void handle(ActionEvent e) {
+		    	    	centralPane.getChildren().clear();
+		    	    	try {
+							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/contestTable.fxml")));
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
