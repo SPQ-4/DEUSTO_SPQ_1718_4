@@ -66,8 +66,4 @@ public class NewContestMethods {
 	/**
 	 * este método llama a la BD para crear un torneo
 	 */
-	public void newContest(String contest, String password, LocalDate openDate, LocalDate closeDate, 
-			int minim, int maxim, int feeEn,String descrip){
-			relationBD.newContest(contest, password, openDate, closeDate, minim, maxim, feeEn, descrip);
-	}
 }
