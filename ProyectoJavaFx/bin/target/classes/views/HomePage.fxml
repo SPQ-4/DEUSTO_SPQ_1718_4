@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.StackPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Controller">
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -17,28 +17,28 @@
                   <Image url="@../Images/balon.jpg" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="102.0" text="Situacion Actual" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="actualState" mnemonicParsing="false" prefHeight="77.0" prefWidth="102.0" text="Situacion Actual" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Cambria" size="12.0" />
                </font>
                <effect>
                   <InnerShadow />
                </effect></Button>
-            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="102.0" text="Situación Económica" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="economicState" mnemonicParsing="false" prefHeight="77.0" prefWidth="102.0" text="Situación Económica" textAlignment="CENTER" wrapText="true">
                <effect>
                   <InnerShadow />
                </effect>
                <font>
                   <Font name="Cambria" size="12.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="102.0" text="Situación de Usuarios" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="userState" mnemonicParsing="false" prefHeight="77.0" prefWidth="102.0" text="Situación de Usuarios" textAlignment="CENTER" wrapText="true">
                <effect>
                   <InnerShadow />
                </effect>
                <font>
                   <Font name="Cambria" size="12.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="102.0" text="Salir">
+            <Button fx:id="exit" mnemonicParsing="false" prefHeight="77.0" prefWidth="102.0" text="Salir">
                <effect>
                   <InnerShadow />
                </effect>
@@ -48,4 +48,7 @@
          </children>
       </VBox>
    </left>
+   <center>
+      <Pane fx:id="centralPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
