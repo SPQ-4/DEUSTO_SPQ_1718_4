@@ -41,8 +41,10 @@ public class MarketPlaceTest {
 		marketNew.setMarketServiceExt(marketService);
 		marketNew.setMarketTotalPoints();
 		marketNew.setMarketTotalValue();
-		assertEquals(20*20000/1000,(double)marketNew.setValue().get(0).getPlayer_value(),0);	
+		assertEquals(20*20000/1000,(double)marketNew.setValue().get(0).getPlayer_value(),0);
 		marketNew.setMarketValuePlayers();
+		marketNew.setMarketServiceExt(new MarketServiceExt());
+		assertNotEquals(20*200000/1000, (double)marketNew.setValue().get(0).getPlayer_value(),0);
 		verify(marketService,times(2)).setMarketTotalPoints(lista); 
 	}	
 }

@@ -37,6 +37,13 @@ public class MarketPlace{
 		this.marketTotalValue=marketService.setMarketTotalValue(this.playersList);
 	}
 	public ArrayList<Player> setValue() {
+//		Para enseñar el JAVAVM porque sino setValue no lo detecta
+//		try {
+//			Thread.sleep(100);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		for(int i=0;i<playersList.size();i++) {
 			playersList.get(i).setPlayer_value(playersList.get(i).getPlayer_points()/points*marketTotalValue);
 		}
@@ -52,6 +59,16 @@ public class MarketPlace{
 	public double getPoints() {
 		// TODO Auto-generated method stub
 		return this.points;
+	}
+	
+	public ArrayList<Player> setValueNoOptimize() {
+		// TODO Auto-generated method stub
+		for(int i=0;i<playersList.size();i++) {
+			setMarketTotalPoints();
+			setMarketTotalValue();
+			playersList.get(i).setPlayer_value(playersList.get(i).getPlayer_points()/points*marketTotalValue);
+		}
+		return playersList;
 	}
 	
 }
