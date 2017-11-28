@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Proyecto</name>
+    <title>Proyecto</title>
     <url>http://maven.apache.org</url>
 
     <properties>
