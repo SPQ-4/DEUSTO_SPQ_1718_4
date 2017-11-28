@@ -71,5 +71,8 @@ public class ControllerGeneralTest {
 		}
 		assertEquals(1,usersMonth);
 	}
-	
+	@Test
+	public void visualizacionControllerGeneral() {
+		ControllerGeneral.launchArt(new String[0]); 
+	}
 }

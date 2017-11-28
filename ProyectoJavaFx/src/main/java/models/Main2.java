@@ -8,8 +8,6 @@ import javafx.stage.Stage;
 
 
 public class Main2 extends Application {
-	public Main2() {
-	}
 	/**
 	 * este método se lanza con el launch y se manda automáticamente un Stage,
 	 * para eso tiene que extender de aplicación
@@ -17,7 +15,7 @@ public class Main2 extends Application {
 	 */
     @Override
     public void start(Stage primaryStage) throws Exception {
-    	URL resource =this.getClass().getResource("/views/NewContest.fxml");
+    	URL resource =this.getClass().getResource("/views/Market_Players.fxml");
     	Parent root = FXMLLoader.load(resource);
         primaryStage.setTitle("HomePage");
         primaryStage.setScene(new Scene(root, 1000, 700));

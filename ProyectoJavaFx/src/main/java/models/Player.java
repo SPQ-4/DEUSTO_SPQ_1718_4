@@ -78,7 +78,7 @@ public class Player {
 	public DoubleProperty player_pointsProperty() {
 		return this.player_points;
 	}
-	public void setPlayer_points(Double player_points) {
-		this.player_points.set(player_points);
+	public void setPlayer_points(double i) {
+		this.player_points.set(i);
 	}
 }

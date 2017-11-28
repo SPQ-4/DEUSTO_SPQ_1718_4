@@ -1,6 +1,5 @@
 package models;
 
-import controllers.Usuario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

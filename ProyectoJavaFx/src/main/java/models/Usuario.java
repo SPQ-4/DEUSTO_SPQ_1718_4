@@ -1,4 +1,4 @@
-package controllers;
+package models;
 
 import javafx.beans.property.StringProperty;
 import java.time.LocalDate;

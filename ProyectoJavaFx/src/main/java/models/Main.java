@@ -1,6 +1,6 @@
 package models;
 import controllers.Controller;
-import controllers.Usuario;
+
 import java.io.InputStream;
 import java.net.URL;
 import controllers.ControllerUser;

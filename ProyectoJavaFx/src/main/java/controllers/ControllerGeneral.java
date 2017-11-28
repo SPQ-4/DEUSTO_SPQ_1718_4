@@ -3,11 +3,14 @@ package controllers;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import db.MySQLDriver;
+import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 
 import java.awt.Paint;
@@ -31,8 +34,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
  
-public class ControllerGeneral implements Initializable{
+public class ControllerGeneral extends Application implements Initializable{
 	@FXML
 	Label usersThisMonth;
 	@FXML
@@ -233,6 +237,18 @@ public class ControllerGeneral implements Initializable{
 		                  }
 			        });
 		}
+	}
+	public static void launchArt(String[]args) {
+		launch(args);
+	}
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		// TODO Auto-generated method stub
+		URL resource =this.getClass().getResource("/views/GeneralInformation.fxml");
+    	Parent root = FXMLLoader.load(resource);
+        primaryStage.setTitle("HomePage");
+        primaryStage.setScene(new Scene(root, 1000, 700));
+        primaryStage.show();
 	}
 }
 

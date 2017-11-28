@@ -3,6 +3,7 @@ package controllers;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
+import models.Usuario;
 import javafx.beans.property.*;
 
 public class UserTableController {

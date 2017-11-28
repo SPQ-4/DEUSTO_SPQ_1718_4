@@ -2,51 +2,56 @@ package models;
 
 import java.util.ArrayList;
 
-public class MarketPlace {
+public class MarketPlace{
 	private ArrayList<Player>playersList;
 	private String marketName;
 	private double marketTotalValue;
 	private double points;
-	private double [] pointValue= {0.5,0.4,0.3,0.2};
+	MarketServiceInterface marketService;
+	/**
+	 * Constructor MarketPlace
+	 * @param playersList lista de jugadores que se van a tomar de referencia para puntuar
+	 */
 	public MarketPlace(ArrayList<Player>playersList) {
+		marketService=new MarketServiceExt();
 		setPlayersList(playersList);
+	}
+	public void setMarketServiceExt(MarketServiceInterface marketService) {
+		this.marketService=marketService;
 	}
 	public void setPlayersList(ArrayList<Player>playersList) {
 		this.playersList=playersList;
 	}
+	public ArrayList<Player> getPlayersList() {
+		return this.playersList;
+	}
 	public void setMarketValuePlayers() {
-		playersList.get(0).setPlayer_nationality("FUNCIONA");
 		setMarketTotalPoints();
 		setMarketTotalValue();
-		setPoints();
+		this.playersList=setValue();
 	}
 	public void setMarketTotalPoints() {
-		double parcial=0;
-		for(int i=0;i<this.playersList.size();i++) {
-			parcial=parcial+this.playersList.get(i).getPlayer_points();			
-		}
-		this.points=parcial;
+		this.points=marketService.setMarketTotalPoints(this.playersList);
 	}
 	public void setMarketTotalValue() {
-		double parcial=0;
-		for(int i=0;i<this.playersList.size();i++) {
-			switch(this.playersList.get(i).getPlayer_position()) {
-			case "G":parcial=parcial+this.playersList.get(i).getPlayer_points()*pointValue[0];break;
-			case "D":parcial=parcial+this.playersList.get(i).getPlayer_points()*pointValue[1];break;
-			case "M":parcial=parcial+this.playersList.get(i).getPlayer_points()*pointValue[2];break;
-			case "F":parcial=parcial+this.playersList.get(i).getPlayer_points()*pointValue[3];break;
-			default:;
-			}
-		}
-		marketTotalValue=parcial;
+		this.marketTotalValue=marketService.setMarketTotalValue(this.playersList);
 	}
-	public void setPoints() {
-		for(int i=0;i<this.playersList.size();i++) {
-			playersList.get(i).setPlayer_value(playersList.get(i).getPlayer_points()/this.points*marketTotalValue);
+	public ArrayList<Player> setValue() {
+		for(int i=0;i<playersList.size();i++) {
+			playersList.get(i).setPlayer_value(playersList.get(i).getPlayer_points()/points*marketTotalValue);
 		}
+		return playersList;
 	}
-	public void getPoints() {
-		
+	public ArrayList<Player> setPoints(ArrayList<Player>playersList) {
+		return playersList;
+	}
+	public double getMarketValue() {
+		// TODO Auto-generated method stub
+		return this.marketTotalValue;
+	}
+	public double getPoints() {
+		// TODO Auto-generated method stub
+		return this.points;
 	}
 	
 }

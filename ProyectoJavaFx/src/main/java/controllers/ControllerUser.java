@@ -26,6 +26,7 @@ import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import models.Usuario;
 /** 
  * @author ASIER
  * Esta clase va a controlar la visualización de los datos relacionados con los usuarios

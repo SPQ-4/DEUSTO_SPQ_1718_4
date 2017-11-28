@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import controllers.UserTableController;
-import controllers.Usuario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

@@ -1,6 +1,5 @@
 package db;
 import java.sql.ResultSet;
-
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
 import org.databene.contiperf.junit.ContiPerfRule;
@@ -17,13 +16,13 @@ static MySQLDriver mysql;
 	public static void initialize() {
 		mysql=new MySQLDriver();
 	}
-	@Test 
-	@PerfTest(invocations=100,threads=20)
-	@Required(max=20000,average=3000)
-	public void prueba() throws InterruptedException{
-		String playedTournaments="select count(*) from panenka_db.contests_contest where MONTH(close_date) = MONTH(CURDATE()) AND MONTH(created_date) = MONTH(CURDATE()) ;";
-		ResultSet type1=mysql.runQuery(playedTournaments);
-	}
+//	@Test 
+//	@PerfTest(invocations=100,threads=20)
+//	@Required(max=20000,average=3000)
+//	public void prueba() throws InterruptedException{
+//		String playedTournaments="select count(*) from panenka_db.contests_contest where MONTH(close_date) = MONTH(CURDATE()) AND MONTH(created_date) = MONTH(CURDATE()) ;";
+//		ResultSet type1=mysql.runQuery(playedTournaments);
+//	}
 	@Test 
 	@PerfTest(invocations=20,threads=20)
 	@Required(max=20000,average=3000)
