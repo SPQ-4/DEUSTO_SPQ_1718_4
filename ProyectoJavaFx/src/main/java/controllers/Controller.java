@@ -22,6 +22,8 @@ public class Controller {
 	@FXML
 	private Button userState;
 	@FXML
+	private Button createContest;
+	@FXML
 	private Button market;
 	@FXML
 	private Button exit;
@@ -86,6 +88,17 @@ public class Controller {
 		    				// TODO Auto-generated catch block
 		    				a.printStackTrace();
 		    			}
+		    	    }
+		    	});
+				createContest.setOnAction(new EventHandler<ActionEvent>() {
+		    	    @Override public void handle(ActionEvent e) {
+		    	    	centralPane.getChildren().clear();
+		    	    	try {
+							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/NewContest.fxml")));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 		    	    }
 		    	});
 				

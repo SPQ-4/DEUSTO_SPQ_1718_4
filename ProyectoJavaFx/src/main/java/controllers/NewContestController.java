@@ -2,18 +2,13 @@ package controllers;
 
 import db.MySQLDriver;
 import db.NewContestBD;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.ResourceBundle;
 import org.apache.log4j.Logger;
 import javafx.fxml.Initializable;
@@ -88,6 +83,13 @@ public class NewContestController implements Initializable{
 	    	    		(LocalDate)openDate.getValue(), (LocalDate) closeDate.getValue(), 
 	    	    		Integer.parseInt(minPart.getText()), Integer.parseInt(maxPart.getText()),
 	    	    		Integer.parseInt(entryFee.getText()), descrip.getText(),type1,model,matchday);
+	    	    		try {
+	    					new Popup("Se ha añadido correctamente");
+	    				} catch (IOException b) {
+	    					// TODO Auto-generated catch block
+	    					b.printStackTrace();
+	    				}
+	    	    		setNull();
 	    	    	}  
     	    	}
     	    }
@@ -198,6 +200,20 @@ public class NewContestController implements Initializable{
 		}
 		return true;
 	}
+	public void setNull(){
+		contest.clear();
+		password.clear();
+		descrip.clear();
+		openDate.setValue(null);
+		closeDate.setValue(null);
+		maxPart.clear();
+		minPart.clear();
+		entryFee.clear();
+		type.getSelectionModel().selectFirst();
+		mode.getSelectionModel().selectFirst();
+		matchDay.getSelectionModel().selectFirst();
+	}
+	
 	public boolean checkings(String contest,String max, String min, String fee, LocalDate open, 
 			LocalDate close){
 			if(metodos.testContestName(contest)){

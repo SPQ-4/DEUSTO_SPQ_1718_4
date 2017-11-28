@@ -1,0 +1,6 @@
+INFO - 13:18:00,467 - JavaFX Application Thread - controllers.NewContestController - inicializando controller general
+INFO - 13:20:00,911 - JavaFX Application Thread - controllers.NewContestController - inicializando controller general
+INFO - 13:26:00,188 - JavaFX Application Thread - controllers.ControllerGeneral - Se han leído los jugadores de la BD
+INFO - 13:26:06,889 - JavaFX Application Thread - controllers.NewContestController - inicializando controller general
+INFO - 13:26:48,645 - JavaFX Application Thread - controllers.NewContestController - inicializando controller general
+INFO - 13:27:27,947 - JavaFX Application Thread - controllers.NewContestController - inicializando controller general
