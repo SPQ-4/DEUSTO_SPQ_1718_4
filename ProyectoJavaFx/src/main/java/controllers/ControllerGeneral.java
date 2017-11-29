@@ -12,25 +12,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-
-import java.awt.Paint;
-import java.awt.PaintContext;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.ColorModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import org.apache.log4j.Logger;
-
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -57,7 +46,6 @@ public class ControllerGeneral extends Application implements Initializable{
 	double [] revenuesThisMonthThresholds= {500,1000};
 	double [] tournamentsByUsersThresholds= {4,10};
 	double [] playedRateThresholds= {0.5,0.8};
-	
 	private MySQLDriver driverDB;
 	@FXML
 	private PieChart contestsRatio;
@@ -67,7 +55,6 @@ public class ControllerGeneral extends Application implements Initializable{
 	private Pane monthKPI;
 	@FXML
 	private Label caption;
-	
 	private PieChart.Data slice1;
 	private PieChart.Data slice2;
 	static Logger logger = Logger.getLogger(ControllerGeneral.class);
@@ -94,7 +81,6 @@ public class ControllerGeneral extends Application implements Initializable{
 			e1.printStackTrace();
 		}
 		paintMonthKPI();
-		
 		try {
 			contestsTypes();
 		} catch (SQLException a) {
@@ -117,7 +103,6 @@ public class ControllerGeneral extends Application implements Initializable{
 		}
 		UsersChartController controllerA = fxmlLoader.getController();
 	    controllerA.cargarDatos(datos, media);
-	   
 	}
 	public Double playedRate() throws SQLException{
 		String playedTournaments="select count(*) from panenka_db.contests_contest where MONTH(close_date) = MONTH(CURDATE()) AND MONTH(created_date) = MONTH(CURDATE()) ;";
@@ -174,7 +159,6 @@ public class ControllerGeneral extends Application implements Initializable{
 		}else {
 			this.playedRateCircle.setFill(Color.GREEN);
 		}
-		
 		if(revenuesThisMonthD<revenuesThisMonthThresholds[0]) {
 			this.revenuesThisMonthCircle.setFill(Color.RED);
 		}else if(revenuesThisMonthD<revenuesThisMonthThresholds[1]) {
@@ -182,7 +166,6 @@ public class ControllerGeneral extends Application implements Initializable{
 		}else {
 			this.revenuesThisMonthCircle.setFill(Color.GREEN);
 		}
-		
 		if(tournamentsByUsersD<tournamentsByUsersThresholds[0]) {
 			this.tournamentsByUsersCircle.setFill(Color.RED);
 		}else if(tournamentsByUsersD<tournamentsByUsersThresholds[1]) {
@@ -190,7 +173,6 @@ public class ControllerGeneral extends Application implements Initializable{
 		}else {
 			this.tournamentsByUsersCircle.setFill(Color.GREEN);
 		}
-		
 		if(usersThisMonthD<usersThisMonthThresholds[0]) {
 			this.usersThisMonthCircle.setFill(Color.RED);
 		}else if(usersThisMonthD<usersThisMonthThresholds[1]) {
@@ -220,7 +202,6 @@ public class ControllerGeneral extends Application implements Initializable{
 	}
 	public void contestsTypes() throws SQLException{
 		//habrá que hacer una query por cada tipo de torneo, por ahora hay 2 tipos (en caso de haber más se podría hacer con un while)
-		
 			slice1 = new PieChart.Data("Public", getValueContestType(1));		
 			slice2 = new PieChart.Data("Private", getValueContestType(2));
 		ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(slice1,slice2);

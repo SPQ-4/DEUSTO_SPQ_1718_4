@@ -1,10 +1,14 @@
 package models;
 
 import javafx.beans.property.StringProperty;
-import java.time.LocalDate;
 import java.util.Date;
 import javafx.beans.property.*;
-
+/**
+ * Clase usuario para poder recoger los datos más importantes de un usuario y que el administrador los pueda
+ * visualizar.
+ * @author Asier y Juan
+ *
+ */
 public class Usuario {
 	private StringProperty nombre;
 	private StringProperty email;
@@ -14,11 +18,7 @@ public class Usuario {
 	private int id;
 	private SimpleDoubleProperty dineroIngresado;
 	private ObjectProperty<Date> fecha_registro;
-	
-	
-	
 	public Usuario(String email, double saldo, double dineroIngresado,Date fecha_registro) {
-		
 		this.email=new SimpleStringProperty(email);
 		this.saldo=new SimpleDoubleProperty(saldo);
 		this.dineroIngresado= new SimpleDoubleProperty(dineroIngresado);
@@ -38,7 +38,6 @@ public class Usuario {
 	public void setEmail(StringProperty email) {
 		this.email = email;
 	}
-	
 	 public Double getSaldo() {
 		return saldo.get();
 	}
@@ -51,13 +50,10 @@ public class Usuario {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public void setEdad(IntegerProperty edad) {
 		this.edad = edad;
 	}
-
-	 public String getNombre() {
-		 
+	 public String getNombre() {		
 		 return this.nombre.get();
 	 }
 	 public IntegerProperty getEdad() {
@@ -72,15 +68,12 @@ public class Usuario {
 	public double getDineroIngresado() {
 		return dineroIngresado.get();
 	}
-
 	public void setDineroIngresado(double dineroIngresado) {
 		this.dineroIngresado.set(dineroIngresado);
 	}
-	
 	public Date getFecha_registro() {
 		return fecha_registro.get();
 	}
-	
 	public void setFecha_registro(Date fecha_registro) {
 		this.fecha_registro.set(fecha_registro);
 	}

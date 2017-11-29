@@ -1,7 +1,12 @@
 package models;
 
 import java.util.ArrayList;
-
+/**
+ * Clase para gestionar un mercado en concreto, que esté formado por un conjunto de jugadores
+ * y que utiliza un servicio externo para calcular el valor y los puntos del mercado
+ * @author ASIER
+ *
+ */
 public class MarketPlace{
 	private ArrayList<Player>playersList;
 	private String marketName;
@@ -16,6 +21,10 @@ public class MarketPlace{
 		marketService=new MarketServiceExt();
 		setPlayersList(playersList);
 	}
+	/**
+	 * Método para especificar un servicio de market para que lo use. 
+	 * @param marketService objeto que tiene que implementar la interfaz MarketServiceInterface
+	 */
 	public void setMarketServiceExt(MarketServiceInterface marketService) {
 		this.marketService=marketService;
 	}
@@ -25,6 +34,10 @@ public class MarketPlace{
 	public ArrayList<Player> getPlayersList() {
 		return this.playersList;
 	}
+	/**
+	 * Método que cakcula el valor de mercado de los jugadores de un mercado en concreto basándose
+	 * en los puntos totales y en el valor que el mercado debería tener en función de esos puntos
+	 */
 	public void setMarketValuePlayers() {
 		setMarketTotalPoints();
 		setMarketTotalValue();
@@ -36,6 +49,7 @@ public class MarketPlace{
 	public void setMarketTotalValue() {
 		this.marketTotalValue=marketService.setMarketTotalValue(this.playersList);
 	}
+	
 	public ArrayList<Player> setValue() {
 //		Para enseñar el JAVAVM porque sino setValue no lo detecta
 //		try {

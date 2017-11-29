@@ -34,10 +34,5 @@ public class PlayersBD {
 		}	
 		return playerList;
 	}
-	public static void main(String[] args) {
-		PlayersBD a=new PlayersBD(new MySQLDriver());
-		ArrayList<Player>b=a.getPlayers();
-		System.out.println(b.get(0).toString());
-	}
 }
 

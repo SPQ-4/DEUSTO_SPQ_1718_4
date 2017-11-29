@@ -2,14 +2,9 @@ package controllers;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
-
 import org.apache.log4j.Logger;
-
 import db.MySQLDriver;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -19,7 +14,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
@@ -85,13 +79,11 @@ public class ControllerUser implements Initializable{
 				}
 			});
 		UsersTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
 			@Override
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
 				if ( event.getClickCount() == 2) {
 	                control.seeUserInfor(selectedUser);
-	                
 	            }
 			}
 		});
@@ -132,7 +124,8 @@ public class ControllerUser implements Initializable{
 		return 0;
 	}	
 	/**
-	 * Método que llama cada vez que ocurre una acción en el TextField para filtrar la tabla
+	 * Método que llama cada vez que ocurre una acción en el TextField para filtrar la tabla, lo que hace es comparar
+	 * el valor del textfield con el parámetro email de un usuario
 	 */
 	public void filterTable() {
 		filteredData.setPredicate(new Predicate<Usuario>() {

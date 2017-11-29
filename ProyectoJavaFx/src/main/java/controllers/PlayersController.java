@@ -63,7 +63,6 @@ public class PlayersController implements Initializable {
 			}
 		});
 		actualizarPrecio.setOnAction(new EventHandler<ActionEvent>() {
-			
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
@@ -72,7 +71,6 @@ public class PlayersController implements Initializable {
 			}
 		});
 		PlayersTable.setItems(filteredData);
-		
 	}
 	/**
 	 * DOXYFUNCIONA
