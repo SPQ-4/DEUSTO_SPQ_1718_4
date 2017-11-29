@@ -47,8 +47,8 @@ public class ContestTableController {
 
     public void initialize() {
         contests = FXCollections.observableArrayList();
-        setUsersToTable();
-        getPlayers();
+        setContestsToTable();
+        getContests();
         contestTable.setItems(contests);
         filteredData= new FilteredList<Contest> (contests);
         searchField.textProperty().addListener(new ChangeListener<String>() {
@@ -59,32 +59,31 @@ public class ContestTableController {
                 System.out.println(newValue);
             }
         });
-//        contestTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Contest>() {
-//            @Override
-//            public void changed(ObservableValue<? extends Contest> observableValue, Contest oldValue, Contest newValue) {
-//                if (contestTable.getSelectionModel().getSelectedItem() != null)
-//                {
-//                    TableViewSelectionModel selectionModel = contestTable.getSelectionModel();
-//                    ObservableList selectedItems = selectionModel.getSelectedItems();
-//                    selectedContest = (Contest) selectedItems.get(0);
-//                }
-//            }
-//        });
-//        contestTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//
-//            @Override
-//            public void handle(MouseEvent event) {
-//                // TODO Auto-generated method stub
-//                if ( event.getClickCount() == 2) {
-//                    System.out.println("What up gangsta");
-////                    control.seeUserInfor(selectedContest);
-//                }
-//            }
-//        });
+        contestTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Contest>() {
+            @Override
+            public void changed(ObservableValue<? extends Contest> observableValue, Contest oldValue, Contest newValue) {
+                if (contestTable.getSelectionModel().getSelectedItem() != null)
+                {
+                    TableViewSelectionModel selectionModel = contestTable.getSelectionModel();
+                    ObservableList selectedItems = selectionModel.getSelectedItems();
+                    selectedContest = (Contest) selectedItems.get(0);
+                }
+            }
+        });
+        contestTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                // TODO Auto-generated method stub
+                if (event.getClickCount() == 2) {
+//                    System.out.println(selectedContest.getTitle() + " " + selectedContest.getId());
+                    control.seeContestInfo(selectedContest);
+                }
+            }
+        });
         contestTable.setItems(filteredData);
     }
 
-    public void setUsersToTable() {
+    public void setContestsToTable() {
         titleCol.setCellValueFactory(new PropertyValueFactory<Contest, String>("title"));
         minimumParticipantsCol.setCellValueFactory(new PropertyValueFactory<Contest, String>("minimumParticipants"));
         maximumParticipantsCol.setCellValueFactory(new PropertyValueFactory<Contest, String>("maximumParticipants"));
@@ -96,14 +95,14 @@ public class ContestTableController {
         entryFeeCol.setText("Entrada");
     }
 
-    public void getPlayers() {
+    public void getContests() {
         driver = new MySQLDriver();
         String query = "SELECT * FROM panenka_db.contests_contest";
         ResultSet result = driver.runQuery(query);
         try {
             while (result.next())
             {
-                contests.add(new Contest(result.getString("title"), Integer.toString(result.getInt("minimum_participants")), Integer.toString(result.getInt("maximum_participants")), Double.toString(result.getDouble("entry_fee"))));
+                contests.add(new Contest(result.getInt("id"), result.getString("title"), Integer.toString(result.getInt("minimum_participants")), Integer.toString(result.getInt("maximum_participants")), Double.toString(result.getDouble("entry_fee"))));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -123,6 +122,11 @@ public class ContestTableController {
                 }
             }
         });
+    }
+
+    public void selectContest(Contest contest) {
+        ObservableList<Contest> data = contestTable.getItems();
+        data.add(contest);
     }
 
 }
