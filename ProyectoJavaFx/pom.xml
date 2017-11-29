@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <doxygen.config.file>${basedir}/src/main/resources/Doxyfile</doxygen.config.file>
     </properties> 
-    <!--  FIN:Para usar el GOAL de reporting de cobertura  -->
+    <!--  FIN:Para usar el GOAL de reporting de cobertura   -->
     <build>
         <plugins>
             <plugin>
@@ -107,15 +107,15 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-		        <groupId>com.soebes.maven.plugins</groupId>
-		      	<artifactId>doxygen-maven-plugin</artifactId>
+          	<plugin>
+	      		<groupId>com.soebes.maven.plugins</groupId>
+		        <artifactId>doxygen-maven-plugin</artifactId>
 		        <version>1.1.0</version>
 		        <configuration>
 		        	<executable>C:\Program Files\doxygen\bin\doxygen.exe</executable>
 		        	<configurationFile>${doxygen.config.file}</configurationFile>
 		        </configuration>
-	     	</plugin>
+		     </plugin>
         </plugins>
 		<resources>
 	        <resource>
@@ -166,15 +166,15 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>2.6</version>
             </plugin>
-        	<plugin>
-		        <groupId>com.soebes.maven.plugins</groupId>
-		      	<artifactId>doxygen-maven-plugin</artifactId>
+            <plugin>
+	      		<groupId>com.soebes.maven.plugins</groupId>
+		        <artifactId>doxygen-maven-plugin</artifactId>
 		        <version>1.1.0</version>
 		        <configuration>
 		        	<executable>C:\Program Files\doxygen\bin\doxygen.exe</executable>
 		        	<configurationFile>${doxygen.config.file}</configurationFile>
 		        </configuration>
-	     </plugin>
+		     </plugin>
         </plugins>
     </reporting>
 </project>

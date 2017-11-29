@@ -21,7 +21,6 @@ import models.NewContestMethods;
 import models.Popup;
  
 public class NewContestController implements Initializable{
-	
 	@FXML
 	DatePicker openDate;
 	@FXML
@@ -49,14 +48,19 @@ public class NewContestController implements Initializable{
 	private NewContestMethods metodos;
 	private NewContestBD BDrelation;
 	
-	private MySQLDriver driverDB;
 	static Logger logger = Logger.getLogger(NewContestController.class);
 	/**
 	 * este constructor es para cuando queremos utilizar métodos de
-	 * este controller y hace falta que el driver de MySQL esté activo
+	 * este controller 
 	 */
 	public NewContestController(){
-		driverDB= new MySQLDriver();
+		contest= new TextField();
+		openDate= new DatePicker();
+		closeDate= new DatePicker();
+		descrip= new TextArea();
+		minPart= new TextField();
+		maxPart= new TextField();
+		entryFee= new TextField();	
 	}
 	@Override
 	/**
@@ -65,7 +69,6 @@ public class NewContestController implements Initializable{
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		logger.info("inicializando controller general");
-		driverDB= new MySQLDriver();
 		metodos= new NewContestMethods();
 		BDrelation= new NewContestBD();
 		fillSelectlist();
@@ -95,54 +98,63 @@ public class NewContestController implements Initializable{
     	    }
     	});	 
 	}
-	public void setBorderContest(Boolean yesNo){
+	public String setBorderContest(Boolean yesNo){
 		if(yesNo){
 			contest.setStyle("-fx-border-color: RED");
+			return "RED";
 		}else{
 			contest.setStyle("-fx-border-color: GREEN");
+			return "GREEN";
 		}
 	}
-	public void setBorderMinPart(Boolean yesNo){
+	public String setBorderMinPart(Boolean yesNo){
 		if(yesNo){
 			minPart.setStyle("-fx-border-color: RED");
+			return "RED";
 		}else{
 			minPart.setStyle("-fx-border-color: GREEN");
+			return "GREEN";
 		}
 	}
-	public void setBorderMaxPart(Boolean yesNo){
+	public String setBorderMaxPart(Boolean yesNo){
 		if(yesNo){
 			maxPart.setStyle("-fx-border-color: RED");
+			return "RED";
 		}else{
 			maxPart.setStyle("-fx-border-color: GREEN");
+			return "GREEN";
 		}
 	}
-	public void setBorderEntryFee(boolean yesNo){
+	public String setBorderEntryFee(boolean yesNo){
 		if(yesNo){
 			entryFee.setStyle("-fx-border-color: RED");
+			return "RED";
 		}else{
 			entryFee.setStyle("-fx-border-color: GREEN");
+			return "GREEN";
 		}
 	}
-	public void setBorderDate(boolean yesNo){
+	public String setBorderDate(boolean yesNo){
 		if(yesNo){
 			openDate.setStyle("-fx-border-color: RED");
 			closeDate.setStyle("-fx-border-color: RED");
+			return "RED";
 		}else{
 			openDate.setStyle("-fx-border-color: GREEN");
 			closeDate.setStyle("-fx-border-color: GREEN");
+			return "GREEN";
 		}
 	}
 	/**
 	 * rellenar los combobox para permitir al usuario elegir entre las opciones
 	 * @throws SQLException al lanzar la query
 	 */
-	public void fillSelectlist(){		
+	public void fillSelectlist(){	
+		logger.info("rellenando las listas");
 		type.setItems(BDrelation.listType());
-		type.getSelectionModel().selectFirst();
-				
+		type.getSelectionModel().selectFirst();			
 		mode.setItems(BDrelation.listMode());
 		mode.getSelectionModel().selectFirst();	
-		
 		matchDay.setItems(BDrelation.listMatchday());
 		matchDay.getSelectionModel().selectFirst();
 	}
@@ -151,7 +163,6 @@ public class NewContestController implements Initializable{
 			try {
 				new Popup("Debe ser un numero");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			setBorderMaxPart(true);
@@ -163,7 +174,6 @@ public class NewContestController implements Initializable{
 			try {
 				new Popup("Debe ser un numero");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			setBorderMinPart(true);
@@ -175,13 +185,11 @@ public class NewContestController implements Initializable{
 			try {
 				new Popup("Debe ser un numero");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			setBorderEntryFee(true);
 			return true;
 		}else{
-			
 			setBorderEntryFee(false);
 		}
 		return false;
@@ -193,14 +201,15 @@ public class NewContestController implements Initializable{
 			 try {
 				new Popup("Ningun campo puede ser null");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				logger.error("problema con el popup");
 			}
 			return false;
 		}
 		return true;
 	}
 	public void setNull(){
+		logger.info("todo a null");
 		contest.clear();
 		password.clear();
 		descrip.clear();
@@ -220,7 +229,6 @@ public class NewContestController implements Initializable{
 				try {
 					new Popup("Ese nombre ya esta en la BD");
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				setBorderContest(true);
@@ -232,8 +240,8 @@ public class NewContestController implements Initializable{
 				try {
 					new Popup("la fecha de cierre es anterior a la de apertura");
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
+					logger.error("popup problema");
 				}
 				setBorderDate(true);
 				return false;
@@ -247,7 +255,6 @@ public class NewContestController implements Initializable{
 				try {
 					new Popup("numero de participantes minimos debe ser menor que el de maximos");
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				setBorderMaxPart(true);
@@ -257,7 +264,6 @@ public class NewContestController implements Initializable{
 				setBorderMaxPart(false);
 				setBorderMinPart(false);
 			}	
-			
 		return true;
 	}
 }

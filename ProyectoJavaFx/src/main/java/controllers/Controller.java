@@ -1,19 +1,25 @@
 package controllers;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.Usuario;
 
-public class Controller {
+public class Controller extends Application implements Initializable {
 
 
 	@FXML
@@ -45,8 +51,8 @@ public class Controller {
 	 * en este caso le vamos a dar a los botones del menú la funcionalidad, por eso el setOnAction para cada uno
 	 * es necesario que exista el equivalente a los elementos dentro del XML
 	 */
-	@FXML
-	public void initialize() {
+
+	public void initialize(URL location, ResourceBundle resources) {
 		//todos los setOnAction es para darles funcionalidad a los botones del menú de navegación
 				actualState.setOnAction(new EventHandler<ActionEvent>() {
 		    	    @Override public void handle(ActionEvent e) {
@@ -159,5 +165,18 @@ public class Controller {
 		}
 		UserTableController userTableController = fxmlLoader.getController();
 	    userTableController.selectUser(user);
+	}
+	
+	public static void launchArt(String[]args) {
+		launch(args);
+	}
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		// TODO Auto-generated method stub
+		URL resource =this.getClass().getResource("/views/HomePage.fxml");
+    	Parent root = FXMLLoader.load(resource);
+        primaryStage.setTitle("HomePage");
+        primaryStage.setScene(new Scene(root, 1000, 700));
+        primaryStage.show();
 	}
 }
