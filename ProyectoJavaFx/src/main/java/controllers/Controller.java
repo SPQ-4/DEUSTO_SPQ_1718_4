@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import models.Contest;
 import models.Usuario;
 
 public class Controller extends Application implements Initializable {
@@ -165,6 +166,16 @@ public class Controller extends Application implements Initializable {
 		}
 		UserTableController userTableController = fxmlLoader.getController();
 	    userTableController.selectUser(user);
+	}
+	public void seeContestInfo(Contest contest){
+		centralPane.getChildren().clear();
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/contestInfo.fxml"));
+		try {
+			centralPane.getChildren().add((Pane)fxmlLoader.load());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void launchArt(String[]args) {

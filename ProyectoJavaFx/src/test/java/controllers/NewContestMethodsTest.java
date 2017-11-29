@@ -19,7 +19,7 @@ public class NewContestMethodsTest {
 		boolean prueba;
 		prueba= metodos.testContestName("Prueba");
 		assertEquals(true,prueba);
-		prueba= metodos.testContestName("Prueba");
+		prueba= metodos.testContestName("Holi");
 		assertEquals(false,prueba);
 	}
 	@Test
@@ -34,9 +34,9 @@ public class NewContestMethodsTest {
 		open = LocalDate.of(2017,11,11);
 		close = LocalDate.of(2017,11,15);		
 		prueba= metodos.checkDates(open, close);
-		prueba= metodos.testContestName("Prueba");
 		assertEquals(false,prueba);
 	}
+	@Test
 	public void Numbertest() {
 		boolean prueba;
 		
@@ -44,9 +44,9 @@ public class NewContestMethodsTest {
 		assertEquals(true,prueba);
 		
 		prueba= metodos.checkNumber("3");
-		prueba= metodos.testContestName("Prueba");
 		assertEquals(false,prueba);
 	}
+	@Test
 	public void MaxMintest() {
 		boolean prueba;
 		
@@ -54,7 +54,6 @@ public class NewContestMethodsTest {
 		assertEquals(true,prueba);
 		
 		prueba= metodos.checkMaxMin(2, 1);
-		prueba= metodos.testContestName("Prueba");
 		assertEquals(false,prueba);
 	}
 }
