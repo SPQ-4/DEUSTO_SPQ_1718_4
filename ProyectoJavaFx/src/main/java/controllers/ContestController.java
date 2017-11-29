@@ -1,6 +1,7 @@
 package controllers;
 
 import db.MySQLDriver;
+import models.Contest;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +19,12 @@ public class ContestController {
     public ContestController() {
         dbDriver = new MySQLDriver();
     }
-
+    public void selectContest(Contest contest){
+    	//AQUÍ ES DONDE DEBERÍAS RELLENAR TU PANTALLA CON LOS DATOS QUE SAQUES DE DENTRO DE CONTEST
+    	//OSEA HACES CONTEST.GETNAME() (O COMO SEA EL METODO) Y RELLENAS CON EL ID DEL FXML
+    	//PERO ENTONCES DENTRO DE ESTA CLASE TIENEN QUE ESTAR LOS PARAMETROS DEL CONTESTINFO
+    	//OSEA LOS QUE TIENES CON EL ID
+    }
     public HashMap<String, Double> getContestEntryStats(String fromDate, String toDate) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date initialDate = null;

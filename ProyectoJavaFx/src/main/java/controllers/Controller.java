@@ -176,6 +176,8 @@ public class Controller extends Application implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		ContestController contestController = fxmlLoader.getController();
+	    contestController.selectContest(contest);
 	}
 	
 	public static void launchArt(String[]args) {
