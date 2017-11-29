@@ -6,7 +6,7 @@ import javafx.beans.property.*;
 /**
  * Clase usuario para poder recoger los datos más importantes de un usuario y que el administrador los pueda
  * visualizar.
- * @author Asier y Juan
+ * @author Grupo4
  *
  */
 public class Usuario {

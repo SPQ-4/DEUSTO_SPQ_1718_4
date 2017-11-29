@@ -4,7 +4,7 @@ import java.util.ArrayList;
 /**
  * Clase para gestionar un mercado en concreto, que esté formado por un conjunto de jugadores
  * y que utiliza un servicio externo para calcular el valor y los puntos del mercado
- * @author ASIER
+ * @author Grupo4
  *
  */
 public class MarketPlace{

@@ -3,7 +3,7 @@ package models;
 import java.util.ArrayList;
 /**
  * Clase para implementar el servicio externo que calcula puntos y valor de mercado
- * @author EDUARDO
+ * @author Grupo4
  *
  */
 public class MarketServiceExt implements MarketServiceInterface {

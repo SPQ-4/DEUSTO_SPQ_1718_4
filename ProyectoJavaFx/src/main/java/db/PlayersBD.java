@@ -8,13 +8,21 @@ import org.apache.log4j.Logger;
 import controllers.ControllerGeneral;
 import models.Player;
 
-
+/**
+ * Clase para recuperar de la BD la información que tiene que ver con los jugadores
+ * @author Grupo4
+ *
+ */
 public class PlayersBD {
 	private MySQLDriver driver;
 	public static Logger logger=Logger.getLogger(ControllerGeneral.class);
 	public PlayersBD(MySQLDriver driver) {
 		this.driver=driver;
 	}
+	/**
+	 * Método para obtener los jugadores que hay en la BD
+	 * @return devuelve un ArrayList con los jugadores de la BD
+	 */
 	public ArrayList<Player>getPlayers(){
 		ArrayList<Player>playerList=new ArrayList<Player>();
 		String query="select * from panenka_db.players_player, panenka_db.contests_club where panenka_db.contests_club.id=panenka_db.players_player.id_club";

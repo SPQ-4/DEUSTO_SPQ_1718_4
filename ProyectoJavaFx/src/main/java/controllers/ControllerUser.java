@@ -22,7 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import models.Usuario;
 /** 
- * @author ASIER
+ * @author Grupo4
  * Esta clase va a controlar la visualización de los datos relacionados con los usuarios
  * Su función será mostrar una tabla con los usuarios de la aplicación y poder filtrar
  */
