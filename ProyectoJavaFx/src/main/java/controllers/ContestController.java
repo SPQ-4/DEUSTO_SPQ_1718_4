@@ -16,25 +16,26 @@ import java.util.HashMap;
 
 public class ContestController {
 
-    MySQLDriver dbDriver;
+    private MySQLDriver dbDriver;
     @FXML
-    Label lblValorTitulo;
+    private Label lblValorTitulo;
     @FXML
-    Label lblValorDescripcion;
+    private Label lblValorDescripcion;
     @FXML
-    Label lblValorFechaInicio;
+    private Label lblValorFechaInicio;
     @FXML
-    Label lblValorFechaFinalizacion;
+    private Label lblValorFechaFinalizacion;
     @FXML
-    Label lblValorParticipantesMaximo;
+    private Label lblValorParticipantesMaximo;
     @FXML
-    Label lblValorParticipantesMinimo;
+    private Label lblValorParticipantesMinimo;
     @FXML
-    Label lblValorEntrada;
+    private Label lblValorEntrada;
 
     public ContestController() {
         dbDriver = new MySQLDriver();
     }
+
     public void selectContest(Contest contest) {
         lblValorTitulo.setText(contest.getTitle());
         lblValorDescripcion.setText(contest.getDescription());
@@ -48,7 +49,7 @@ public class ContestController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date initialDate = null;
         Date finalDate = new Date();
-        String query2;
+        String query;
         if (fromDate != null) {
             try {
                 initialDate = sdf.parse(fromDate);
@@ -65,7 +66,7 @@ public class ContestController {
             else {
                 finalDate = new Date();
             }
-            query2 = "SELECT * FROM panenka_db.contests_contest WHERE created_date BETWEEN '" + sdf.format(initialDate) + "' AND '" + sdf.format(finalDate) + "'";
+            query = "SELECT * FROM panenka_db.contests_contest WHERE created_date BETWEEN '" + sdf.format(initialDate) + "' AND '" + sdf.format(finalDate) + "'";
         }
         else {
             if (toDate != null) {
@@ -74,14 +75,14 @@ public class ContestController {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                query2 = "SELECT * FROM panenka_db.contests_contest WHERE created_date < '" + sdf.format(finalDate) + "'";
+                query = "SELECT * FROM panenka_db.contests_contest WHERE created_date < '" + sdf.format(finalDate) + "'";
             }
             else {
                 finalDate = new Date();
             }
-            query2 = "SELECT * FROM panenka_db.contests_contest";
+            query = "SELECT * FROM panenka_db.contests_contest";
         }
-        ResultSet result2 = dbDriver.runQuery(query2);
+        ResultSet result2 = dbDriver.runQuery(query);
         ArrayList<Double> classicList = new ArrayList<>();
         ArrayList<Double> h2hList = new ArrayList<>();
         try {
