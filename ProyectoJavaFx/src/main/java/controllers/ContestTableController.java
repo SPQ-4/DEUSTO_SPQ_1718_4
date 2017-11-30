@@ -1,6 +1,8 @@
 package controllers;
 
 import db.MySQLDriver;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -8,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
@@ -21,7 +24,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.function.Predicate;
 
-public class ContestTableController {
+public class ContestTableController implements Initializable {
 
     @FXML TableView<Contest> contestTable;
     @FXML
@@ -45,7 +48,7 @@ public class ContestTableController {
         super();
     }
 
-    public void initialize() {
+    public void initialize(URL location, ResourceBundle resources) {
         contests = FXCollections.observableArrayList();
         setContestsToTable();
         getContests();
@@ -75,7 +78,6 @@ public class ContestTableController {
             public void handle(MouseEvent event) {
                 // TODO Auto-generated method stub
                 if (event.getClickCount() == 2) {
-//                    System.out.println(selectedContest.getTitle() + " " + selectedContest.getId());
                     control.seeContestInfo(selectedContest);
                 }
             }
@@ -102,7 +104,7 @@ public class ContestTableController {
         try {
             while (result.next())
             {
-                contests.add(new Contest(result.getInt("id"), result.getString("title"), Integer.toString(result.getInt("minimum_participants")), Integer.toString(result.getInt("maximum_participants")), Double.toString(result.getDouble("entry_fee"))));
+                contests.add(new Contest(result.getInt("id"), result.getString("title"), result.getString("description"), result.getString("open_date"), result.getString("close_date"), Integer.toString(result.getInt("minimum_participants")), Integer.toString(result.getInt("maximum_participants")), Double.toString(result.getDouble("entry_fee"))));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -128,5 +130,12 @@ public class ContestTableController {
         ObservableList<Contest> data = contestTable.getItems();
         data.add(contest);
     }
+
+    public void setController(Controller control){
+        this.control = control;
+    }
+//    public void setDBDriver(MySQLDriver driver) {
+//        driverDB = driver;
+//    }
 
 }

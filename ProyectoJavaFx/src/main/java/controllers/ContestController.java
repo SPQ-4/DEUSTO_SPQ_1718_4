@@ -1,6 +1,8 @@
 package controllers;
 
 import db.MySQLDriver;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import models.Contest;
 
 import java.sql.ResultSet;
@@ -15,15 +17,32 @@ import java.util.HashMap;
 public class ContestController {
 
     MySQLDriver dbDriver;
+    @FXML
+    Label lblValorTitulo;
+    @FXML
+    Label lblValorDescripcion;
+    @FXML
+    Label lblValorFechaInicio;
+    @FXML
+    Label lblValorFechaFinalizacion;
+    @FXML
+    Label lblValorParticipantesMaximo;
+    @FXML
+    Label lblValorParticipantesMinimo;
+    @FXML
+    Label lblValorEntrada;
 
     public ContestController() {
         dbDriver = new MySQLDriver();
     }
-    public void selectContest(Contest contest){
-    	//AQUÍ ES DONDE DEBERÍAS RELLENAR TU PANTALLA CON LOS DATOS QUE SAQUES DE DENTRO DE CONTEST
-    	//OSEA HACES CONTEST.GETNAME() (O COMO SEA EL METODO) Y RELLENAS CON EL ID DEL FXML
-    	//PERO ENTONCES DENTRO DE ESTA CLASE TIENEN QUE ESTAR LOS PARAMETROS DEL CONTESTINFO
-    	//OSEA LOS QUE TIENES CON EL ID
+    public void selectContest(Contest contest) {
+        lblValorTitulo.setText(contest.getTitle());
+        lblValorDescripcion.setText(contest.getDescription());
+        lblValorFechaInicio.setText(contest.getStartingDate());
+        lblValorFechaFinalizacion.setText(contest.getEndingDate());
+        lblValorParticipantesMaximo.setText(contest.getMaximumParticipants());
+        lblValorParticipantesMinimo.setText(contest.getMinimumParticipants());
+        lblValorEntrada.setText(contest.getEntryFee());
     }
     public HashMap<String, Double> getContestEntryStats(String fromDate, String toDate) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
