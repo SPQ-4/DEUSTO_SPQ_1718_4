@@ -58,8 +58,8 @@ public class ContestTableController implements Initializable {
      * se seleccione y para filtrar la tabla.
      */
     public void initialize(URL location, ResourceBundle resources) {
+        logger.info("Inicializando controller de tabla de torneos");
         contests = FXCollections.observableArrayList();
-        setContestsToTable();
         getContests();
         contestTable.setItems(contests);
         filteredData= new FilteredList<Contest> (contests);
@@ -91,17 +91,7 @@ public class ContestTableController implements Initializable {
             }
         });
         contestTable.setItems(filteredData);
-    }
-
-    /**
-     * Método que enlaza los TableColumns del controller con los del FXML y añade los items a la
-     * tabla
-     */
-    public void setContestsToTable() {
-        titleCol.setCellValueFactory(new PropertyValueFactory<Contest, String>("title"));
-        minimumParticipantsCol.setCellValueFactory(new PropertyValueFactory<Contest, String>("minimumParticipants"));
-        maximumParticipantsCol.setCellValueFactory(new PropertyValueFactory<Contest, String>("maximumParticipants"));
-        entryFeeCol.setCellValueFactory(new PropertyValueFactory<Contest, String>("entryFee"));
+        logger.info("Controller de tabla de torneos inicializado correctamente");
     }
 
     /**

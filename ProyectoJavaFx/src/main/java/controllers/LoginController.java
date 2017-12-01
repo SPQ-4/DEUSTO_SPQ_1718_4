@@ -1,8 +1,12 @@
 package controllers;
 
 import db.MySQLDriver;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,12 +18,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.Main2;
 import models.Popup;
 
 import java.net.URL;
 import java.sql.ResultSet;
 
-public class LoginController {
+public class LoginController extends Application implements Initializable {
 
     @FXML
     public BorderPane borderPane;
@@ -39,56 +44,55 @@ public class LoginController {
     public Button btnLogin;
 
     public LoginController() {
-        borderPane = new BorderPane();
-        vBox = new VBox();
-        sidePaneLeft = new Pane();
-        sidePaneRight = new Pane();
-        lblSiteTitle = new Label();
-        txtEmail = new TextField();
-        txtPassword = new PasswordField();
-        btnLogin = new Button();
-        borderPane.setTop(lblSiteTitle);
-        borderPane.setLeft(sidePaneLeft);
-        borderPane.setRight(sidePaneRight);
-        vBox.getChildren().add(txtEmail);
-        vBox.getChildren().add(txtPassword);
-        vBox.getChildren().add(btnLogin);
-        borderPane.setCenter(vBox);
+        super();
     }
 
     @FXML
     public void login() {
-        MySQLDriver dbDriver = new MySQLDriver();
         try {
-            String query = "SELECT * FROM panenka.temporary_users WHERE email='" + txtEmail.getText() + "'";
-            ResultSet result = dbDriver.runQuery(query);
-            try {
-                if (result.next() && txtEmail.getText().equals(result.getString("email"))) {
-                    if (txtPassword.getText().equals(result.getString("password"))) {
-                        System.out.println("Opening dashboard");
-                        //TODO - Mirar como hacer para cerrar la ventana entera en lugar del Scene
-                       // this.borderPane.getParent().getScene().getRoot().setVisible(false);
-                        this.borderPane.getChildren().clear();
-                        this.borderPane.setBackground(null);
-                        this.borderPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/HomePage.fxml")));
-                    }
-                    else
-                    {
-                        new Popup("Las credenciales no son válidas");
-                    }
-                }
-                else {
-                    new Popup("No existe ninguna cuenta con ese email");
-                }
+            if (checkCredentials(txtEmail.getText(), txtPassword.getText())) {
+                this.borderPane.getChildren().clear();
+                this.borderPane.setBackground(null);
+                this.borderPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/HomePage.fxml")));
             }
-            catch (Exception e1) {
-                e1.printStackTrace();
+            else
+            {
+                new Popup("Las credenciales no son válidas");
             }
         }
-        catch (Exception e2) {
-            e2.printStackTrace();
+        catch (Exception e) {
+            e.printStackTrace();
         }
-        dbDriver.close();
     }
 
+    public boolean checkCredentials(String email, String password) {
+        String query = "SELECT * FROM panenka.temporary_users WHERE email='" + email + "'";
+        ResultSet result = Main2.getDBDriver().runQuery(query);
+        try {
+            if (result.next() && email.equals(result.getString("email"))) {
+                if (password.equals(result.getString("password"))) {
+                    return true;
+                }
+            }
+        }
+        catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        // TODO Auto-generated method stub
+        URL resource =this.getClass().getResource("/views/login.fxml");
+        Parent root = FXMLLoader.load(resource);
+        primaryStage.setTitle("Panenka - Admin");
+        primaryStage.setScene(new Scene(root, 1000, 700));
+        primaryStage.show();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 }
