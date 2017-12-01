@@ -26,6 +26,8 @@ public class Controller extends Application implements Initializable {
 	@FXML
 	private Button actualState;
 	@FXML
+	private Button incidentManagement;
+	@FXML
 	private Button economicState;
 	@FXML
 	private Button userState;
@@ -139,6 +141,21 @@ public class Controller extends Application implements Initializable {
 			@Override public void handle(ActionEvent e) {
 				Stage stage = (Stage) exit.getScene().getWindow();
 				stage.close();
+			}
+		});
+		incidentManagement.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				centralPane.getChildren().clear();
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/Incidents_Tables.fxml"));
+				try {
+					centralPane.getChildren().add((Node) fxmlLoader.load());
+					IncidentsTablesController controller = fxmlLoader.getController();
+					controller.initializeData();
+					
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 	}
