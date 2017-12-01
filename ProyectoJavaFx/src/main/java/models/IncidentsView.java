@@ -40,10 +40,11 @@ public class IncidentsView extends Application {
 		incidents.add(i3);
 		incidents.add(i4);
        primaryStage.setTitle("Incidencias");
-       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/Incidents_Tables.fxml"));   
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/Incident_View.fxml"));   
        Pane myPane = (Pane)fxmlLoader.load();
        IncidentsTablesController controller = fxmlLoader.getController();
-       controller.llenarTablas(incidents);
+      // controller.llenarTablas(incidents);
+       controller.selectIncident(i4);
       
        Scene myScene = new Scene(myPane);
        primaryStage.setScene(myScene);
