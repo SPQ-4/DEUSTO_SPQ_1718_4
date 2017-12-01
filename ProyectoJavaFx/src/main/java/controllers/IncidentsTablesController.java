@@ -11,6 +11,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import models.Incident;
 
+/** Controller que gestiona todo lo referente a la visualización de las incidencias*/
+
 public class IncidentsTablesController {
 	@FXML protected TableView<Incident> noGestionadas;
 	@FXML protected TableView<Incident> gestionadas;
@@ -36,7 +38,10 @@ public class IncidentsTablesController {
 
 
 	
-	
+	/** este método se encarga de clasificar un array de incidencias en dos, gestionadas y no gestionadas
+	 * después de clasificarlos los carga en los observables que cargarán la información en pantalla
+	 * @param incidents incidencias recogidas de la base de datos
+	 */
 	public void llenarTablas(ArrayList<Incident> incidents) {
 //		 ObservableList<Incident> data = noGestionadas;
 //		 ObservableList<Incident> data1 = gestionadas;
@@ -52,6 +57,10 @@ public class IncidentsTablesController {
 		 
 	}
 	
+	/**
+	 * se selecciona la incidencia que se quiere mostrar y en función de si ha sido gestionada o no deja que el administrador registre una respuesta
+	 * @param incident incidencia que ha sido seleccionada por el usuario
+	 */
 	public void selectIncident(Incident incident) {
 		ObservableList<Incident> data = incidentView.getItems();
 		data.add(incident);
@@ -67,6 +76,12 @@ public class IncidentsTablesController {
 		answer(incidentView.getItems().get(0),answer.getText());
 	}
 	
+	/**
+	 * recoger la respuesta que ha dado el administrador a una incidencia
+	 * @param incident incidencia en la que se va a recoger la respuesta
+	 * @param answer respuesta del administrador
+	 * @return devuelve la incidencia actualizada
+	 */
 	public Incident answer(Incident incident, String answer) {
 		incident.setRespuesta(answer);
 		incident.setGestionada(true);
