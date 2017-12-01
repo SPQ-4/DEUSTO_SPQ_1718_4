@@ -1,6 +1,8 @@
 package controllers;
 
 import db.MySQLDriver;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import models.Contest;
 
 import java.sql.ResultSet;
@@ -14,22 +16,40 @@ import java.util.HashMap;
 
 public class ContestController {
 
-    MySQLDriver dbDriver;
+    private MySQLDriver dbDriver;
+    @FXML
+    private Label lblValorTitulo;
+    @FXML
+    private Label lblValorDescripcion;
+    @FXML
+    private Label lblValorFechaInicio;
+    @FXML
+    private Label lblValorFechaFinalizacion;
+    @FXML
+    private Label lblValorParticipantesMaximo;
+    @FXML
+    private Label lblValorParticipantesMinimo;
+    @FXML
+    private Label lblValorEntrada;
 
     public ContestController() {
         dbDriver = new MySQLDriver();
     }
-    public void selectContest(Contest contest){
-    	//AQUÍ ES DONDE DEBERÍAS RELLENAR TU PANTALLA CON LOS DATOS QUE SAQUES DE DENTRO DE CONTEST
-    	//OSEA HACES CONTEST.GETNAME() (O COMO SEA EL METODO) Y RELLENAS CON EL ID DEL FXML
-    	//PERO ENTONCES DENTRO DE ESTA CLASE TIENEN QUE ESTAR LOS PARAMETROS DEL CONTESTINFO
-    	//OSEA LOS QUE TIENES CON EL ID
+
+    public void selectContest(Contest contest) {
+        lblValorTitulo.setText(contest.getTitle());
+        lblValorDescripcion.setText(contest.getDescription());
+        lblValorFechaInicio.setText(contest.getStartingDate());
+        lblValorFechaFinalizacion.setText(contest.getEndingDate());
+        lblValorParticipantesMaximo.setText(contest.getMaximumParticipants());
+        lblValorParticipantesMinimo.setText(contest.getMinimumParticipants());
+        lblValorEntrada.setText(contest.getEntryFee());
     }
     public HashMap<String, Double> getContestEntryStats(String fromDate, String toDate) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date initialDate = null;
         Date finalDate = new Date();
-        String query2;
+        String query;
         if (fromDate != null) {
             try {
                 initialDate = sdf.parse(fromDate);
@@ -46,7 +66,7 @@ public class ContestController {
             else {
                 finalDate = new Date();
             }
-            query2 = "SELECT * FROM panenka_db.contests_contest WHERE created_date BETWEEN '" + sdf.format(initialDate) + "' AND '" + sdf.format(finalDate) + "'";
+            query = "SELECT * FROM panenka_db.contests_contest WHERE created_date BETWEEN '" + sdf.format(initialDate) + "' AND '" + sdf.format(finalDate) + "'";
         }
         else {
             if (toDate != null) {
@@ -55,14 +75,14 @@ public class ContestController {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                query2 = "SELECT * FROM panenka_db.contests_contest WHERE created_date < '" + sdf.format(finalDate) + "'";
+                query = "SELECT * FROM panenka_db.contests_contest WHERE created_date < '" + sdf.format(finalDate) + "'";
             }
             else {
                 finalDate = new Date();
             }
-            query2 = "SELECT * FROM panenka_db.contests_contest";
+            query = "SELECT * FROM panenka_db.contests_contest";
         }
-        ResultSet result2 = dbDriver.runQuery(query2);
+        ResultSet result2 = dbDriver.runQuery(query);
         ArrayList<Double> classicList = new ArrayList<>();
         ArrayList<Double> h2hList = new ArrayList<>();
         try {

@@ -45,7 +45,7 @@ public class Controller extends Application implements Initializable {
 	private Pane barChart;
 	@FXML
 	private GridPane economic;
-	
+
 	/**
 	 * este método se llama automáticamente desde el FXMl,
 	 * es una especie de constructor pero sin necesidad de hacer new() porque eso lo hace el XML
@@ -55,94 +55,95 @@ public class Controller extends Application implements Initializable {
 
 	public void initialize(URL location, ResourceBundle resources) {
 		//todos los setOnAction es para darles funcionalidad a los botones del menú de navegación
-				actualState.setOnAction(new EventHandler<ActionEvent>() {
-		    	    @Override public void handle(ActionEvent e) {
-		    	    	centralPane.getChildren().clear();
-		    	    	try {
-							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/GeneralInformation.fxml")));
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-		    	    }
-		    	});
-				
-				economicState.setOnAction(new EventHandler<ActionEvent>() {
-		    	    @Override public void handle(ActionEvent e) {
-		    	    	centralPane.getChildren().clear();
-		    	    	centralPane.getChildren().add((GridPane)economic);
-		    	    	try {
-							pieChart.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/piechart.fxml")));
-		    	    	} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-		    	    	try {
-							barChart.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/barchart.fxml")));
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-		    	    }
-		    	});
-				
-				userState.setOnAction(new EventHandler<ActionEvent>() {
-		    	    @Override public void handle(ActionEvent e) {
-		    	    	centralPane.getChildren().clear();
-		    	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/User_Table.fxml"));
-		    	    	
-		    			try {
-		    				centralPane.getChildren().add((Pane)fxmlLoader.load());
-		    				setControllerToControllerUser(fxmlLoader);
-		    			} catch (IOException a) {
-		    				// TODO Auto-generated catch block
-		    				a.printStackTrace();
-		    			}
-		    	    }
-		    	});
-				createContest.setOnAction(new EventHandler<ActionEvent>() {
-		    	    @Override public void handle(ActionEvent e) {
-		    	    	centralPane.getChildren().clear();
-		    	    	try {
-							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/NewContest.fxml")));
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-		    	    }
-		    	});
-				
-				market.setOnAction(new EventHandler<ActionEvent>() {
-		    	    @Override public void handle(ActionEvent e) {
-		    	    	centralPane.getChildren().clear();
-		    	    	try {
-							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/Market_Players.fxml")));
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-		    	    }
-		    	});
-				contest.setOnAction(new EventHandler<ActionEvent>() {
-		    	    @Override public void handle(ActionEvent e) {
-		    	    	centralPane.getChildren().clear();
-		    	    	try {
-							centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/contestTable.fxml")));
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-		    	    }
-		    	});
-				exit.setOnAction(new EventHandler<ActionEvent>() {
-		    	    @Override public void handle(ActionEvent e) {
-		    	    	Stage stage = (Stage) exit.getScene().getWindow();        
-		    	        stage.close();
-		    	    }
-		    	});
+		actualState.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				centralPane.getChildren().clear();
+				try {
+					centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/GeneralInformation.fxml")));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+
+		economicState.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				centralPane.getChildren().clear();
+				centralPane.getChildren().add((GridPane)economic);
+				try {
+					pieChart.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/piechart.fxml")));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					barChart.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/barchart.fxml")));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+
+		userState.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				centralPane.getChildren().clear();
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/User_Table.fxml"));
+				try {
+					centralPane.getChildren().add((Pane)fxmlLoader.load());
+					setControllerToControllerUser(fxmlLoader);
+				} catch (IOException a) {
+					// TODO Auto-generated catch block
+					a.printStackTrace();
+				}
+			}
+		});
+		createContest.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				centralPane.getChildren().clear();
+				try {
+					centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/NewContest.fxml")));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+
+		market.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				centralPane.getChildren().clear();
+				try {
+					centralPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/views/Market_Players.fxml")));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		contest.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				centralPane.getChildren().clear();
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/contestTable.fxml"));
+				try {
+					centralPane.getChildren().add((Pane) fxmlLoader.load());
+					setControllerToContestTableController(fxmlLoader);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		exit.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				Stage stage = (Stage) exit.getScene().getWindow();
+				stage.close();
+			}
+		});
 	}
 	/**
-	 * este método lo utilizamos para obtener el controller asociado al xml que vamos a cargar, 
+	 * este método lo utilizamos para obtener el controller asociado al xml que vamos a cargar,
 	 * lo necesitamos para después poder trabajar con los métodos de ese controller
 	 * @param fxmlLoader el XML del que queramos obtener el controllerUser
 	 */
@@ -165,7 +166,16 @@ public class Controller extends Application implements Initializable {
 			e.printStackTrace();
 		}
 		UserTableController userTableController = fxmlLoader.getController();
-	    userTableController.selectUser(user);
+		userTableController.selectUser(user);
+	}
+	/**
+	 * este método lo utilizamos para obtener el controller asociado al xml que vamos a cargar,
+	 * lo necesitamos para después poder trabajar con los métodos de ese controller
+	 * @param fxmlLoader el XML del que queramos obtener el controllerUser
+	 */
+	public void setControllerToContestTableController(FXMLLoader fxmlLoader){
+		ContestTableController control = fxmlLoader.getController();
+		control.setController(this);
 	}
 	public void seeContestInfo(Contest contest){
 		centralPane.getChildren().clear();
@@ -177,9 +187,9 @@ public class Controller extends Application implements Initializable {
 			e.printStackTrace();
 		}
 		ContestController contestController = fxmlLoader.getController();
-	    contestController.selectContest(contest);
+		contestController.selectContest(contest);
 	}
-	
+
 	public static void launchArt(String[]args) {
 		launch(args);
 	}
@@ -187,9 +197,9 @@ public class Controller extends Application implements Initializable {
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
 		URL resource =this.getClass().getResource("/views/HomePage.fxml");
-    	Parent root = FXMLLoader.load(resource);
-        primaryStage.setTitle("HomePage");
-        primaryStage.setScene(new Scene(root, 1000, 700));
-        primaryStage.show();
+		Parent root = FXMLLoader.load(resource);
+		primaryStage.setTitle("HomePage");
+		primaryStage.setScene(new Scene(root, 1000, 700));
+		primaryStage.show();
 	}
 }

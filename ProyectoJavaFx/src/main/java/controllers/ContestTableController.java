@@ -1,6 +1,8 @@
 package controllers;
 
 import db.MySQLDriver;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -8,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
@@ -21,9 +24,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.function.Predicate;
 
-public class ContestTableController {
+public class ContestTableController implements Initializable {
 
-    @FXML TableView<Contest> contestTable;
+    @FXML
+    protected TableView<Contest> contestTable;
     @FXML
     private TableColumn <Contest, String> titleCol;
     @FXML
@@ -34,20 +38,28 @@ public class ContestTableController {
     private TableColumn <Contest, String> entryFeeCol;
     @FXML
     private TextField searchField;
-    private ObservableList<Contest> contests;
+    protected ObservableList<Contest> contests;
     private FilteredList<Contest> filteredData ;
     private MySQLDriver driver;
     private Contest selectedContest;
-    private Controller control;
+    private Controller controller;
     static Logger logger = Logger.getLogger(ControllerGeneral.class);
 
+    /**
+     * Constructor vacío
+     */
     public ContestTableController() {
         super();
     }
 
-    public void initialize() {
+    /**
+     * Método inicializador que genera la lista, la rellena con los datos de los torneos de la BD,
+     * añade la lista a la tabla y establece los listeners necesarios para mostrar el torneo que
+     * se seleccione y para filtrar la tabla.
+     */
+    public void initialize(URL location, ResourceBundle resources) {
+        logger.info("Inicializando controller de tabla de torneos");
         contests = FXCollections.observableArrayList();
-        setContestsToTable();
         getContests();
         contestTable.setItems(contests);
         filteredData= new FilteredList<Contest> (contests);
@@ -56,7 +68,6 @@ public class ContestTableController {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // TODO Auto-generated method stub
                 filterTable();
-                System.out.println(newValue);
             }
         });
         contestTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Contest>() {
@@ -75,26 +86,18 @@ public class ContestTableController {
             public void handle(MouseEvent event) {
                 // TODO Auto-generated method stub
                 if (event.getClickCount() == 2) {
-//                    System.out.println(selectedContest.getTitle() + " " + selectedContest.getId());
-                    control.seeContestInfo(selectedContest);
+                    controller.seeContestInfo(selectedContest);
                 }
             }
         });
         contestTable.setItems(filteredData);
+        logger.info("Controller de tabla de torneos inicializado correctamente");
     }
 
-    public void setContestsToTable() {
-        titleCol.setCellValueFactory(new PropertyValueFactory<Contest, String>("title"));
-        minimumParticipantsCol.setCellValueFactory(new PropertyValueFactory<Contest, String>("minimumParticipants"));
-        maximumParticipantsCol.setCellValueFactory(new PropertyValueFactory<Contest, String>("maximumParticipants"));
-        entryFeeCol.setCellValueFactory(new PropertyValueFactory<Contest, String>("entryFee"));
-        contestTable.setItems(contests);
-        titleCol.setText("Nombre");
-        minimumParticipantsCol.setText("Participantes (min)");
-        maximumParticipantsCol.setText("Participantes (max)");
-        entryFeeCol.setText("Entrada");
-    }
-
+    /**
+     * Método que lee los datos de todos los torneos existentes en la BD y que los añade a la lista
+     * correspondiente convertiéndolos a objetos Contest
+     */
     public void getContests() {
         driver = new MySQLDriver();
         String query = "SELECT * FROM panenka_db.contests_contest";
@@ -102,7 +105,7 @@ public class ContestTableController {
         try {
             while (result.next())
             {
-                contests.add(new Contest(result.getInt("id"), result.getString("title"), Integer.toString(result.getInt("minimum_participants")), Integer.toString(result.getInt("maximum_participants")), Double.toString(result.getDouble("entry_fee"))));
+                contests.add(new Contest(result.getInt("id"), result.getString("title"), result.getString("description"), result.getString("open_date"), result.getString("close_date"), Integer.toString(result.getInt("minimum_participants")), Integer.toString(result.getInt("maximum_participants")), Double.toString(result.getDouble("entry_fee"))));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -110,6 +113,9 @@ public class ContestTableController {
         driver.close();
     }
 
+    /**
+     * Método que filtra la tabla de Contests en función de los términos de búsqueda introducidos
+     */
     public void filterTable() {
         filteredData.setPredicate(new Predicate<Contest>() {
             @Override
@@ -124,9 +130,16 @@ public class ContestTableController {
         });
     }
 
-    public void selectContest(Contest contest) {
-        ObservableList<Contest> data = contestTable.getItems();
-        data.add(contest);
+    /**
+     * Método que establece el controller a la clase
+     * @param Controller El controller que se quiere asignar a la clase
+     */
+    public void setController(Controller control){
+        this.controller = control;
+    }
+
+    public Controller getController() {
+        return this.controller;
     }
 
 }

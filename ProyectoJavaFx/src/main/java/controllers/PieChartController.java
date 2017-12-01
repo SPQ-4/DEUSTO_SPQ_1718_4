@@ -28,10 +28,7 @@ public class PieChartController implements Initializable {
       dataList.add(new PieChart.Data(key, data.get(key)));
     }
     ObservableList<PieChart.Data> list = FXCollections.observableArrayList(dataList);
-    for (int i = 0; i < list.size(); i++) {
-      System.out.println(list.get(i).toString());
-    }
     this.pieChart.setData(list);
-    this.pieChart.setTitle("PRUEBA");
+    this.pieChart.setTitle("Revenue by contest type");
   }
 }
