@@ -1,7 +1,2 @@
-INFO - 17:54:32,747 - JavaFX Application Thread - controllers.ControllerGeneral - inicializando controller general
-INFO - 17:54:50,602 - JavaFX Application Thread - controllers.NewContestController - inicializando controller general
-INFO - 17:54:53,972 - JavaFX Application Thread - controllers.NewContestController - rellenando las listas
-INFO - 17:56:21,308 - JavaFX Application Thread - controllers.ControllerGeneral - Inicializando controller de tabla de torneos
-INFO - 17:56:23,087 - JavaFX Application Thread - controllers.ControllerGeneral - Controller de tabla de torneos inicializado correctamente
-INFO - 17:56:29,126 - JavaFX Application Thread - controllers.ControllerGeneral - Inicializando controller de tabla de torneos
-INFO - 17:56:31,662 - JavaFX Application Thread - controllers.ControllerGeneral - Controller de tabla de torneos inicializado correctamente
+INFO - 00:14:14,703 - JavaFX Application Thread - controllers.ControllerGeneral - Inicializando controller de tabla de torneos
+INFO - 00:14:15,159 - JavaFX Application Thread - controllers.ControllerGeneral - Controller de tabla de torneos inicializado correctamente

@@ -2,9 +2,7 @@ package controllers;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-import db.MySQLDriver;
 import java.util.HashMap;
-import models.Contest;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,15 +1,10 @@
 package controllers;
 
-import db.MySQLDriver;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -17,14 +12,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import models.Main2;
 import models.Popup;
 
 import java.net.URL;
 import java.sql.ResultSet;
 
-public class LoginController extends Application implements Initializable {
+public class LoginController implements Initializable {
 
     @FXML
     public BorderPane borderPane;
@@ -43,10 +37,18 @@ public class LoginController extends Application implements Initializable {
     @FXML
     public Button btnLogin;
 
+    /**
+     * Método constructor
+     */
     public LoginController() {
         super();
     }
 
+    /**
+     * Método que se encarga de leer los campos de input de las credenciales y carga el dashboard
+     * en caso de que sean válidas. En caso de no serlo, presenta un pop-up al usuario informándole
+     * del error.
+     */
     @FXML
     public void login() {
         try {
@@ -65,6 +67,12 @@ public class LoginController extends Application implements Initializable {
         }
     }
 
+    /**
+     * Método que realiza una query de todos los usuarios de la BD y compara las credenciales
+     * recibidas por parámetro con las de dichos usuarios. En caso de que encuentre una coincidencia
+     * devuelve TRUE, que indica que se le proporciona acceso a la aplicación al usuario, y en caso
+     * de no ser así devuelve FALSE.
+     */
     public boolean checkCredentials(String email, String password) {
         String query = "SELECT * FROM panenka.temporary_users WHERE email='" + email + "'";
         ResultSet result = Main2.getDBDriver().runQuery(query);
@@ -81,16 +89,9 @@ public class LoginController extends Application implements Initializable {
         return false;
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        // TODO Auto-generated method stub
-        URL resource =this.getClass().getResource("/views/login.fxml");
-        Parent root = FXMLLoader.load(resource);
-        primaryStage.setTitle("Panenka - Admin");
-        primaryStage.setScene(new Scene(root, 1000, 700));
-        primaryStage.show();
-    }
-
+    /**
+     * Método de inicialización de la clase por implementar Initializable. No se usa.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

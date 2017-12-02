@@ -1,6 +1,5 @@
 package controllers;
 
-import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,13 +18,21 @@ public class StackedBarChartController implements Initializable {
     @FXML
     public StackedBarChart stackedBarChart;
 
+    /**
+     * Método inicializador. Crea una instancia del controlador de torneos, del cual obtiene la
+     * lista de torneos de la ultima semana y llama al método que carga esos datos en un gráfico
+     * de barras que muestra los ingresos por días de la semana de la última semana.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ContestController contestController = new ContestController();
-        HashMap<String, HashMap<String, Double>> dbResults = contestController.getLastWeekContestStats();
-        loadData(dbResults);
+        loadData(contestController.getLastWeekContestStats());
     }
 
+    /**
+     * Método que realiza la carga de datos en un gráfico de barras (StackedChart). Recibe un mapa
+     * con de mapas, sobre el cual itera para añadir sus datos al gráfico.
+     */
     public void loadData(HashMap<String, HashMap<String, Double>> data) {
         ObservableList<String> weekdays = FXCollections.observableArrayList(
                 "Monday",

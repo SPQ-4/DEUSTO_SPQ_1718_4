@@ -1,51 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ContestController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ContestController">
    <children>
-      <Label fx:id="lblTitulo" layoutX="74.0" layoutY="102.0" text="Título">
+      <Label fx:id="lblTitulo" layoutX="39.0" layoutY="102.0" text="Título">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="lblDescripcion" layoutX="184.0" layoutY="102.0" text="Descripción">
+      <Label fx:id="lblDescripcion" layoutX="146.0" layoutY="102.0" text="Descripción">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="lblFechaInicio" layoutX="327.0" layoutY="102.0" text="Fecha inicio">
+      <Label fx:id="lblFechaInicio" layoutX="288.0" layoutY="102.0" text="Fecha inicio">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="lblFechaFinalizacion" layoutX="442.0" layoutY="102.0" text="Fecha finalización">
+      <Label fx:id="lblFechaFinalizacion" layoutX="428.0" layoutY="102.0" text="Fecha finalización">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="lblParticipantesMaximo" layoutX="393.0" layoutY="231.0" text="Participantes (máximo)">
+      <Label fx:id="lblParticipantesMaximo" layoutX="410.0" layoutY="231.0" text="Participantes (máximo)">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblParticipantesMinimo" layoutX="192.0" layoutY="231.0" text="Participantes (mínimo)">
+      <Label fx:id="lblParticipantesMinimo" layoutX="225.0" layoutY="231.0" text="Participantes (mínimo)">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblEntrada" layoutX="78.0" layoutY="231.0" text="Entrada">
+      <Label fx:id="lblEntrada" layoutX="79.0" layoutY="231.0" text="Entrada">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblValorTitulo" layoutX="75.0" layoutY="154.0" text="Label" />
-      <Label fx:id="lblValorDescripcion" layoutX="209.0" layoutY="154.0" text="Label" />
-      <Label fx:id="lblValorFechaInicio" layoutX="352.0" layoutY="154.0" text="Label" />
-      <Label fx:id="lblValorFechaFinalizacion" layoutX="486.0" layoutY="154.0" text="Label" />
+      <Label fx:id="lblValorTitulo" layoutX="45.0" layoutY="154.0" text="Label" />
+      <Label fx:id="lblValorDescripcion" layoutX="171.0" layoutY="154.0" text="Label" />
+      <Label fx:id="lblValorFechaInicio" layoutX="313.0" layoutY="154.0" text="Label" />
+      <Label fx:id="lblValorFechaFinalizacion" layoutX="473.0" layoutY="154.0" text="Label" />
       <Label fx:id="lblValorEntrada" layoutX="90.0" layoutY="287.0" text="Label" />
-      <Label fx:id="lblValorParticipantesMinimo" layoutX="244.0" layoutY="287.0" text="Label" />
-      <Label fx:id="lblValorParticipantesMaximo" layoutX="440.0" layoutY="287.0" text="Label" />
+      <Label fx:id="lblValorParticipantesMinimo" layoutX="286.0" layoutY="287.0" text="Label" />
+      <Label fx:id="lblValorParticipantesMaximo" layoutX="473.0" layoutY="287.0" text="Label" />
    </children>
 </AnchorPane>

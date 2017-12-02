@@ -1,22 +1,9 @@
 package controllers;
 
-import db.MySQLDriver;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import models.Popup;
-
-import java.sql.ResultSet;
 
 public class PopupController {
 
@@ -29,6 +16,9 @@ public class PopupController {
     @FXML
     public Label lblMessage;
 
+    /**
+     * Método constructor.
+     */
     public PopupController() {
         this.borderPane = new BorderPane();
         this.sidePaneLeft = new Pane();
@@ -39,6 +29,9 @@ public class PopupController {
         this.borderPane.setRight(this.sidePaneRight);
     }
 
+    /**
+     * Método que carga un mensaje en el label de la ventana para informar al usuario.
+     */
     @FXML
     public void showMessage(String message) {
         this.lblMessage.setText(message);
