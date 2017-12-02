@@ -45,7 +45,7 @@
    </TableView>
  
       <TextField  fx:id="answer" layoutX="115.0" layoutY="28.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-      <Button fx:id="button" layoutX="171.0" layoutY="180.0" mnemonicParsing="false" onAction="#answer" prefHeight="37.0" prefWidth="79.0" text="Responder" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+      <Button fx:id="button" layoutX="171.0" layoutY="180.0" mnemonicParsing="false" onAction="#answerIncident" prefHeight="37.0" prefWidth="79.0" text="Responder" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
    </children>
    <columnConstraints>
       <ColumnConstraints />
